@@ -16,8 +16,8 @@
                 <ul class="nav navbar-nav">
                     <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="/admin">Home</a></li>
                     <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="/admin/users">Admin Users</a></li>
-                    <li class="{{ Request::is('admin/assets') ? 'active' : '' }}"><a href="/admin/assets">Assets</a></li>
-                    <li class="{{ Request::is('admin/bookings') ? 'active' : '' }}"><a href="/admin/bookings">Bookings</a></li>
+                    <li class="{{ Request::is('admin/assets*') ? 'active' : '' }}"><a href="/admin/assets">Assets</a></li>
+                    <li class="{{ Request::is('admin/bookings*') ? 'active' : '' }}"><a href="/admin/bookings">Bookings</a></li>
                 </ul>
 
             </div><!-- /.navbar-collapse -->

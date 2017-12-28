@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssetCategoryTable extends Migration
+class CreateCampusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAssetCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('campuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable(false);
-            $table->string('slug')->nullable(false);
-            $table->text('description');
+            $table->string('name')->isNullable(false);
+            $table->decimal('longitude')->isNullable(false);
+            $table->decimal('latitude')->isNullable(false);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAssetCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('campuses');
     }
 }

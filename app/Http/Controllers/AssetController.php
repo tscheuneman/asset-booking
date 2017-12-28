@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Asset;
+use App\Category;
 
 class AssetController extends Controller
 {
@@ -29,7 +30,12 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view('admin.assetCreate');
+        $cat = Category::get();
+        return view('admin.assetCreate',
+            [
+                'categories' => $cat
+            ]
+        );
     }
 
     /**

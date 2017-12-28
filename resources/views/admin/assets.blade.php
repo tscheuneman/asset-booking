@@ -9,11 +9,12 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">ASURite</th>
-            <th scope="col">Created</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Specs</th>
+            <th scope="col">Available</th>
+            <th scope="col">Active</th>
         </tr>
         </thead>
         <tbody>
