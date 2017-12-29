@@ -30,3 +30,26 @@ a.editAction {
 .alert.alert-error {
     color:red;
 }
+header {
+    background:#fff;
+    width:100%;
+}
+/*
+Nav
+ */
+nav.navbar {
+    height:59px;
+}
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
+    color:#f4f4f4;
+    font-size:16px;
+    font-weight:bold;
+    transition:background .5s, color .5s;
+    height: 58px;
+    padding: 0 15px;
+    line-height: 59px;
+}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-text:hover,.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover  {
+    color: #ffb310;
+    background-color: #000000;
+}

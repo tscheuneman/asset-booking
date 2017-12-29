@@ -4,11 +4,12 @@
     @include('includes.admin.head')
 </head>
 <body>
-<div class="container">
+
     <header class="row">
         @include('includes.admin.header')
     </header>
-
+    @include('includes.admin.nav')
+    <div class="container">
     <div id="main" class="row">
 
         @yield('content')
