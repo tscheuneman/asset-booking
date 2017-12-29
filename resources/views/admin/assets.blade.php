@@ -3,7 +3,7 @@
     Assets
 @stop
 @section('content')
-    <a class="actionLink" href="/admin/asset/create">Add Asset</a> <h2>Assets</h2>
+    <a class="actionLink" href="{{ url('/admin/asset/create') }}">Add Asset</a> <h2>Assets</h2>
     <hr>
     <table class="table">
         <thead>

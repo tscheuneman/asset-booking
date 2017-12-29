@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Asset</h2>
     <hr>
-    <form method="POST" action="/admin/assets">
+    <form method="POST" action="{{ url('/admin/assets') }}">
         {{csrf_field()}}
 
 
@@ -71,7 +71,7 @@
             $('#longitude').val(crd.longitude);
             $.ajax({
                 method: "GET",
-                url: "/admin/location/verify",
+                url: "{{ url('/admin/location/verify') }}",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },

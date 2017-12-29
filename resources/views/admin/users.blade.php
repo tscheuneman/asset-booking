@@ -3,7 +3,7 @@
     Users
 @stop
 @section('content')
-    <a class="actionLink" href="/admin/users/create">Add User</a> <h2>Users</h2>
+    <a class="actionLink" href="{{ url('/admin/users/create') }}">Add User</a> <h2>Users</h2>
     <hr>
     <table class="table">
         <thead>

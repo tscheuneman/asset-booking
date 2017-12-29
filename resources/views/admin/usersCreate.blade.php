@@ -5,7 +5,7 @@
 @section('content')
 <h2>Create User</h2>
 <hr>
-<form method="POST" action="/admin/users">
+<form method="POST" action="{{ url('/admin/users') }}">
     {{csrf_field()}}
     <div class="form-group">
         <label for="asurite">ASURITE</label>
