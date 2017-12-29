@@ -21,7 +21,9 @@
 
         <div class="form-group">
             <label for="building">Building</label>
-            <input type="text" class="form-control" id="building" name="building">
+            <select class="form-control" id="building" name="building">
+
+            </select>
         </div>
 
         <div class="form-group">
@@ -46,6 +48,7 @@
             <input type="file" accept="image/*;capture=camera">
         </div>
 
+        <input type="hidden" class="form-control" id="campusID" name="campusID" required>
 
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -66,6 +69,30 @@
             var crd = pos.coords;
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
+            $.ajax({
+                method: "GET",
+                url: "/admin/location/verify",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'lat': crd.latitude,
+                    'lng': crd.longitude
+                }
+            }).done(function( msg ) {
+                $('#campus').val(msg.campus.name).prop('disabled', true);
+
+                msg.building.forEach(function(element) {
+                    $('#building').append($('<option>', {
+                        value: element.id,
+                        text: element.name
+                    }));
+                });
+
+                $('#buildingID').val(msg.building.id);
+                $('#campusID').val(msg.campus.id);
+
+             });
         };
 
         function error(err) {
@@ -73,6 +100,8 @@
         };
 
         navigator.geolocation.getCurrentPosition(success, error, options);
+
+
 
     </script>
 @stop

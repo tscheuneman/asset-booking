@@ -10,3 +10,4 @@
 <script src="{{ asset('js/app.js') }}"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="{{csrf_token()}}" name="csrf-token" />

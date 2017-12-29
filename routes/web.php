@@ -26,3 +26,7 @@ Route::get('/admin/users/create', 'AdminController@create');
 
 Route::get('/admin/assets', 'AssetController@index');
 Route::get('/admin/asset/create', 'AssetController@create');
+
+
+//Internal API's
+Route::get('/admin/location/verify', 'LocationController@verify');

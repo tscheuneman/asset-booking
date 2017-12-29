@@ -16,8 +16,8 @@ class CreateBuildingsTable extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->isNullable(false);
-            $table->decimal('longitude')->isNullable(false);
-            $table->decimal('latitude')->isNullable(false);
+            $table->double('longitude',15, 8)->isNullable(false);
+            $table->double('latitude',15,8)->isNullable(false);
             $table->timestamps();
         });
     }
