@@ -16,6 +16,7 @@
                 <li class="{{ Request::is('admin') ? 'active' : '' }}"><a href="{{ url('/admin') }}">Home</a></li>
                 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ url('/admin/users') }}">Admin Users</a></li>
                 <li class="{{ Request::is('admin/assets*') ? 'active' : '' }}"><a href="{{ url('/admin/assets') }}">Assets</a></li>
+                <li class="{{ Request::is('admin/assets/categories*') ? 'active' : '' }}"><a href="{{ url('/admin/assets/categories') }}">Asset Categories</a></li>
                 <li class="{{ Request::is('admin/locations*') ? 'active' : '' }}"><a href="{{ url('/admin/locations') }}">Locations</a></li>
                 <li class="{{ Request::is('admin/bookings*') ? 'active' : '' }}"><a href="{{ url('/admin/bookings') }}">Bookings</a></li>
             </ul>
