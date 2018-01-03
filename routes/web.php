@@ -26,11 +26,13 @@ Route::get('/admin/users/create', 'AdminController@create');
 
 Route::get('/admin/assets', 'AssetController@index');
 Route::get('/admin/asset/create', 'AssetController@create');
+Route::post('/admin/assets', 'AssetController@store');
 
 
-Route::get('/admin/assets/categories', 'CategoryController@index');
+Route::get('/admin/categories', 'CategoryController@index');
 Route::get('/admin/category/create', 'CategoryController@create');
 Route::post('/admin/category', 'CategoryController@store');
 
 //Internal API's
 Route::get('/admin/location/verify', 'LocationController@verify');
+Route::get('/asset', 'LocationController@index');

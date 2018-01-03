@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $cat->description = request('description');
 
         $cat->save();
-        return redirect('/admin/assets/categories');
+        return redirect('/admin/categories');
     }
 
 }

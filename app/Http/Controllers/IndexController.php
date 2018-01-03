@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Asset;
 use Cas;
 
 class IndexController extends Controller
 {
     public function index() {
-        Cas::authenticate();
-        $user = Customer::getName(Cas::user());
+        $assets = Asset::with('location')->get();
         return view('index.welcome',
             [
-                'user' => $user
+                'assets' => $assets
             ]
         );
     }

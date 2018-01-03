@@ -5,18 +5,18 @@
 @section('content')
     <h2>Create Asset</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/assets') }}">
+    <form method="POST" action="{{ url('/admin/assets') }}" enctype="multipart/form-data">
         {{csrf_field()}}
 
 
         <div class="form-group">
             <label for="longitude">Longitude</label>
-            <input type="text" class="form-control" id="longitude" name="longitude" disabled required>
+            <input type="text" class="form-control" id="longitude" name="longitude" readonly required>
         </div>
 
         <div class="form-group">
             <label for="latitude">Latitude</label>
-            <input type="text" class="form-control" id="latitude" name="latitude" disabled required>
+            <input type="text" class="form-control" id="latitude" name="latitude" readonly required>
         </div>
 
         <div class="form-group">
@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="campus">Campus</label>
-            <input type="text" class="form-control" id="campus" name="campus" required>
+            <input type="text" class="form-control" id="campus" name="campus" readonly required>
         </div>
 
         <hr>
@@ -45,11 +45,49 @@
 
         <div class="form-group">
             <label for="email">Image</label>
-            <input type="file" accept="image/*;capture=camera">
+            <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera">
         </div>
 
-        <input type="hidden" class="form-control" id="campusID" name="campusID" required>
+        <hr>
+        <h3>Specs</h3>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="height">Height</label>
+                <input type="text" class="form-control" id="height" name="height">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="width">Width</label>
+                <input type="text" class="form-control" id="width" name="width">
+            </div>
+        </div>
 
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="color">Color</label>
+                <select class="form-control" id="color" name="color">
+                    <option>N/A</option>
+                    <option>One Sided, B&W</option>
+                    <option>Two Sided, B&W</option>
+                    <option>One Sided, Color</option>
+                    <option>Two Sided, Color</option>
+                    <option>Two, B&W & Color</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="material">Material</label>
+                <select class="form-control" id="material" name="material">
+                    <option>N/A</option>
+                    <option>Canvas</option>
+                    <option>Metal</option>
+                    <option>Wood</option>
+                    <option>Vinyl Wrap</option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <br style="clear:both;" /><br />
 
         <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -80,7 +118,7 @@
                     'lng': crd.longitude
                 }
             }).done(function( msg ) {
-                $('#campus').val(msg.campus.name).prop('disabled', true);
+                $('#campus').val(msg.campus.name).prop('readonly', true);
 
                 msg.building.forEach(function(element) {
                     $('#building').append($('<option>', {

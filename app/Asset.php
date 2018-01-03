@@ -8,6 +8,16 @@ class Asset extends Model
 {
     //
     public function category() {
-        return $this->hasOne('App\Category');
+        return $this->belongsTo('App\Category', 'cat_id');
+
+    }
+
+    public function location()
+    {
+        return $this->hasOne('App\Location');
+    }
+
+    public function building() {
+        return $this->hasManyThrough('App\Building', 'App\Location');
     }
 }

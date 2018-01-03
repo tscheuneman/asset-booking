@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Building;
 use App\Campus;
+use App\Asset;
 
 class LocationController extends Controller
 {
@@ -13,9 +14,13 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $id = $request->get('id');
+        $assets = Asset::with('location.building', 'category')->find($id);
+
+        return $assets;
+
     }
 
     public function verify(Request $request) {

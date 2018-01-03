@@ -10,7 +10,6 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Category</th>
-            <th scope="col">Name</th>
             <th scope="col">Location</th>
             <th scope="col">Specs</th>
             <th scope="col">Available</th>
@@ -20,7 +19,24 @@
         <tbody>
         @foreach($assets as $asset)
             <tr>
-            {{$asset}}
+                <td>
+                    {{$asset->id}}
+                </td>
+                <td>
+                    {{$asset->category->name}}
+                </td>
+                <td>
+                    {{$asset->location->longitude}}, {{$asset->location->latitude}}
+                </td>
+                <td>
+                    {{$asset->specifications}}
+                </td>
+                <td>
+                    {{$asset->is_available}}
+                </td>
+                <td>
+                    {{$asset->is_active}}
+                </td>
             <tr>
         @endforeach
         </tbody>

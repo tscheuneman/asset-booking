@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Asset;
 use App\Category;
+use App\Location;
 
 class AssetController extends Controller
 {
@@ -15,7 +16,7 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $assets = Asset::get();
+        $assets = Asset::with('location', 'category')->get();
         return view('admin.assets',
             [
                 'assets' => $assets
@@ -46,7 +47,57 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asset = new Asset();
+        $location = new Location();
+
+
+
+        $this->validate(request(), [
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'building' => 'required|integer',
+            'campus' => 'required',
+            'category' => 'required|integer',
+            'width' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'color' => 'nullable',
+            'material' => 'nullable',
+            'image' => 'required|image'
+        ]);
+
+        $specs = array(
+            "width" => request('width'),
+            "height" => request('height'),
+            "color" => request('color'),
+            "material" => request('material'),
+        );
+
+        $path = $request->file('image')->store('images');
+
+        $specification = json_encode($specs);
+
+        $location->longitude = request('longitude');
+        $location->latitude = request('latitude');
+        $location->building = request('building');
+        $location->asset_id = 0;
+        $location->campus = request('campus');
+        $location->save();
+        $locationID = $location->id;
+
+
+        $asset->cat_id = request('category');
+        $asset->location_id = $locationID;
+        $asset->specifications = $specification;
+        $asset->latest_image = $path;
+        $asset->save();
+        $assetID = $asset->id;
+
+        $location->asset_id = $assetID;
+        $location->save();
+
+        return redirect('/admin/assets');
+
+
     }
 
     /**

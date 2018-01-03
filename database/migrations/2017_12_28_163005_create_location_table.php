@@ -17,7 +17,9 @@ class CreateLocationTable extends Migration
             $table->increments('id');
             $table->double('longitude', 15, 8)->nullable(false);
             $table->double('latitude', 15, 8)->nullable(false);
-            $table->string('building');
+            $table->integer('asset_id')->nullable(false)->unique();
+            $table->string('building')->required();
+            $table->string('campus');
             $table->timestamps();
         });
     }
