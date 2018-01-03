@@ -72,7 +72,9 @@ class AssetController extends Controller
             "material" => request('material'),
         );
 
-        $path = $request->file('image')->store('images');
+        $path = $request->file('image')->store(
+            'images/', 'public'
+        );
 
         $specification = json_encode($specs);
 

@@ -1,0 +1,23 @@
+img.overlayImage {
+    width: 50%;
+    display: block;
+    margin: 5px auto 15px auto;
+}
+a.bookLink {
+    margin-top:15px;
+    padding:12px;
+    background:#2ab27b;
+    color:#fff;
+    font-weight:bold;
+    display:inline-block;
+}
+span.specItem {
+    padding:5px;
+    float:left;
+    background:#8C1D40;
+    color:#fff;
+    margin-right:5px;
+}
+br.clear {
+    clear:both;
+}

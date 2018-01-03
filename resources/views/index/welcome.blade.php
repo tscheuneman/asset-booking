@@ -9,7 +9,6 @@ Test
     <div id="map" style="height:100%; width:100%; position:absolute;">
 
     </div>
-    {{$assets}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script type="text/javascript">
@@ -56,12 +55,25 @@ Test
                             'id': locations[i][0]
                         }
                     }).done(function( msg ) {
+                        var specs = JSON.parse(msg.specifications);
+                        var returnSpecs = '';
+                        for (var k in specs){
+                            if (specs.hasOwnProperty(k)) {
+                                returnSpecs += '<span class="specItem"><strong>' + k + ': </strong> ' + specs[k] + '</span>';
+                            }
+                        }
+                        console.log(specs);
                         var returnVal = '<div>' +
                             '<h4>Sign at '+msg.location.building.name+'</h4>' +
-                            '<strong>Latitude: </strong>'+ msg.location.latitude +
-                            '<br> <br> <strong>Longitude: </strong>'+ msg.location.longitude +
+                            '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
+                            '<strong>Building: </strong>'+ msg.location.building.name +
+                            '<br><strong>Campus: </strong>'+ msg.location.campus +
+                            '<br><strong>Category: </strong>'+ msg.category.name +
+                            '<hr><strong> Specs </strong><br>'+ returnSpecs +
+                            '<br class="clear"><a href="#" class="bookLink">Book</a>' +
                             '</div>';
-                        console.log(msg);
+
+
                         infowindow.setContent(returnVal);
                         infowindow.open(map, marker);
                     });
