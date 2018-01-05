@@ -62,7 +62,7 @@ Test
                                 returnSpecs += '<span class="specItem"><strong>' + k + ': </strong> ' + specs[k] + '</span>';
                             }
                         }
-                        console.log(specs);
+
                         var returnVal = '<div>' +
                             '<h4>Sign at '+msg.location.building.name+'</h4>' +
                             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
