@@ -57,6 +57,7 @@ class AssetController extends Controller
             'latitude' => 'required|numeric',
             'building' => 'required|integer',
             'campus' => 'required',
+            'name' => 'required',
             'category' => 'required|integer',
             'width' => 'nullable|numeric',
             'height' => 'nullable|numeric',
@@ -88,6 +89,7 @@ class AssetController extends Controller
 
 
         $asset->cat_id = request('category');
+        $asset->name = request('name');
         $asset->location_id = $locationID;
         $asset->specifications = $specification;
         $asset->latest_image = $path;

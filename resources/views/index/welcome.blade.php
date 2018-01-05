@@ -64,7 +64,7 @@ Test
                         }
 
                         var returnVal = '<div>' +
-                            '<h4>Sign at '+msg.location.building.name+'</h4>' +
+                            '<h4>'+msg.name+'</h4>' +
                             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
                             '<strong>Building: </strong>'+ msg.location.building.name +
                             '<br><strong>Campus: </strong>'+ msg.location.campus +

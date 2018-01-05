@@ -33,6 +33,10 @@
 
         <hr>
 
+        <div class="form-group">
+            <label for="name">Sign Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
 
         <div class="form-group">
             <label for="category">Category</label>
