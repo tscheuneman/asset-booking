@@ -1,7 +1,6 @@
 img.overlayImage {
-    width: 50%;
+    width: 100%;
     display: block;
-    margin: 5px auto 15px auto;
 }
 a.bookLink {
     margin-top:15px;
@@ -21,3 +20,49 @@ span.specItem {
 br.clear {
     clear:both;
 }
+sidebar {
+    position:absolute;
+    z-index:999;
+    right:0;
+    height:100%;
+    width:0;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+}
+    sidebar h4 {
+        width:100%;
+        padding:10px;
+        margin:0 auto;
+        text-align:center;
+        border-bottom:1px solid #a2a2a2;
+        font-weight:bold;
+    }
+    div.sideInfo {
+        width:100%;
+        margin:0;
+        padding:10px;
+        border-bottom:1px solid #ccc;
+    }
+    span.clearfix {
+        clear:both;
+    }
+    #sideContent {
+        display:none;
+    }
+    div#close {
+        position: absolute;
+        right: 0;
+        width: 45px;
+        height: 45px;
+        background: #8C1D40;
+        text-align: center;
+        line-height: 45px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,.5);
+        transition:.5s all;
+    }
+    div#close:hover {
+        background: #c92453;
+    }

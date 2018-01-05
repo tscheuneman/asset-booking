@@ -34,7 +34,7 @@
         <hr>
 
         <div class="form-group">
-            <label for="name">Sign Name</label>
+            <label for="name">Asset Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 

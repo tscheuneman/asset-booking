@@ -3,9 +3,14 @@
 Test
 @stop
 @section('content')
-    <div id="center" style="position:absolute; z-index:999; top:25px; right:25px;">
-        <a style="padding:15px; background:#8C1D40; color:#fff;" href="#">TEST</a>
-    </div>
+    <sidebar id="sidebar">
+        <div id="close">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        <div id="sideContent">
+
+        </div>
+    </sidebar>
     <div id="map" style="height:100%; width:100%; position:absolute;">
 
     </div>
@@ -19,7 +24,7 @@ Test
         ]
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
-            center: new google.maps.LatLng(33.42156600, -111.92525500),
+            center: new google.maps.LatLng(33.30516512, -111.67997360),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         var noPoi = [
@@ -63,23 +68,63 @@ Test
                             }
                         }
 
-                        var returnVal = '<div>' +
-                            '<h4>'+msg.name+'</h4>' +
+                        var returnVal = '<div class="overlayInfo">' +
                             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
-                            '<strong>Building: </strong>'+ msg.location.building.name +
-                            '<br><strong>Campus: </strong>'+ msg.location.campus +
-                            '<br><strong>Category: </strong>'+ msg.category.name +
-                            '<hr><strong> Specs </strong><br>'+ returnSpecs +
+                            '<h4>'+msg.name+'</h4>' +
+                            '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
+                            '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Campus: </strong>'+ msg.location.campus + '</div>' +
+                            '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
+                            '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>'+ returnSpecs + '<span class="clearfix"></span></div>' +
                             '<br class="clear"><a href="#" class="bookLink">Book</a>' +
                             '</div>';
 
+                        var sidebarWidth = $(window).width();
+                        var modifier = .25;
+                        if(sidebarWidth < 600) {
+                            modifier = .80;
+                        }
+                        sidebarWidth = sidebarWidth * modifier;
 
+                        $('sidebar#sidebar').addClass('clicked').animate({
+                            width: sidebarWidth + 'px'
+                        }, 500, function() {
+                            $('sidebar#sidebar #sideContent').empty().append(returnVal).fadeIn(500);
+                        });
+
+
+                        /*
                         infowindow.setContent(returnVal);
                         infowindow.open(map, marker);
+                        */
                     });
 
                 }
             })(marker, i));
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('sidebar').on('click', '#close', function() {
+                hideSidebar();
+            });
+        });
+
+        var myElement = document.getElementById('sidebar');
+        var swipeHide = new Hammer(myElement);
+        swipeHide.on("panright", function(ev) {
+            hideSidebar();
+        });
+
+        function hideSidebar() {
+            $('#sideContent').fadeOut(500, function() {
+                $('#sideContent').empty();
+                $('sidebar#sidebar').removeClass('clicked').animate({
+                    width: 0
+                }, 500, function() {
+                    //
+                });
+
+            });
         }
     </script>
     <!--
