@@ -12,9 +12,12 @@
 */
 use App\Http\Middleware\CheckAge;
 
+Route::group(['middleware' => ['cas.user']], function ()
+{
+    Route::get('/', 'IndexController@index');
+});
 
 
-Route::get('/', 'IndexController@index');
 
 /*
  * Admin Section
