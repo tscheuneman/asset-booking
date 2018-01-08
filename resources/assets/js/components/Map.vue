@@ -12,8 +12,9 @@
         </sidebar>
         <gmap-map
                 :center="center"
-                :zoom="12"
+                :zoom="14"
                 style="width: 100%; height: 100%; position:absolute;"
+                :options="options"
         >
 
             <gmap-marker
@@ -27,10 +28,11 @@
 </template>
 
 <script>
+    let theData = '';
     /////////////////////////////////////////
     // New in 0.4.0
     import * as VueGoogleMaps from 'vue2-google-maps';
-    import Vue from 'vue';
+
     import axios from 'axios';
 
     Vue.use(VueGoogleMaps, {
@@ -41,7 +43,6 @@
     });
 
     export default {
-        props: ['sidebar'],
         data () {
             return {
                 center: {lat: 10.0, lng: 10.0},
@@ -49,6 +50,10 @@
                 infoWindowPos: {
                     lat: 0,
                     lng: 0
+                },
+                options: {
+                    disableDefaultUI: false,
+                    styles: [{"elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
                 },
                 infoWinOpen: false,
                 currentMidx: null,
@@ -70,8 +75,10 @@
             }
         },
         created() {
+            let self = this;
             axios.get(`/locations`)
                 .then(response => {
+                    theData = response.data;
                     let arrayVal = [];
                     for(let i = 0; i < response.data.length; i++) {
                         let item = {
@@ -90,23 +97,25 @@
                 })
                 .catch(e => {
                     this.errors.push(e)
-                })
+                });
+
+                Vue.bus.on('once', function(element) {
+                    self.center.lat = element.latitude;
+                    self.center.lng = element.longitude;
+                });
 
         },
         methods: {
             toggleInfoWindow: function(marker, idx) {
+                let returnData = theData.find(x => x.id === marker.id);
                 toggleSidebar();
-                axios.get(`/asset?id=` + marker.id)
-                    .then(response => {
-                        fillData(response.data);
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        this.errors.push(e)
-                    })
+                fillData(returnData);
             },
             closeSidebar: function() {
                 toggleSidebar();
+            },
+            recenterMap: function(elm) {
+                console.log(elm);
             }
         }
     }

@@ -8,8 +8,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.VueBus = require('vue-bus');
+Vue.use(VueBus);
 
-let EventBus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,10 +20,9 @@ let EventBus = new Vue();
 
 Vue.component('example', require('./components/ExampleComponent.vue'));
 Vue.component('googlemap', require('./components/Map.vue'));
-//Vue.component('sidebar', require('./components/Sidebar.vue'));
+Vue.component('navigation', require('./components/Nav.vue'));
 
 
 const app = new Vue({
     el: '#app'
 });
-

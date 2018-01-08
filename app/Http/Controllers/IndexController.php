@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Asset;
 use Cas;
+use App\Campus;
 
 class IndexController extends Controller
 {
@@ -18,7 +19,12 @@ class IndexController extends Controller
         );
     }
     public function show() {
-        $assets = Asset::with('location')->get();
+        $assets = Asset::with('location.building', 'category')->get();
         return $assets;
+    }
+
+    public function campusShow() {
+        $campus = Campus::get();
+        return $campus;
     }
 }

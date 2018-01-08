@@ -4,6 +4,9 @@
 @stop
 @section('content')
     <div id="app">
+        <navigation>
+
+        </navigation>
         <googleMap>
 
         </googleMap>
