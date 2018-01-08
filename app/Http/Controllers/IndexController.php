@@ -11,10 +11,14 @@ class IndexController extends Controller
 {
     public function index() {
         $assets = Asset::with('location')->get();
-        return view('index.welcome',
+        return view('index.map',
             [
                 'assets' => $assets
             ]
         );
+    }
+    public function show() {
+        $assets = Asset::with('location')->get();
+        return $assets;
     }
 }

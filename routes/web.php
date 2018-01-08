@@ -15,6 +15,7 @@ use App\Http\Middleware\CheckAge;
 Route::group(['middleware' => ['cas.user']], function ()
 {
     Route::get('/', 'IndexController@index');
+    Route::get('/locations', 'IndexController@show');
 });
 
 
@@ -26,6 +27,7 @@ Route::group(['middleware' => ['cas.user']], function ()
 
 //Internal API's
 Route::get('/asset', 'LocationController@index');
+
 
 Route::group(['middleware' => ['cas.admin']], function ()
 {

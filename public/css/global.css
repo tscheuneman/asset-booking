@@ -27,9 +27,12 @@ sidebar {
     height:100%;
     width:0;
     overflow:hidden;
-    background:#fff;
+    background: #232323;
     box-shadow:0 0 25px rgba(0,0,0,.5);
 }
+    .overlayInfo {
+        color:#f4f4f4;
+    }
     sidebar h4 {
         width:100%;
         padding:10px;

@@ -3,16 +3,19 @@
 Test
 @stop
 @section('content')
-    <sidebar id="sidebar">
-        <div id="close">
-            <i class="fa fa-times" aria-hidden="true"></i>
-        </div>
-        <div id="sideContent">
+    <div id="app">
+        <sidebar id="sidebar">
+            <div id="close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="sideContent">
+
+            </div>
+        </sidebar>
+        <div id="example"></div>
+        <div id="map" style="height:100%; width:100%; position:absolute;">
 
         </div>
-    </sidebar>
-    <div id="map" style="height:100%; width:100%; position:absolute;">
-
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
