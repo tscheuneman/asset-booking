@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <div id="app">
-        <navigation>
+        <navigation :username="'{{$user}}'">
 
         </navigation>
         <googleMap>

@@ -14,7 +14,8 @@ class IndexController extends Controller
         $assets = Asset::with('location')->get();
         return view('index.map',
             [
-                'assets' => $assets
+                'assets' => $assets,
+                'user' => Cas::user()
             ]
         );
     }

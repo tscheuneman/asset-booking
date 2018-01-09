@@ -12,7 +12,7 @@
         </sidebar>
         <gmap-map
                 :center="center"
-                :zoom="16"
+                :zoom="15"
                 style="width: 100%; height: 100%; position:absolute;"
                 :options="options"
         >

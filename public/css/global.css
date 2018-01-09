@@ -93,3 +93,18 @@ nav#navbar {
     background:#000;
     color: #ffb310;
 }
+.navbar-inverse .navbar-collapse {
+    float:left;
+}
+.rightSide {
+    float: right;
+    line-height: 59px;
+    font-weight: bold;
+    color: #f4f4f4;
+    text-shadow: 0 0 10px rgba(0,0,0,.5);
+    cursor: pointer;
+    transition: background .5s, color .5s;
+}
+.rightSide:hover {
+    color:#ffb310;
+}

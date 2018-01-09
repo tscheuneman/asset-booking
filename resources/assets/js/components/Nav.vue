@@ -23,12 +23,20 @@
                 </ul>
 
             </div><!-- /.navbar-collapse -->
+            <div class="rightSide">
+                <i class="glyphicon glyphicon-calendar"></i>
+                {{username}}
+            </div>
         </div><!-- /.container-fluid -->
+
     </nav>
 </template>
 
 <script>
     export default {
+        props: {
+            username: String
+        },
         data () {
             return {
                 activeItemId: '',
@@ -40,11 +48,9 @@
             axios.get(`/campuses`)
                 .then(response => {
                     this.elements = response.data;
-            })
-                .catch(e => {
-                    this.errors.push(e)
-                })
-
+            }).catch(e => {
+               this.errors.push(e)
+             });
         },
         methods: {
             centerMap: function(elm) {

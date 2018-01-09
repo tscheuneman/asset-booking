@@ -53653,7 +53653,7 @@ var render = function() {
         "gmap-map",
         {
           staticStyle: { width: "100%", height: "100%", position: "absolute" },
-          attrs: { center: _vm.center, zoom: 16, options: _vm.options }
+          attrs: { center: _vm.center, zoom: 15, options: _vm.options }
         },
         _vm._l(_vm.markers, function(m, i) {
           return _c("gmap-marker", {
@@ -53767,7 +53767,7 @@ exports = module.exports = __webpack_require__(50)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53807,8 +53807,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        username: String
+    },
     data: function data() {
         return {
             activeItemId: '',
@@ -53877,7 +53885,12 @@ var render = function() {
               })
             )
           ]
-        )
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "rightSide" }, [
+          _c("i", { staticClass: "glyphicon glyphicon-calendar" }),
+          _vm._v("\n            " + _vm._s(_vm.username) + "\n        ")
+        ])
       ])
     ]
   )
