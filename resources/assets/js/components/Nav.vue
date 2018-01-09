@@ -36,7 +36,8 @@
 <script>
     export default {
         props: {
-            username: String
+            username: String,
+            campus: Array
         },
         data () {
             return {
@@ -45,13 +46,8 @@
             }
 
         },
-        created() {
-            axios.get(`/campuses`)
-                .then(response => {
-                    this.elements = response.data;
-            }).catch(e => {
-               this.errors.push(e)
-             });
+        mounted() {
+            this.elements = this.campus;
         },
         methods: {
             centerMap: function(elm) {

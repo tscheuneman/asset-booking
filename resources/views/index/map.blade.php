@@ -4,10 +4,15 @@
 @stop
 @section('content')
     <div id="app">
-        <navigation :username="'{{$user}}'">
+        <navigation :campus="{{$campus}}" :username="'{{$user}}'">
 
         </navigation>
-        <googleMap>
+
+        <filters>
+
+        </filters>
+
+        <googleMap :assets="{{$assets}}">
 
         </googleMap>
     </div>

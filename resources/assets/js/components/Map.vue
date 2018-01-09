@@ -43,6 +43,9 @@
     });
 
     export default {
+        props: {
+            assets: Array
+        },
         data () {
             return {
                 center: {lat: 10.0, lng: 10.0},
@@ -73,32 +76,25 @@
 
                 }.bind(this));
             }
+            console.log(this.assets);
+            theData = this.assets;
+            let arrayVal = [];
+            for(let i = 0; i < theData.length; i++) {
+                let item = {
+                    id: theData[i].id,
+                    position: {
+                        lat: theData[i].location.latitude,
+                        lng: theData[i].location.longitude
+                    }
+                };
+                arrayVal.push(item);
+            }
+
+            // JSON responses are automatically parsed.
+            this.markers = arrayVal;
         },
         created() {
             let self = this;
-            axios.get(`/locations`)
-                .then(response => {
-                    theData = response.data;
-                    let arrayVal = [];
-                    for(let i = 0; i < response.data.length; i++) {
-                        let item = {
-                            id: response.data[i].id,
-                            position: {
-                                lat: response.data[i].location.latitude,
-                                lng: response.data[i].location.longitude
-                            }
-                        };
-                        arrayVal.push(item);
-                    }
-
-                    // JSON responses are automatically parsed.
-                    this.markers = arrayVal;
-
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                });
-
                 Vue.bus.on('changeCenter', function(element) {
                     self.center.lat = element.latitude;
                     self.center.lng = element.longitude;
@@ -108,8 +104,7 @@
         methods: {
             toggleInfoWindow: function(marker, idx) {
                 let returnData = theData.find(x => x.id === marker.id);
-                toggleSidebar();
-                fillData(returnData);
+                toggleSidebar(returnData);
             },
             closeSidebar: function() {
                 toggleSidebar();
@@ -119,7 +114,7 @@
             }
         }
     }
-    function toggleSidebar() {
+    function toggleSidebar(returnData) {
         let widthPerc = 25;
         if($(window).width() < 750) {
             widthPerc = 85;
@@ -129,17 +124,18 @@
         if($('sidebar').hasClass('clicked') === true) {
             $('sidebar').removeClass('clicked').animate({
                 right: '-' + widthPerc + '%',
-                width: 0
-            }, 500, function() {
-                $('sidebar').css('right', '0')
+            }, 300, function() {
+                $('sidebar').css({
+                    width: '0',
+                    right: '0'
+                });
             });
         }
         else {
-            $('sidebar').addClass('clicked').animate({
-                width: widthPerc + '%'
-            }, 500, function() {
-                $('.overlayInfo').fadeIn(200);
-            });
+            fillData(returnData);
+            $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
+                right: '0'
+            }, 300);
         }
     }
     function fillData(msg) {
@@ -151,7 +147,7 @@
             }
         }
 
-        var returnVal = '<div class="overlayInfo" style="display:none;">' +
+        var returnVal = '<div class="overlayInfo">' +
             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
