@@ -11,11 +11,13 @@ use App\Campus;
 class IndexController extends Controller
 {
     public function index() {
-        $assets = Asset::with('location')->get();
+        $assets = Asset::with('location.building', 'category')->get();
+        $campus = Campus::orderBy('name', 'ASC')->get();
         return view('index.map',
             [
                 'assets' => $assets,
-                'user' => Cas::user()
+                'user' => Cas::user(),
+                'campus' => $campus
             ]
         );
     }

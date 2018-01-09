@@ -57,7 +57,7 @@ sidebar {
         clear:both;
     }
     #sideContent {
-        display:none;
+
     }
     div#close {
         position: absolute;
@@ -111,4 +111,14 @@ nav#navbar {
 }
 .rightSide:hover {
     color:#ffb310;
+}
+
+div#filters {
+    position:absolute;
+    top:100px;
+    left:20px;
+    padding:10px;
+    background:#f4f4f4;
+    box-shadow:0 0 10px rgba(0,0,0,.5);
+    z-index:999;
 }
