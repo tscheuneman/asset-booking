@@ -46371,14 +46371,24 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
     }
 });
 function toggleSidebar() {
+    var widthPerc = 25;
+    if ($(window).width() < 750) {
+        widthPerc = 85;
+    }
+
     if ($('sidebar').hasClass('clicked') === true) {
         $('sidebar').removeClass('clicked').animate({
+            right: '-' + widthPerc + '%',
             width: 0
-        }, 500);
+        }, 500, function () {
+            $('sidebar').css('right', '0');
+        });
     } else {
         $('sidebar').addClass('clicked').animate({
-            width: '25%'
-        }, 500);
+            width: widthPerc + '%'
+        }, 500, function () {
+            $('.overlayInfo').fadeIn(200);
+        });
     }
 }
 function fillData(msg) {
@@ -46390,7 +46400,7 @@ function fillData(msg) {
         }
     }
 
-    var returnVal = '<div class="overlayInfo">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Campus: </strong>' + msg.location.campus + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>' + returnSpecs + '<span class="clearfix"></span></div>' + '<br class="clear"><a href="#" class="bookLink">Book</a>' + '</div>';
+    var returnVal = '<div class="overlayInfo" style="display:none;">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Campus: </strong>' + msg.location.campus + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>' + returnSpecs + '<span class="clearfix"></span></div>' + '<br class="clear"><a href="#" class="bookLink">Book</a>' + '</div>';
 
     $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
 }
@@ -53767,7 +53777,7 @@ exports = module.exports = __webpack_require__(50)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53778,6 +53788,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -53883,14 +53894,16 @@ var render = function() {
                   [_vm._v("\n                " + _vm._s(element.name) + " ")]
                 )
               })
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "rightSide" }, [
+              _c("i", { staticClass: "glyphicon glyphicon-calendar" }),
+              _vm._v(
+                "\n                " + _vm._s(_vm.username) + "\n            "
+              )
+            ])
           ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "rightSide" }, [
-          _c("i", { staticClass: "glyphicon glyphicon-calendar" }),
-          _vm._v("\n            " + _vm._s(_vm.username) + "\n        ")
-        ])
+        )
       ])
     ]
   )

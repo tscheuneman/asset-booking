@@ -120,15 +120,26 @@
         }
     }
     function toggleSidebar() {
+        let widthPerc = 25;
+        if($(window).width() < 750) {
+            widthPerc = 85;
+        }
+
+
         if($('sidebar').hasClass('clicked') === true) {
             $('sidebar').removeClass('clicked').animate({
+                right: '-' + widthPerc + '%',
                 width: 0
-            }, 500);
+            }, 500, function() {
+                $('sidebar').css('right', '0')
+            });
         }
         else {
             $('sidebar').addClass('clicked').animate({
-                width: '25%'
-            }, 500);
+                width: widthPerc + '%'
+            }, 500, function() {
+                $('.overlayInfo').fadeIn(200);
+            });
         }
     }
     function fillData(msg) {
@@ -140,7 +151,7 @@
             }
         }
 
-        var returnVal = '<div class="overlayInfo">' +
+        var returnVal = '<div class="overlayInfo" style="display:none;">' +
             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +

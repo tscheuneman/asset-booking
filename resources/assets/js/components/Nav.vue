@@ -22,11 +22,12 @@
                     {{ element.name }} </li>
                 </ul>
 
+                <div class="rightSide">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    {{username}}
+                </div>
             </div><!-- /.navbar-collapse -->
-            <div class="rightSide">
-                <i class="glyphicon glyphicon-calendar"></i>
-                {{username}}
-            </div>
+
         </div><!-- /.container-fluid -->
 
     </nav>
