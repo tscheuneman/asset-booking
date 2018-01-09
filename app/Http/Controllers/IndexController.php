@@ -24,7 +24,7 @@ class IndexController extends Controller
     }
 
     public function campusShow() {
-        $campus = Campus::get();
+        $campus = Campus::orderBy('name', 'ASC')->get();
         return $campus;
     }
 }

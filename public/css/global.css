@@ -1,3 +1,6 @@
+body {
+    font-family: arial;
+}
 img.overlayImage {
     width: 100%;
     display: block;
@@ -75,4 +78,18 @@ nav#navbar {
     z-index: 999;
     width: 100%;
     border-radius: 0;
+}
+#navbar li {
+    color: #f4f4f4;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background .5s, color .5s;
+    height: 58px;
+    padding: 0 15px;
+    line-height: 59px;
+    cursor:pointer;
+}
+#navbar li:hover, #navbar li.active {
+    background:#000;
+    color: #ffb310;
 }

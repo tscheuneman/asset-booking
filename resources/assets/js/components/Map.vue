@@ -12,7 +12,7 @@
         </sidebar>
         <gmap-map
                 :center="center"
-                :zoom="14"
+                :zoom="16"
                 style="width: 100%; height: 100%; position:absolute;"
                 :options="options"
         >
@@ -99,7 +99,7 @@
                     this.errors.push(e)
                 });
 
-                Vue.bus.on('once', function(element) {
+                Vue.bus.on('changeCenter', function(element) {
                     self.center.lat = element.latitude;
                     self.center.lng = element.longitude;
                 });

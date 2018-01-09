@@ -16,7 +16,10 @@
                 <ul class="nav navbar-nav">
                     <li v-for="element in elements"
                     :clickable="true"
-                    @click="centerMap(element)"> {{ element.name }} </li>
+                    @click="centerMap(element) + setActiveItemId(element.id)"
+                    :class="{'active': activeItemId === element.id}"
+                     >
+                    {{ element.name }} </li>
                 </ul>
 
             </div><!-- /.navbar-collapse -->
@@ -28,6 +31,7 @@
     export default {
         data () {
             return {
+                activeItemId: '',
                 elements: [],
             }
 
@@ -44,7 +48,10 @@
         },
         methods: {
             centerMap: function(elm) {
-                Vue.bus.emit('once', elm);
+                Vue.bus.emit('changeCenter', elm);
+            },
+            setActiveItemId(itemIndex) {
+                this.activeItemId = itemIndex
             }
         }
     }

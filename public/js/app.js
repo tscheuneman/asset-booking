@@ -46348,7 +46348,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
             _this.errors.push(e);
         });
 
-        Vue.bus.on('once', function (element) {
+        Vue.bus.on('changeCenter', function (element) {
             self.center.lat = element.latitude;
             self.center.lng = element.longitude;
         });
@@ -53653,7 +53653,7 @@ var render = function() {
         "gmap-map",
         {
           staticStyle: { width: "100%", height: "100%", position: "absolute" },
-          attrs: { center: _vm.center, zoom: 14, options: _vm.options }
+          attrs: { center: _vm.center, zoom: 16, options: _vm.options }
         },
         _vm._l(_vm.markers, function(m, i) {
           return _c("gmap-marker", {
@@ -53767,7 +53767,7 @@ exports = module.exports = __webpack_require__(50)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53804,10 +53804,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            activeItemId: '',
             elements: []
         };
     },
@@ -53823,7 +53827,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         centerMap: function centerMap(elm) {
-            Vue.bus.emit('once', elm);
+            Vue.bus.emit('changeCenter', elm);
+        },
+        setActiveItemId: function setActiveItemId(itemIndex) {
+            this.activeItemId = itemIndex;
         }
     }
 });
@@ -53857,14 +53864,15 @@ var render = function() {
                 return _c(
                   "li",
                   {
+                    class: { active: _vm.activeItemId === element.id },
                     attrs: { clickable: true },
                     on: {
                       click: function($event) {
-                        _vm.centerMap(element)
+                        _vm.centerMap(element) + _vm.setActiveItemId(element.id)
                       }
                     }
                   },
-                  [_vm._v(" " + _vm._s(element.name) + " ")]
+                  [_vm._v("\n                " + _vm._s(element.name) + " ")]
                 )
               })
             )
