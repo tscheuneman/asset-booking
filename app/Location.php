@@ -16,4 +16,9 @@ class Location extends Model
         return $this->belongsTo('App\Building', 'building');
     }
 
+    public function buildingData()
+    {
+        return $this->belongsTo('App\Building', 'building');
+    }
+
 }

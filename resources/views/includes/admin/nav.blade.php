@@ -17,6 +17,14 @@
                 <li class="{{ Request::is('admin/users*') ? 'active' : '' }}"><a href="{{ url('/admin/users') }}">Admin Users</a></li>
                 <li class="{{ Request::is('admin/asset*') ? 'active' : '' }}"><a href="{{ url('/admin/assets') }}">Assets</a></li>
                 <li class="{{ Request::is('admin/categor*') ? 'active' : '' }}"><a href="{{ url('/admin/categories') }}">Asset Categories</a></li>
+                <li class="dropdown {{ Request::is('admin/locations*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('/admin/locations/buildings') }}">Buildings</a></li>
+                        <li><a href="{{ url('/admin/locations/campuses') }}">Campuses</a></li>
+                    </ul>
+                </li>
+
                 <li class="{{ Request::is('admin/bookings*') ? 'active' : '' }}"><a href="{{ url('/admin/bookings') }}">Bookings</a></li>
             </ul>
 

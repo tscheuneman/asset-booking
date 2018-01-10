@@ -9,27 +9,32 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Name</th>
             <th scope="col">Category</th>
-            <th scope="col">Location</th>
-            <th scope="col">Specs</th>
+            <th scope="col">Campus</th>
+            <th scope="col">Building</th>
             <th scope="col">Available</th>
             <th scope="col">Active</th>
         </tr>
         </thead>
         <tbody>
         @foreach($assets as $asset)
+
             <tr>
                 <td>
                     {{$asset->id}}
                 </td>
                 <td>
+                    {{$asset->name}}
+                </td>
+                <td>
                     {{$asset->category->name}}
                 </td>
                 <td>
-                    {{$asset->location->longitude}}, {{$asset->location->latitude}}
+                    {{$asset->location->campus}}
                 </td>
                 <td>
-                    {{$asset->specifications}}
+                    {{$asset->location->buildingData->name}}
                 </td>
                 <td>
                     {{$asset->is_available}}
