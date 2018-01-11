@@ -124,7 +124,7 @@
                     'lng': crd.longitude
                 }
             }).done(function( msg ) {
-                $('#campus').val(msg.campus.name).prop('readonly', true);
+                $('#region').val(msg.region.name).prop('readonly', true);
 
                 msg.building.forEach(function(element) {
                     $('#building').append($('<option>', {
@@ -134,7 +134,7 @@
                 });
 
                 $('#buildingID').val(msg.building.id);
-                $('#campusID').val(msg.campus.id);
+                $('#campusID').val(msg.region.id);
 
              });
         };

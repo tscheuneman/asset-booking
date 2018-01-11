@@ -29,18 +29,19 @@ class LocationController extends Controller
         $distance = 1.2;
 
         $getBuilding = Building::getByDistance($lat, $lng, $distance);
-        $getCampus = Region::getByDistance($lat, $lng, 10);
+        $getRegion = Region::getByDistance($lat, $lng, 10);
 
         $arrayVal = array();
         $prevBuildings = array();
         $counter = 0;
+
         foreach($getBuilding as $building) {
             $val =  Building::find($building->id);
 
             if(!in_array(trim(strtoupper($val['name'])), $prevBuildings)) {
                 $arrayVal[$counter] = array(
                     "id" => $val["id"],
-                    "name" => ucwords(strtolower($val["name"])),
+                    "name" => utf8_decode(ucwords(strtolower($val["name"]))),
                     "lat" => $val["latutide"],
                     "lng" => $val["longitude"],
                 );
@@ -49,18 +50,18 @@ class LocationController extends Controller
             }
         }
 
-
-        $campus = Region::find($getCampus['id']);
+        $region = Region::find($getRegion['id']);
 
         $array = array(
-          "campus" => array(
-            "id" => $campus["id"],
-            "name" => $campus["name"],
-            "lat" => $campus["latitude"],
-            "lng" => $campus["longitude"],
+          "region" => array(
+            "id" => $region["id"],
+            "name" => $region["name"],
+            "lat" => $region["latitude"],
+            "lng" => $region["longitude"],
           ),
           "building" => $arrayVal
         );
+
         return $array;
     }
 
