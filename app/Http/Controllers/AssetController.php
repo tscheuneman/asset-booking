@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Asset;
 use App\Category;
 use App\Location;
+use App\Building;
 
 class AssetController extends Controller
 {
@@ -16,7 +17,7 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with('location.buildingData', 'category')->get();
+        $assets = Asset::with('location.building', 'category', 'location.region')->get();
         return view('admin.assets',
             [
                 'assets' => $assets
@@ -55,8 +56,8 @@ class AssetController extends Controller
         $this->validate(request(), [
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
-            'building' => 'required|integer',
-            'campus' => 'required',
+            'building' => 'required|integer|exists:buildings,id',
+            'regionID' => 'numeric|required|exists:campuses,id',
             'name' => 'required',
             'category' => 'required|integer',
             'width' => 'nullable|numeric',
@@ -81,9 +82,9 @@ class AssetController extends Controller
 
         $location->longitude = request('longitude');
         $location->latitude = request('latitude');
-        $location->building = request('building');
+        $location->building_id = request('building');
         $location->asset_id = 0;
-        $location->campus = request('campus');
+        $location->region_id = request('regionID');
         $location->save();
         $locationID = $location->id;
 

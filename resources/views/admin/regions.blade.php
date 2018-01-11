@@ -3,7 +3,7 @@
     Campuses
 @stop
 @section('content')
-    <a class="actionLink" href="{{ url('/admin/locations/campus/create') }}">Add Campus</a> <h2>Campuses</h2>
+    <a class="actionLink" href="{{ url('/admin/locations/campus/create') }}">Add Region</a> <h2>Region</h2>
     <hr>
     <table class="table">
         <thead>

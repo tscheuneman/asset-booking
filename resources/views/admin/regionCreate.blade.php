@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('title')
-    Create Campus
+    Create Region
 @stop
 @section('content')
-    <h2>Create Campus</h2>
+    <h2>Create Region</h2>
     <hr>
     <form method="POST" action="{{ url('/admin/locations/campus') }}" enctype="multipart/form-data">
         {{csrf_field()}}
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Campus Name</label>
+            <label for="name">Region Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 

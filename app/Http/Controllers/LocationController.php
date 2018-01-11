@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Building;
-use App\Campus;
+use App\Region;
 use App\Asset;
 
 class LocationController extends Controller
@@ -29,7 +29,7 @@ class LocationController extends Controller
         $distance = 1.2;
 
         $getBuilding = Building::getByDistance($lat, $lng, $distance);
-        $getCampus = Campus::getByDistance($lat, $lng, 10);
+        $getCampus = Region::getByDistance($lat, $lng, 10);
 
         $arrayVal = array();
         $prevBuildings = array();
@@ -50,7 +50,7 @@ class LocationController extends Controller
         }
 
 
-        $campus = Campus::find($getCampus['id']);
+        $campus = Region::find($getCampus['id']);
 
         $array = array(
           "campus" => array(

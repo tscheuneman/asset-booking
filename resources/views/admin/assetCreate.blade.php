@@ -27,9 +27,11 @@
         </div>
 
         <div class="form-group">
-            <label for="campus">Campus</label>
-            <input type="text" class="form-control" id="campus" name="campus" readonly required>
+            <label for="region">Region</label>
+            <input type="text" class="form-control" id="region" name="region" readonly required>
         </div>
+
+            <input type="hidden" class="form-control" id="campusID" name="regionID">
 
         <hr>
 

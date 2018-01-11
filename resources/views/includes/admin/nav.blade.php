@@ -21,7 +21,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/admin/locations/buildings') }}">Buildings</a></li>
-                        <li><a href="{{ url('/admin/locations/campuses') }}">Campuses</a></li>
+                        <li><a href="{{ url('/admin/locations/regions') }}">Regions</a></li>
                     </ul>
                 </li>
 

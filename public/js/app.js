@@ -46413,9 +46413,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
         },
         closeSidebar: function closeSidebar() {
             toggleSidebar();
-        },
-        recenterMap: function recenterMap(elm) {
-            console.log(elm);
         }
     }
 });
@@ -46450,7 +46447,7 @@ function fillData(msg) {
         }
     }
 
-    var returnVal = '<div class="overlayInfo">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Campus: </strong>' + msg.location.campus + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>' + returnSpecs + '<span class="clearfix"></span></div>' + '<br class="clear"><a href="#" class="bookLink">Book</a>' + '</div>';
+    var returnVal = '<div class="overlayInfo">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>' + msg.location.region.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>' + returnSpecs + '<span class="clearfix"></span></div>' + '<br class="clear"><a href="#" class="bookLink">Book</a>' + '</div>';
 
     $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
 }
@@ -54078,7 +54075,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54097,10 +54094,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        categories: Array
+    },
     data: function data() {
         return {};
     },
@@ -54145,7 +54147,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54164,12 +54166,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         filterType: String,
         labelVal: String,
-        name: String
+        name: String,
+        options: Array
     },
     data: function data() {
         return {};
@@ -54187,7 +54196,27 @@ var render = function() {
   return _c("div", { staticClass: "inputContainer" }, [
     _c("label", { attrs: { for: _vm.name } }, [_vm._v(_vm._s(_vm.labelVal))]),
     _vm._v(" "),
-    _c("input", { attrs: { name: _vm.name, type: _vm.filterType } })
+    _vm.filterType === "text" || _vm.filterType === "number"
+      ? _c("input", {
+          staticClass: "form-control",
+          attrs: { name: _vm.name, id: _vm.name, type: _vm.filterType }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.filterType === "select"
+      ? _c(
+          "select",
+          {
+            staticClass: "form-control",
+            attrs: { name: _vm.name, id: _vm.name }
+          },
+          _vm._l(_vm.options, function(option) {
+            return _c("option", { domProps: { value: option.id } }, [
+              _vm._v(_vm._s(option.name))
+            ])
+          })
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -54214,6 +54243,17 @@ var render = function() {
     [
       _c("indvFilter", {
         attrs: { filterType: "text", labelVal: "Name", name: "value" }
+      }),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("indvFilter", {
+        attrs: {
+          options: _vm.categories,
+          filterType: "select",
+          labelVal: "Categories:",
+          name: "value2"
+        }
       })
     ],
     1

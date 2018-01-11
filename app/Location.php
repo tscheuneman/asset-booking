@@ -13,12 +13,15 @@ class Location extends Model
 
     public function building()
     {
-        return $this->belongsTo('App\Building', 'building');
+        return $this->belongsTo('App\Building', 'building_id');
     }
-
+    public function region()
+    {
+        return $this->belongsTo('App\Region', 'region_id');
+    }
     public function buildingData()
     {
-        return $this->belongsTo('App\Building', 'building');
+        return $this->belongsTo('App\Building', 'building_id');
     }
 
 }

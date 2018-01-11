@@ -99,7 +99,6 @@
                     self.center.lat = element.latitude;
                     self.center.lng = element.longitude;
                 });
-
         },
         methods: {
             toggleInfoWindow: function(marker, idx) {
@@ -108,9 +107,6 @@
             },
             closeSidebar: function() {
                 toggleSidebar();
-            },
-            recenterMap: function(elm) {
-                console.log(elm);
             }
         }
     }
@@ -151,7 +147,7 @@
             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
-            '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Campus: </strong>'+ msg.location.campus + '</div>' +
+            '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
             '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
             '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>'+ returnSpecs + '<span class="clearfix"></span></div>' +
             '<br class="clear"><a href="#" class="bookLink">Book</a>' +

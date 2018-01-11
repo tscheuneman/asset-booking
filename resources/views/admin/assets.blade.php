@@ -11,7 +11,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
-            <th scope="col">Campus</th>
+            <th scope="col">Region</th>
             <th scope="col">Building</th>
             <th scope="col">Available</th>
             <th scope="col">Active</th>
@@ -19,7 +19,6 @@
         </thead>
         <tbody>
         @foreach($assets as $asset)
-
             <tr>
                 <td>
                     {{$asset->id}}
@@ -31,10 +30,10 @@
                     {{$asset->category->name}}
                 </td>
                 <td>
-                    {{$asset->location->campus}}
+                    {{$asset->location->region->name}}
                 </td>
                 <td>
-                    {{$asset->location->buildingData->name}}
+                    {{$asset->location->building->name}}
                 </td>
                 <td>
                     {{$asset->is_available}}

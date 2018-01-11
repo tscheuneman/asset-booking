@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Campus;
+use App\Region;
 
-class CampusController extends Controller
+class RegionController extends Controller
 {
     public function index() {
-        $campuses = Campus::get();
-        return view('admin.campuses',
+        $region = Region::get();
+        return view('admin.regions',
             [
-                'campuses' => $campuses
+                'campuses' => $region
             ]
         );
     }
 
     public function create() {
-        return view('admin.campusCreate');
+        return view('admin.regionCreate');
     }
 
     public function store() {
-        $campus = new Campus();
+        $campus = new Region();
 
         $this->validate(request(), [
             'name' => 'required',

@@ -8,7 +8,7 @@
 
         </navigation>
 
-        <filters>
+        <filters :categories="{{$categories}}">
 
         </filters>
 

@@ -54,7 +54,7 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/locations/building/create', 'BuildingController@create');
     Route::post('/admin/locations/building', 'BuildingController@store');
 
-    Route::get('/admin/locations/campuses', 'CampusController@index');
-    Route::get('/admin/locations/campus/create', 'CampusController@create');
-    Route::post('/admin/locations/campus', 'CampusController@store');
+    Route::get('/admin/locations/regions', 'RegionController@index');
+    Route::get('/admin/locations/region/create', 'RegionController@create');
+    Route::post('/admin/locations/region', 'RegionController@store');
 });
