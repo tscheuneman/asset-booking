@@ -13,14 +13,14 @@ class IndexController extends Controller
 {
     public function index() {
         $assets = Asset::with('location.building', 'location.region', 'category')->get();
-        $campus = Region::orderBy('name', 'ASC')->get();
+        $region = Region::orderBy('name', 'ASC')->get();
 
         $categories = Category::orderBy('name', 'ASC')->get();
         return view('index.map',
             [
                 'assets' => $assets,
                 'user' => Cas::user(),
-                'campus' => $campus,
+                'region' => $region,
                 'categories' => $categories
             ]
         );

@@ -4,11 +4,11 @@
 @stop
 @section('content')
     <div id="app">
-        <navigation :campus="{{$campus}}" :username="'{{$user}}'">
+        <navigation :region="{{$region}}" :username="'{{$user}}'">
 
         </navigation>
 
-        <filters :categories="{{$categories}}">
+        <filters :categories="{{$categories}}" :region="{{$region}}">
 
         </filters>
 

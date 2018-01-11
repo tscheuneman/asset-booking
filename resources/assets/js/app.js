@@ -22,7 +22,6 @@ Vue.component('example', require('./components/ExampleComponent.vue'));
 Vue.component('googlemap', require('./components/Map.vue'));
 Vue.component('navigation', require('./components/Nav.vue'));
 Vue.component('filters', require('./components/Filters.vue'));
-Vue.component('indvFilter', require('./components/Children/Filter.vue'));
 
 const app = new Vue({
     el: '#app'

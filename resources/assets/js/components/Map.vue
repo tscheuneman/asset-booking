@@ -95,10 +95,35 @@
         },
         created() {
             let self = this;
+            theData = self.assets;
                 Vue.bus.on('changeCenter', function(element) {
                     self.center.lat = element.latitude;
                     self.center.lng = element.longitude;
                 });
+                Vue.bus.on('filterMarkers', function(element) {
+                    console.log(theData);
+
+                    let arrayVal = [];
+                    for(let x = 0; x < element.length; x++) {
+                        console.log(element[x]);
+                        for(let i = 0; i < theData.length; i++) {
+                            if(theData[i].id === element[x]) {
+                                let item = {
+                                    id: theData[i].id,
+                                    position: {
+                                        lat: theData[i].location.latitude,
+                                        lng: theData[i].location.longitude
+                                    }
+                                };
+                                arrayVal.push(item);
+                            }
+
+                        }
+                    }
+
+                    self.markers = arrayVal;
+                });
+
         },
         methods: {
             toggleInfoWindow: function(marker, idx) {

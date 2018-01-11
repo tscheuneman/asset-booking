@@ -37,7 +37,7 @@
     export default {
         props: {
             username: String,
-            campus: Array
+            region: Array
         },
         data () {
             return {
@@ -47,7 +47,7 @@
 
         },
         mounted() {
-            this.elements = this.campus;
+            this.elements = this.region;
         },
         methods: {
             centerMap: function(elm) {
