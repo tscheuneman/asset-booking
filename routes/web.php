@@ -59,4 +59,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/locations/regions', 'RegionController@index');
     Route::get('/admin/locations/region/create', 'RegionController@create');
     Route::post('/admin/locations/region', 'RegionController@store');
+
+    Route::get('/admin/specifications', 'SpecificationController@index');
+    Route::get('/admin/specifications/create', 'SpecificationController@create');
+    Route::post('/admin/specification', 'SpecificationController@store');
 });
