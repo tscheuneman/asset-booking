@@ -53,3 +53,44 @@ nav.navbar {
     color: #ffb310;
     background-color: #000000;
 }
+div#add {
+    width:40px;
+    height:40px;
+    text-align:center;
+    line-height:40px;
+    color:#fff;
+    text-shadow:0 0 8px rgba(0,0,0,.8);
+    background:#8C1D40;
+    border:none;
+    border-radius:50%;
+    font-size:25px;
+    box-shadow:0 0 5px rgba(0,0,0,.7);
+    transition:.5s all;
+    cursor:pointer;
+}
+div#add:hover {
+    background: #c92453;
+}
+div.showData {
+    padding:15px;
+    background:#fff;
+    box-shadow:0 0 5px rgba(0,0,0,.7);
+    position:absolute;
+}
+#optionsList {
+    margin-top:15px;
+}
+.returnEntry {
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+    float: left;
+    clear: left;
+    background: #fff;
+    margin-top: 10px;
+}
+span.optionData {
+    float:left;
+    margin-right:5px;
+    font-weight:bold;
+    border:1px solid rgba(0,0,0,.10);
+}

@@ -24,7 +24,7 @@
                         <li><a href="{{ url('/admin/locations/regions') }}">Regions</a></li>
                     </ul>
                 </li>
-
+                <li class="{{ Request::is('admin/specification*') ? 'active' : '' }}"><a href="{{ url('/admin/specifications') }}">Specifications</a></li>
                 <li class="{{ Request::is('admin/bookings*') ? 'active' : '' }}"><a href="{{ url('/admin/bookings') }}">Bookings</a></li>
             </ul>
 

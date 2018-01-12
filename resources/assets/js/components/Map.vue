@@ -101,11 +101,8 @@
                     self.center.lng = element.longitude;
                 });
                 Vue.bus.on('filterMarkers', function(element) {
-                    console.log(theData);
-
                     let arrayVal = [];
                     for(let x = 0; x < element.length; x++) {
-                        console.log(element[x]);
                         for(let i = 0; i < theData.length; i++) {
                             if(theData[i].id === element[x]) {
                                 let item = {

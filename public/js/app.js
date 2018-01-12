@@ -46352,11 +46352,8 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
             self.center.lng = element.longitude;
         });
         Vue.bus.on('filterMarkers', function (element) {
-            console.log(theData);
-
             var arrayVal = [];
             for (var x = 0; x < element.length; x++) {
-                console.log(element[x]);
                 for (var i = 0; i < theData.length; i++) {
                     if (theData[i].id === element[x]) {
                         var item = {
