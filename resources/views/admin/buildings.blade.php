@@ -18,6 +18,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,14 @@
                 </td>
                 <td>
                     {{$building->name}}
+                </td>
+                <td>
+                    <a class="editAction" href="/admin/locations/building/{{$building->id}}/edit">Edit</a>
+                    <form action="/admin/locations/building/{{$building->id}}/delete" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button class="deleteAction" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
                 </td>
             <tr>
         @endforeach

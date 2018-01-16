@@ -34,6 +34,7 @@ Route::get('/asset', 'LocationController@index');
 
 Route::group(['middleware' => ['cas.admin']], function ()
 {
+    //Admin User Actions
     Route::get('/admin', 'AdminController@index');
     Route::get('/admin/users/create', 'AdminController@create');
     Route::get('/admin/users', 'AdminController@show');
@@ -42,31 +43,35 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::post('/admin/users/{id}', 'AdminController@update');
     Route::delete('/admin/users/{id}/delete', 'AdminController@destroy');
 
-
-
+    //Admin Asset Actions
     Route::get('/admin/assets', 'AssetController@index');
     Route::get('/admin/asset/create', 'AssetController@create');
     Route::post('/admin/assets', 'AssetController@store');
 
-
-
+    //Admin Category Actions
     Route::get('/admin/categories', 'CategoryController@index');
     Route::get('/admin/category/create', 'CategoryController@create');
     Route::post('/admin/category', 'CategoryController@store');
 
-    Route::get('/admin/location/verify', 'LocationController@verify');
-
+    //Admin Building Actions
     Route::get('/admin/locations/buildings', 'BuildingController@index');
     Route::get('/admin/locations/building/create', 'BuildingController@create');
     Route::post('/admin/locations/building', 'BuildingController@store');
+    Route::get('/admin/locations/building/{id}/edit', 'BuildingController@edit');
+    Route::post('/admin/locations/building/{id}', 'BuildingController@update');
+    Route::delete('/admin/locations/building/{id}/delete', 'BuildingController@destroy');
 
+    //Admin Region Actions
     Route::get('/admin/locations/regions', 'RegionController@index');
     Route::get('/admin/locations/region/create', 'RegionController@create');
     Route::post('/admin/locations/region', 'RegionController@store');
 
+    //Admin Specification Actions
     Route::get('/admin/specifications', 'SpecificationController@index');
     Route::get('/admin/specifications/create', 'SpecificationController@create');
     Route::post('/admin/specification', 'SpecificationController@store');
 
+    //Admin "API" Actions
     Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
+    Route::get('/admin/location/verify', 'LocationController@verify');
 });
