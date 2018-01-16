@@ -8,8 +8,8 @@
 <form method="POST" action="{{ url('/admin/users') }}">
     {{csrf_field()}}
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+        <label for="asurite">ASURITE</label>
+        <input type="text" class="form-control" id="asurite" name="asurite" placeholder="Enter ASURITE">
     </div>
 
     <div class="form-group">

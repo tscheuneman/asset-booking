@@ -27,15 +27,6 @@ a.editAction {
     float:left;
     margin-right:10px;
 }
-.deleteAction {
-    padding:8px;
-    border-radius:3px;
-    background:#FF7F32;
-    color:#fff;
-    float:left;
-    margin-right:10px;
-    border:none;
-}
 .alert.alert-error {
     color:red;
 }

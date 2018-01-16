@@ -30,17 +30,15 @@ class AdminController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'username' => 'required|unique:admins'
+            'asurite' => 'required|unique:admins'
         ]);
 
         $admin->first_name = request('first_name');
         $admin->last_name = request('last_name');
         $admin->email = request('email');
-        $admin->username = request('username');
+        $admin->asurite = request('asurite');
 
         $admin->save();
-
-        \Session::flash('flash_created', request('username') . ' has been created');
         return redirect('/admin/users');
     }
 
@@ -55,46 +53,5 @@ class AdminController extends Controller
 
     public function create() {
         return view('admin.usersCreate');
-    }
-
-    public function edit($id)
-    {
-        $user = Admin::find($id);
-        return view('admin.usersEdit',
-            [
-                'user' => $user
-            ]
-        );
-    }
-
-    public function update(Request $request, $id)
-    {
-        $admin = Admin::find($id);
-
-        $this->validate(request(), [
-            'id' => 'exists:admins',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'username' => 'required|exists:admins'
-        ]);
-
-        $admin->first_name = request('first_name');
-        $admin->last_name = request('last_name');
-        $admin->email = request('email');
-        $admin->updated_at = date('Y-m-d H:i:s');
-
-        $admin->save();
-        return redirect('/admin/users');
-    }
-
-    public function destroy($id)
-    {
-        $admin = Admin::find($id);
-            $user = $admin->username;
-        $admin->delete();
-
-        \Session::flash('flash_deleted',$user . ' has been deleted');
-        return redirect('/admin/users');
     }
 }
