@@ -15,7 +15,7 @@
         </div>
 
         <div class="form-group">
-            <label for="type">Latitude</label>
+            <label for="type">Input Type</label>
             <select class="form-control" id="type" name="type" required>
                 <option value="text">Text</option>
                 <option value="number">Number</option>
@@ -23,11 +23,6 @@
                 <option value="checkbox">Checkbox</option>
                 <option value="date">Date</option>
             </select>
-        </div>
-
-        <div class="form-group">
-            <label for="default">Default Value</label>
-            <input type="text" class="form-control" id="default" name="default" required>
         </div>
 
         <div id="options">
@@ -41,7 +36,7 @@
         <br style="clear:both;" />
 
         <hr>
-        <input type="hidden" name="jsonOptions" id="jsonOptions">
+        <input type="hidden" name="jsonOptions" id="jsonOptions" value='[{"value":"","label":""}]'>
         <button type="submit" class="btn btn-primary">Submit</button>
 
         @include('layouts.errors')

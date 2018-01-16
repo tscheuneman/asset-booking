@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specification;
+use App\Category;
 
 use JsonSchema\Validator as JSONValidate;
 use JsonSchema\Constraints\Constraint as Constraint;
@@ -43,17 +44,21 @@ class SpecificationController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
+
         $this->validate(request(), [
             'name' => 'required|string',
             'type' => 'required|string',
-            'default' => 'required|string',
             'jsonOptions' => 'json'
         ]);
 
         $validator = new JSONValidate;
-        $json = json_decode(request('jsonOptions'));
 
+        $json = json_decode(request('jsonOptions'));
         //Check each option for valid format
+
         foreach($json as $obj) {
             $validator->validate(
                 $obj,
@@ -80,7 +85,6 @@ class SpecificationController extends Controller
             $spec->name = request('name');
             $spec->slug = $this->createSlug(request('name'));
             $spec->type = request('type');
-            $spec->default = request('default');
             $spec->options = request('jsonOptions');
             $spec->save();
             return redirect('/admin/specifications');
@@ -99,7 +103,25 @@ class SpecificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $cat =  Category::find($id);
+            $specs = json_decode($cat->specifications);
+            $returnArray = [];
+
+            foreach($specs as $spec) {
+                if($spec->id > 0) {
+                    $theSpec =  Specification::find($spec->id);
+                    $indiv = array();
+                    $indiv['id'] = $spec->id;
+                    $indiv['name'] = $theSpec->name;
+                    $indiv['slug'] = $theSpec->slug;
+                    $indiv['type'] = $theSpec->type;
+                    $indiv['options'] = $theSpec->options;
+                    $indiv['default'] = $spec->defaultVal;
+                    $returnArray[] = $indiv;
+                }
+            }
+            $returnObj = json_encode($returnArray);
+            return $returnObj;
     }
 
     /**

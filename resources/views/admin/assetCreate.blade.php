@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Asset</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/assets') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/assets') }}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
 
@@ -32,7 +32,7 @@
         </div>
 
             <input type="hidden" class="form-control" id="campusID" name="regionID">
-
+            <input type="hidden" class="form-control" id="specs" name="specs">
         <hr>
 
         <div class="form-group">
@@ -51,58 +51,53 @@
 
         <div class="form-group">
             <label for="email">Image</label>
-            <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera">
+            <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera" required>
         </div>
 
         <hr>
         <h3>Specs</h3>
         <br>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="height">Height</label>
-                <input type="text" class="form-control" id="height" name="height">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="width">Width</label>
-                <input type="text" class="form-control" id="width" name="width">
-            </div>
-        </div>
+        <div id="specifications">
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="color">Color</label>
-                <select class="form-control" id="color" name="color">
-                    <option>N/A</option>
-                    <option>One Sided, B&W</option>
-                    <option>Two Sided, B&W</option>
-                    <option>One Sided, Color</option>
-                    <option>Two Sided, Color</option>
-                    <option>Two, B&W & Color</option>
-                </select>
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="material">Material</label>
-                <select class="form-control" id="material" name="material">
-                    <option>N/A</option>
-                    <option>Canvas</option>
-                    <option>Metal</option>
-                    <option>Wood</option>
-                    <option>Vinyl Wrap</option>
-                </select>
-            </div>
         </div>
         <hr>
         <br style="clear:both;" /><br />
 
         <button type="submit" class="btn btn-primary">Submit</button>
-
+        <br><br>
         @include('layouts.errors')
 
     </form>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
+        $(document).ready(function() {
+            getSpecs();
+
+            $('select#category').on('change', function() {
+                getSpecs();
+            })
+
+            $('#submit').submit(function() {
+                let obj = [];
+                try {
+                    $('#specifications .specification').each(function() {
+                        let elm = $(this);
+                        let item = {};
+                        let slug = $(this).data('slug');
+                        item['id'] = $(this).data('id');
+                        item['slug'] = slug;
+                        item['value'] = $('#'+slug, elm).val();
+                        obj.push(item);
+                    });
+                    let returnObj = JSON.stringify(obj);
+                    $('#specs').val(returnObj);
+                }
+                catch(err) {
+                    return false;
+                }
+
+            });
+        });
         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
@@ -146,6 +141,53 @@
         navigator.geolocation.getCurrentPosition(success, error, options);
 
 
+        function getSpecs() {
+            let selectedCat = $('#category').val();
 
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/admin/asset/specifications') }}/" + selectedCat,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id': selectedCat,
+                }
+            }).done(function( msg ) {
+                let obj = JSON.parse(msg);
+                clearSpecs();
+                obj.forEach(function(element) {
+                    createSpec(element);
+                });
+            });
+        }
+
+        function clearSpecs() {
+            $('#specifications').empty();
+        }
+
+        function createSpec(elm) {
+            let returnElm = '<div class="form-group specification" data-id="'+elm.id+'" data-slug="'+elm.slug+'">'+
+                '<label for="'+elm.slug+'">'+elm.name+'</label>';
+            if(elm.type === "text" || elm.type === "number") {
+                returnElm += '<input type="'+elm.type+'" class="form-control" id="'+elm.slug+'" name="'+elm.slug+'" value="'+elm.default+'">';
+            }
+            if(elm.type === "select") {
+                returnElm += '<select class="form-control" id="'+elm.slug+'" name="'+elm.slug+'">';
+                let options = JSON.parse(elm.options);
+                options.forEach(function(option) {
+                    if(option.value === elm.default) {
+                        returnElm += '<option value="'+option.value+'" selected>'+option.label+'</option>';
+                    }
+                    else {
+                        returnElm += '<option value="'+option.value+'">'+option.label+'</option>';
+                    }
+                });
+                returnElm += '</select>';
+            }
+            returnElm += '</div>';
+
+            $('#specifications').append(returnElm);
+        }
     </script>
 @stop
