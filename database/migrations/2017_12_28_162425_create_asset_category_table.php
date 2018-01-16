@@ -18,6 +18,7 @@ class CreateAssetCategoryTable extends Migration
             $table->string('name')->nullable(false);
             $table->string('slug')->nullable(false);
             $table->text('description');
+            $table->json('specifications');
             $table->timestamps();
         });
     }

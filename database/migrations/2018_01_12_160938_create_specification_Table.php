@@ -18,7 +18,6 @@ class CreateSpecificationTable extends Migration
             $table->string('name')->isNullable(false);
             $table->string('slug')->isNullable(false);
             $table->string('type')->isNullable(false);
-            $table->string('default')->isNullable(false);
             $table->json('options');
             $table->timestamps();
         });
