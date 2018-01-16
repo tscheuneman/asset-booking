@@ -11,6 +11,7 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
+    {{$users}}
     <table class="table">
         <thead>
         <tr>

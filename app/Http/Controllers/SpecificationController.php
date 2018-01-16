@@ -19,7 +19,7 @@ class SpecificationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $specs = Specification::get();
+        $specs = Specification::paginate(25);
         return view('admin.specs',
             [
                 'specs' => $specs
@@ -44,9 +44,6 @@ class SpecificationController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
 
         $this->validate(request(), [
             'name' => 'required|string',
@@ -87,6 +84,7 @@ class SpecificationController extends Controller
             $spec->type = request('type');
             $spec->options = request('jsonOptions');
             $spec->save();
+            \Session::flash('flash_created',request('name') . ' has been created');
             return redirect('/admin/specifications');
         } else {
             return redirect('/admin/specifications/create')->withErrors("Error, Invalid Options");
@@ -132,7 +130,12 @@ class SpecificationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $spec = Specification::find($id);
+        return view('admin.specsEdit',
+            [
+                'spec' => $spec
+            ]
+        );
     }
 
     /**
@@ -144,7 +147,52 @@ class SpecificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'id' => 'exists:specifications',
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'jsonOptions' => 'json'
+        ]);
+
+        $validator = new JSONValidate;
+
+        $json = json_decode(request('jsonOptions'));
+        //Check each option for valid format
+
+        foreach($json as $obj) {
+            $validator->validate(
+                $obj,
+                (object)[
+                    "type"=>"object",
+                    "properties"=>(object)[
+                        "label"=>(object)[
+                            "type"=>"string",
+                            "required"=>true
+                        ],
+                        "value"=>(object)[
+                            "type"=>"string",
+                            "required"=>true
+                        ],
+                    ]
+                ],
+                Constraint::CHECK_MODE_NORMAL
+            ); //validates, and sets defaults for missing properties
+        }
+
+
+        if ($validator->isValid()) {
+            $spec = Specification::find($id);
+            $spec->name = request('name');
+            $spec->slug = $this->createSlug(request('name'));
+            $spec->type = request('type');
+            $spec->options = request('jsonOptions');
+            $spec->save();
+            \Session::flash('flash_created',request('name') . ' has been edited');
+            return redirect('/admin/specifications');
+        } else {
+            return redirect('/admin/specifications/create')->withErrors("Error, Invalid Options");
+        }
+
     }
 
     /**

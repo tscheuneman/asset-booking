@@ -12,13 +12,14 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
+    {{$regions}}
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Updated</th>
-            <th scope="col">Region</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>

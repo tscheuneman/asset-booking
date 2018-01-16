@@ -17,7 +17,7 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with('location.building', 'category', 'location.region')->get();
+        $assets = Asset::with('location.building', 'category', 'location.region')->paginate(50);
         return view('admin.assets',
             [
                 'assets' => $assets

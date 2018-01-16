@@ -73,6 +73,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/specifications', 'SpecificationController@index');
     Route::get('/admin/specifications/create', 'SpecificationController@create');
     Route::post('/admin/specification', 'SpecificationController@store');
+    Route::get('/admin/specification/{id}/edit', 'SpecificationController@edit');
+    Route::post('/admin/specification/{id}', 'SpecificationController@update');
 
     //Admin "API" Actions
     Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
