@@ -64,21 +64,17 @@ class AssetController extends Controller
             'height' => 'nullable|numeric',
             'color' => 'nullable',
             'material' => 'nullable',
-            'image' => 'required|image'
+            'image' => 'required|image',
+            'specs' => 'json'
         ]);
 
-        $specs = array(
-            "width" => request('width'),
-            "height" => request('height'),
-            "color" => request('color'),
-            "material" => request('material'),
-        );
+        $specs = request('specs');
 
         $path = $request->file('image')->store(
             'images/', 'public'
         );
 
-        $specification = json_encode($specs);
+        $specification = $specs;
 
         $location->longitude = request('longitude');
         $location->latitude = request('latitude');

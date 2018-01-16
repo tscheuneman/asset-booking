@@ -94,3 +94,13 @@ span.optionData {
     font-weight:bold;
     border:1px solid rgba(0,0,0,.10);
 }
+div.specification {
+    padding:15px;
+    box-shadow:0 0 10px rgba(0,0,0,.5);
+    float:left;
+    margin:10px 10px;
+    border-radius:10px;
+}
+div.specification.active {
+    background:#fff;
+}

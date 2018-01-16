@@ -46,6 +46,7 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::post('/admin/assets', 'AssetController@store');
 
 
+
     Route::get('/admin/categories', 'CategoryController@index');
     Route::get('/admin/category/create', 'CategoryController@create');
     Route::post('/admin/category', 'CategoryController@store');
@@ -63,4 +64,6 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/specifications', 'SpecificationController@index');
     Route::get('/admin/specifications/create', 'SpecificationController@create');
     Route::post('/admin/specification', 'SpecificationController@store');
+
+    Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
 });

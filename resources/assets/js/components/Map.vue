@@ -157,15 +157,14 @@
         }
     }
     function fillData(msg) {
-        var specs = JSON.parse(msg.specifications);
-        var returnSpecs = '';
-        for (var k in specs){
-            if (specs.hasOwnProperty(k)) {
-                returnSpecs += '<span class="specItem"><strong>' + k + ': </strong> ' + specs[k] + '</span>';
-            }
-        }
+        let specs = JSON.parse(msg.specifications);
+        let returnSpecs = '';
 
-        var returnVal = '<div class="overlayInfo">' +
+        specs.forEach(function(spec) {
+            returnSpecs += '<span class="specItem"><strong>' + spec.slug + ': </strong> ' + spec.value + '</span>';
+        });
+
+        let returnVal = '<div class="overlayInfo">' +
             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
