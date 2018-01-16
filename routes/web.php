@@ -35,10 +35,13 @@ Route::get('/asset', 'LocationController@index');
 Route::group(['middleware' => ['cas.admin']], function ()
 {
     Route::get('/admin', 'AdminController@index');
+    Route::get('/admin/users/create', 'AdminController@create');
     Route::get('/admin/users', 'AdminController@show');
     Route::post('/admin/users', 'AdminController@store');
+    Route::get('/admin/users/{id}/edit', 'AdminController@edit');
+    Route::post('/admin/users/{id}', 'AdminController@update');
+    Route::delete('/admin/users/{id}/delete', 'AdminController@destroy');
 
-    Route::get('/admin/users/create', 'AdminController@create');
 
 
     Route::get('/admin/assets', 'AssetController@index');
