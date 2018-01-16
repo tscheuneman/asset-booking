@@ -85,6 +85,8 @@ class AdminController extends Controller
         $admin->updated_at = date('Y-m-d H:i:s');
 
         $admin->save();
+
+        \Session::flash('flash_created',request('username') . ' has been edited');
         return redirect('/admin/users');
     }
 
