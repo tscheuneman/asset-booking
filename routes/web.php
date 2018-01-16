@@ -65,6 +65,9 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/locations/regions', 'RegionController@index');
     Route::get('/admin/locations/region/create', 'RegionController@create');
     Route::post('/admin/locations/region', 'RegionController@store');
+    Route::get('/admin/locations/region/{id}/edit', 'RegionController@edit');
+    Route::post('/admin/locations/region/{id}', 'RegionController@update');
+    Route::delete('/admin/locations/region/{id}/delete', 'RegionController@destroy');
 
     //Admin Specification Actions
     Route::get('/admin/specifications', 'SpecificationController@index');

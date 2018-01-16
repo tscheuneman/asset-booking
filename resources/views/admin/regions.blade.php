@@ -3,7 +3,7 @@
     Campuses
 @stop
 @section('content')
-    <a class="actionLink" href="{{ url('/admin/locations/campus/create') }}">Add Region</a> <h2>Region</h2>
+    <a class="actionLink" href="{{ url('/admin/locations/region/create') }}">Add Region</a> <h2>Region</h2>
     <hr>
 
     @if(Session::has('flash_deleted'))
@@ -17,16 +17,29 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Region</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($campuses as $campus)
+        @foreach($regions as $region)
             <tr>
                 <td>
-                    {{$campus->id}}
+                    {{$region->id}}
                 </td>
                 <td>
-                    {{$campus->name}}
+                    {{$region->name}}
+                </td>
+                <td>
+                    {{$region->updated_at->format('Y-m-d')}}
+                </td>
+                <td>
+                    <a class="editAction" href="/admin/locations/region/{{$region->id}}/edit">Edit</a>
+                    <form action="/admin/locations/region/{{$region->id}}/delete" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button class="deleteAction" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
                 </td>
             <tr>
         @endforeach

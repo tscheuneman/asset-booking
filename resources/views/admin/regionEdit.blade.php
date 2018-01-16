@@ -1,32 +1,34 @@
 @extends('layouts.admin')
 @section('title')
-    Create Region
+    Edit Region
 @stop
 @section('content')
-    <h2>Create Region</h2>
+    <h2>Edit {{$region->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/locations/region') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/locations/region') }}/{{$region->id}}" enctype="multipart/form-data">
         {{csrf_field()}}
-
-
+        <input type="hidden" value="{{$region->id}}">
         <div class="form-group">
             <label for="longitude">Longitude</label>
-            <input type="text" class="form-control" id="longitude" name="longitude" readonly required>
+            <input type="text" class="form-control" id="longitude" name="longitude" required value="{{$region->longitude}}">
         </div>
 
         <div class="form-group">
             <label for="latitude">Latitude</label>
-            <input type="text" class="form-control" id="latitude" name="latitude" readonly required>
+            <input type="text" class="form-control" id="latitude" name="latitude" required value="{{$region->latitude}}">
         </div>
 
         <div class="form-group">
             <label for="name">Region Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" required value="{{$region->name}}">
         </div>
 
         <hr>
 
+        <hr>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <br><br> <br><br> <br><br>
+        <div type="submit" class="btn btn-warning getCurr">Get Current Location</div>
 
         @include('layouts.errors')
 
@@ -51,7 +53,11 @@
             console.warn(`ERROR(${err.code}): ${err.message}`);
         };
 
-        navigator.geolocation.getCurrentPosition(success, error, options);
+        $(document).ready(function() {
+            $('.getCurr').on('click', function() {
+                navigator.geolocation.getCurrentPosition(success, error, options);
+            });
+        });
 
 
 
