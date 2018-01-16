@@ -45,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function show() {
-        $users = Admin::get();
+        $users = Admin::paginate(50);
         return view('admin.users',
             [
                 'users' => $users

@@ -12,12 +12,13 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
-
+    {{$buildings}}
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
+            <th scope="col">Updated</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -29,6 +30,9 @@
                 </td>
                 <td>
                     {{$building->name}}
+                </td>
+                <td>
+                    {{$building->updated_at->format('Y-m-d')}}
                 </td>
                 <td>
                     <a class="editAction" href="/admin/locations/building/{{$building->id}}/edit">Edit</a>

@@ -9,7 +9,7 @@ use App\Building;
 class BuildingController extends Controller
 {
     public function index() {
-        $buildings = Building::get();
+        $buildings = Building::paginate(50);
         return view('admin.buildings',
             [
                 'buildings' => $buildings
@@ -62,6 +62,7 @@ class BuildingController extends Controller
         $build->name = request('name');
         $build->longitude = request('longitude');
         $build->latitude = request('latitude');
+        $build->last_updated = date('Y-m-d H:i:s');
 
         $build->save();
 
