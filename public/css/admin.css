@@ -47,7 +47,8 @@ header {
 Nav
  */
 nav.navbar {
-    height:59px;
+    height: 59px;
+    border-radius: 0;
 }
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-text {
     color:#f4f4f4;

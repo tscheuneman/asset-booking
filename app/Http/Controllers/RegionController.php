@@ -8,7 +8,7 @@ use App\Region;
 class RegionController extends Controller
 {
     public function index() {
-        $region = Region::paginate(50);
+        $region = Region::paginate(25);
         return view('admin.regions',
             [
                 'regions' => $region

@@ -12,7 +12,10 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
-    {{$buildings}}
+    <form action="" method="GET">
+        <input type="text" name="keyword" class="form-control"/>
+    </form>
+    <br>
     <table class="table">
         <thead>
         <tr>
@@ -46,4 +49,6 @@
         @endforeach
         </tbody>
     </table>
+
+    {{ $buildings->appends(Request::except('page'))->links() }}
 @stop

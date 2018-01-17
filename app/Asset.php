@@ -20,4 +20,5 @@ class Asset extends Model
     public function building() {
         return $this->hasManyThrough('App\Building', 'App\Location');
     }
+
 }

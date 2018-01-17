@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Building;
+use Illuminate\Support\Facades\Input;
+
 
 class BuildingController extends Controller
 {
     public function index() {
         $buildings = Building::paginate(50);
+
+        if($keyword = Input::get('keyword', '')) {
+            $buildings = Building::SearchBuilding($keyword)->paginate(50);
+
+        }
+
         return view('admin.buildings',
             [
                 'buildings' => $buildings
@@ -79,5 +87,6 @@ class BuildingController extends Controller
         \Session::flash('flash_deleted',$build_name . ' has been deleted');
         return redirect('/admin/locations/buildings');
     }
+
 
 }

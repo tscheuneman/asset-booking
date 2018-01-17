@@ -45,4 +45,6 @@
         @endforeach
         </tbody>
     </table>
+
+    {{$categories}}
 @stop

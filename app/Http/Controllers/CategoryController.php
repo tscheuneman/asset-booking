@@ -18,7 +18,7 @@ class CategoryController extends Controller
     }
 
     public function index() {
-        $cat = Category::get();
+        $cat = Category::paginate(20);
         return view('admin.category',
             [
                 'categories' => $cat
