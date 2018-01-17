@@ -20,12 +20,11 @@
             <th scope="col">Category</th>
             <th scope="col">Region</th>
             <th scope="col">Building</th>
-            <th scope="col">Available</th>
-            <th scope="col">Active</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
+
         @foreach($assets as $asset)
             <tr>
                 <td>
@@ -44,10 +43,12 @@
                     {{$asset->location->building->name}}
                 </td>
                 <td>
-                    {{$asset->is_available}}
-                </td>
-                <td>
-                    {{$asset->is_active}}
+                    <a class="editAction" href="/admin/asset/{{$asset->id}}/edit">Edit</a>
+                    <form action="/admin/asset/{{$asset->id}}/delete" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button class="deleteAction" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
                 </td>
             <tr>
         @endforeach

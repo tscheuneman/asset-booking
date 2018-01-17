@@ -47,6 +47,9 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/assets', 'AssetController@index');
     Route::get('/admin/asset/create', 'AssetController@create');
     Route::post('/admin/assets', 'AssetController@store');
+    Route::get('/admin/asset/{id}/edit', 'AssetController@edit');
+    Route::post('/admin/asset/{id}', 'AssetController@update');
+    Route::delete('/admin/asset/{id}/delete', 'AssetController@destroy');
 
     //Admin Category Actions
     Route::get('/admin/categories', 'CategoryController@index');

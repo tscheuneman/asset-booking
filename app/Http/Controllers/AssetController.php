@@ -7,6 +7,7 @@ use App\Asset;
 use App\Category;
 use App\Location;
 use App\Building;
+use File;
 
 class AssetController extends Controller
 {
@@ -96,6 +97,7 @@ class AssetController extends Controller
         $location->asset_id = $assetID;
         $location->save();
 
+        \Session::flash('flash_created',request('name') . ' has been created');
         return redirect('/admin/assets');
 
 
@@ -120,7 +122,14 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $asset = Asset::with('location.building', 'category', 'location.region')->where('id', '=', $id)->first();
+        $cat = Category::get();
+        return view('admin.assetEdit',
+            [
+                'categories' => $cat,
+                'asset' => $asset
+            ]
+        );
     }
 
     /**
@@ -132,7 +141,58 @@ class AssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'id' => 'required|exists:assets',
+            'loc_id' => 'required|exists:locations,id',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
+            'building' => 'required|integer|exists:buildings,id',
+            'regionID' => 'numeric|required|exists:campuses,id',
+            'name' => 'required',
+            'category' => 'required|integer',
+            'image' => 'image',
+            'specs' => 'json'
+        ]);
+
+        $specs = request('specs');
+
+        if(request('image') != null) {
+           $path = $request->file('image')->store(
+               'images/', 'public'
+           );
+        }
+
+        $specification = $specs;
+
+        $asset = Asset::find($id);
+        $location = Location::find(request('loc_id'));
+
+
+
+
+        $location->longitude = request('longitude');
+        $location->latitude = request('latitude');
+        $location->building_id = request('building');
+        $location->asset_id = $id;
+        $location->region_id = request('regionID');
+        $location->save();
+        $locationID = $location->id;
+
+
+        $asset->cat_id = request('category');
+        $asset->name = request('name');
+        $asset->location_id = $locationID;
+        $asset->specifications = $specification;
+        if(request('image') != null) {
+            File::delete(public_path(). '/storage/' .$asset->latest_image);
+         $asset->latest_image = $path;
+        }
+        $asset->save();
+
+        \Session::flash('flash_created',request('name') . ' has been edited');
+        return redirect('/admin/assets');
+
+
     }
 
     /**
@@ -143,6 +203,16 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $asset = Asset::find($id);
+            $asset_name = $asset->name;
+        $location = Location::find($asset->location_id);
+
+        File::delete(public_path(). '/storage/' .$asset->latest_image);
+        $asset->delete();
+        $location->delete();
+
+        \Session::flash('flash_deleted',$asset_name . ' has been deleted');
+        return redirect('/admin/assets');
+
     }
 }
