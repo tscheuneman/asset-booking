@@ -1,22 +1,21 @@
 @extends('layouts.admin')
 @section('title')
-    Create Category
+    Edit Category
 @stop
 @section('content')
-    <h2>Create Category</h2>
+    <h2>Edit {{$category->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/category') }}" id="submit">
+    <form method="POST" action="{{ url('/admin/category') }}/{{$category->id}}" id="submit">
         {{csrf_field()}}
-
-
+        <input type="hidden" name="id" value="{{$category->id}}">
         <div class="form-group">
             <label for="name">Category Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" required value="{{$category->name}}">
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="6"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="6">{{$category->description}}</textarea>
         </div>
 
         <hr>
@@ -39,7 +38,6 @@
                 </div>
             @endforeach
         </div>
-
         <input type="hidden" name="specifications" id="specifications" value='[{"id":0,"name":"","defaultVal":""}]'>
 
         <br style="clear:both;" />
@@ -52,7 +50,20 @@
     </form>
 
     <script>
+        let jsonData = {!! $category->specifications !!}
         $(document).ready(function() {
+            $('div.specification').each(function() {
+                let x = false;
+                let elmID = $(this).data('id');
+                let thisElement = $(this);
+                jsonData.forEach(function(elm) {
+                    if(elm.id === elmID) {
+                        $(thisElement).addClass('active');
+                        $('input', thisElement).val(elm.defaultVal);
+                        return;
+                    }
+                });
+            });
             $('div.addSpec').on('click', function() {
                 let elm = $(this).parent();
                 $(elm).toggleClass('active');

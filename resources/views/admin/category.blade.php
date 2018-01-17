@@ -19,6 +19,8 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Slug</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +34,12 @@
             </td>
             <td>
              {{$category->slug}}
+            </td>
+            <td>
+                {{$category->updated_at->format('Y-m-d')}}
+            </td>
+            <td>
+                <a class="editAction" href="/admin/category/{{$category->id}}/edit">Edit</a>
             </td>
             <tr>
         @endforeach

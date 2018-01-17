@@ -113,3 +113,7 @@ div.specification {
 div.specification.active {
     background:#fff;
 }
+.clearfix {
+    clear:left;
+    float:left;
+}

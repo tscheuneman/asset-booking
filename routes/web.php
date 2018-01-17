@@ -52,6 +52,9 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/categories', 'CategoryController@index');
     Route::get('/admin/category/create', 'CategoryController@create');
     Route::post('/admin/category', 'CategoryController@store');
+    Route::get('/admin/category/{id}/edit', 'CategoryController@edit');
+    Route::post('/admin/category/{id}', 'CategoryController@update');
+
 
     //Admin Building Actions
     Route::get('/admin/locations/buildings', 'BuildingController@index');

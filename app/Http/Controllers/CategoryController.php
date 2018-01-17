@@ -80,12 +80,79 @@ class CategoryController extends Controller
 
 
             $cat->save();
+            \Session::flash('flash_created',request('name') . ' has been created');
             return redirect('/admin/categories');
         } else {
             return redirect('/admin/category/create')->withErrors("Error, Invalid Specification Entry");
         }
 
     }
+
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        $specs = Specification::get();
+        return view('admin.categoryEdit',
+            [
+                'category' => $category,
+                'specs' => $specs
+            ]
+        );
+    }
+
+    public function update(Request $request, $id) {
+        $this->validate(request(), [
+            'id' => 'exists:categories',
+            'name' => 'required',
+            'specifications' => 'json',
+            'description' => '',
+        ]);
+
+        $validator = new JSONValidate;
+
+        $json = json_decode(request('specifications'));
+        foreach($json as $obj) {
+            $validator->validate(
+                $obj,
+                (object)[
+                    "type"=>"object",
+                    "properties"=>(object)[
+                        "id"=>(object)[
+                            "type"=>"integer",
+                            "required"=>true
+                        ],
+                        "name"=>(object)[
+                            "type"=>"string",
+                            "required"=>true
+                        ],
+                        "defaultVal"=>(object)[
+                            "type"=>"string",
+                            "required"=>true
+                        ],
+                    ]
+                ],
+                Constraint::CHECK_MODE_NORMAL
+            ); //validates, and sets defaults for missing properties
+        }
+
+        if ($validator->isValid()) {
+            $cat = Category::find($id);
+            $cat->name = request('name');
+            $cat->slug = $this->createSlug(request('name'));
+            $cat->description = request('description');
+            $cat->specifications = request('specifications');
+
+
+            $cat->save();
+            \Session::flash('flash_created',request('name') . ' has been edited');
+            return redirect('/admin/categories');
+        } else {
+            return redirect('/admin/category/create')->withErrors("Error, Invalid Specification Entry");
+        }
+
+    }
+
+
 
     public static function createSlug($str, $delimiter = '-'){
         $slug = strtolower(trim(preg_replace('/[\s-]+/', $delimiter, preg_replace('/[^A-Za-z0-9-]+/', $delimiter, preg_replace('/[&]/', 'and', preg_replace('/[\']/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $str))))), $delimiter));
