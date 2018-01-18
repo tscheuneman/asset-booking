@@ -46279,6 +46279,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+$(document).ready(function () {
+    $('#sideContent').on('click', 'a.bookLink', function () {
+        show.daterangepicker;
+    });
+
+    $('#book').daterangepicker({
+        "startDate": "01/11/2018",
+        "endDate": "01/17/2018"
+    }, function (start, end, label) {
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+    });
+});
 
 var theData = '';
 /////////////////////////////////////////
@@ -46367,7 +46381,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
                     }
                 }
             }
-
             self.markers = arrayVal;
         });
     },
@@ -46407,14 +46420,7 @@ function toggleSidebar(returnData) {
     }
 }
 function fillData(msg) {
-    var specs = JSON.parse(msg.specifications);
-    var returnSpecs = '';
-
-    specs.forEach(function (spec) {
-        returnSpecs += '<span class="specItem"><strong>' + spec.slug + ': </strong> ' + spec.value + '</span>';
-    });
-
-    var returnVal = '<div class="overlayInfo">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>' + msg.location.region.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>' + returnSpecs + '<span class="clearfix"></span></div>' + '<br class="clear"><a href="#" class="bookLink">Book</a>' + '</div>';
+    var returnVal = '<div class="overlayInfo">' + '<img class="overlayImage" alt="Image ' + msg.id + '" src="/storage/' + msg.latest_image + '" />' + '<h4>' + msg.name + '</h4>' + '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>' + msg.location.building.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>' + msg.location.region.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>' + msg.category.name + '</div>' + '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>' + msg.category.description + '<span class="clearfix"></span></div>' + '<br class="clear"><a data-id="' + msg.id + '" class="bookLink" href="#" class="bookLink">Book</a>' + '</div>';
 
     $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
 }
@@ -53651,6 +53657,8 @@ var render = function() {
     "div",
     { attrs: { id: "container" } },
     [
+      _c("input", { attrs: { type: "text", id: "book" } }),
+      _vm._v(" "),
       _c("sidebar", [
         _c(
           "div",

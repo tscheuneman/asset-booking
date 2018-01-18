@@ -1,5 +1,6 @@
 <template>
     <div id="container">
+        <input type="text" id="book">
         <sidebar>
             <div id="close"
                 :clickable="true" @click="closeSidebar()"
@@ -28,6 +29,19 @@
 </template>
 
 <script>
+    $(document).ready(function() {
+        $('#sideContent').on('click', 'a.bookLink', function() {
+            show.daterangepicker;
+        });
+
+        $('#book').daterangepicker({
+            "startDate": "01/11/2018",
+            "endDate": "01/17/2018"
+        }, function(start, end, label) {
+            console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        });
+    });
+
     let theData = '';
     /////////////////////////////////////////
     // New in 0.4.0
@@ -117,10 +131,8 @@
 
                         }
                     }
-
                     self.markers = arrayVal;
                 });
-
         },
         methods: {
             toggleInfoWindow: function(marker, idx) {
@@ -137,7 +149,6 @@
         if($(window).width() < 750) {
             widthPerc = 85;
         }
-
 
         if($('sidebar').hasClass('clicked') === true) {
             $('sidebar').removeClass('clicked').animate({
@@ -157,21 +168,14 @@
         }
     }
     function fillData(msg) {
-        let specs = JSON.parse(msg.specifications);
-        let returnSpecs = '';
-
-        specs.forEach(function(spec) {
-            returnSpecs += '<span class="specItem"><strong>' + spec.slug + ': </strong> ' + spec.value + '</span>';
-        });
-
         let returnVal = '<div class="overlayInfo">' +
             '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
             '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
             '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
-            '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Specs </strong><br>'+ returnSpecs + '<span class="clearfix"></span></div>' +
-            '<br class="clear"><a href="#" class="bookLink">Book</a>' +
+            '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>'+ msg.category.description + '<span class="clearfix"></span></div>' +
+            '<br class="clear"><a data-id="'+msg.id+'" class="bookLink" href="#" class="bookLink">Book</a>' +
             '</div>';
 
         $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);

@@ -14,7 +14,6 @@ class AdminController extends Controller
     }
 
     public function index() {
-        Cas::authenticate();
         $user = Admin::getName(Cas::user());
         return view('admin.main',
             [
@@ -45,7 +44,7 @@ class AdminController extends Controller
     }
 
     public function show() {
-        $users = Admin::paginate(50);
+        $users = Admin::paginate(25);
         return view('admin.users',
             [
                 'users' => $users

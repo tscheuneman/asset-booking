@@ -8,6 +8,7 @@ use App\Category;
 use App\Location;
 use App\Building;
 use File;
+use App\Jobs\ProcessImage;
 
 class AssetController extends Controller
 {
@@ -92,11 +93,12 @@ class AssetController extends Controller
         $asset->specifications = $specification;
         $asset->latest_image = $path;
         $asset->save();
-        $assetID = $asset->id;
 
-        $location->asset_id = $assetID;
+        $location->asset_id = $asset->id;
+
         $location->save();
 
+        ProcessImage::dispatch($path);
         \Session::flash('flash_created',request('name') . ' has been created');
         return redirect('/admin/assets');
 
@@ -186,8 +188,10 @@ class AssetController extends Controller
         if(request('image') != null) {
             File::delete(public_path(). '/storage/' .$asset->latest_image);
          $asset->latest_image = $path;
+         ProcessImage::dispatch($path);
         }
         $asset->save();
+
 
         \Session::flash('flash_created',request('name') . ' has been edited');
         return redirect('/admin/assets');

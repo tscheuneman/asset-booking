@@ -71,8 +71,9 @@
 
     <script>
         $(document).ready(function() {
+            //Load Specs
             getSpecs();
-
+            //On category change, load specs again
             $('select#category').on('change', function() {
                 getSpecs();
             })
