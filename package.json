@@ -19,6 +19,7 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "marker-clusterer-plus": "^2.1.4",
         "vue-bus": "^1.0.0",
         "vue2-google-maps": "^0.8.4"
     }

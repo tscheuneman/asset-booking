@@ -1,6 +1,5 @@
 <template>
     <div id="container">
-        <input type="text" id="book">
         <sidebar>
             <div id="close"
                 :clickable="true" @click="closeSidebar()"
@@ -10,6 +9,7 @@
             <div id="sideContent">
 
             </div>
+            <input type="text" id="book" class="form-control book" readonly>
         </sidebar>
         <gmap-map
                 :center="center"
@@ -17,13 +17,15 @@
                 style="width: 100%; height: 100%; position:absolute;"
                 :options="options"
         >
-
-            <gmap-marker
-                    :key="i"
-                    v-for="(m,i) in markers"
-                    :position="m.position"
-                    :clickable="true" @click="toggleInfoWindow(m,i)
+            <gmap-cluster :maxZoom="17">
+                <gmap-marker
+                        :key="i"
+                        v-for="(m,i) in markers"
+                        :position="m.position"
+                        :clickable="true" @click="toggleInfoWindow(m,i)
         "></gmap-marker>
+            </gmap-cluster>
+
         </gmap-map>
     </div>
 </template>
@@ -31,15 +33,28 @@
 <script>
     $(document).ready(function() {
         $('#sideContent').on('click', 'a.bookLink', function() {
-            show.daterangepicker;
-        });
+            $('#book').data('daterangepicker').setStartDate('03/01/2014');
 
+        });
+        let d = new Date();
+        let strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
         $('#book').daterangepicker({
-            "startDate": "01/11/2018",
-            "endDate": "01/17/2018"
+            "minDate": strDate,
+            "autoApply": true,
+            "opens": "left",
+            "dateLimit": {
+                "days": 14
+            },
+            "isInvalidDate": function (date) {
+                let formatted = date.format('YYYY-MM-DD');
+                console.log(formatted);
+            }
         }, function(start, end, label) {
             console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
+
+        console.log(strDate);
+
     });
 
     let theData = '';
@@ -90,7 +105,6 @@
 
                 }.bind(this));
             }
-            console.log(this.assets);
             theData = this.assets;
             let arrayVal = [];
             for(let i = 0; i < theData.length; i++) {
@@ -98,13 +112,15 @@
                     id: theData[i].id,
                     position: {
                         lat: theData[i].location.latitude,
-                        lng: theData[i].location.longitude
-                    }
+                        lng: theData[i].location.longitude,
+                    },
+                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
                 };
                 arrayVal.push(item);
             }
 
             // JSON responses are automatically parsed.
+            console.log(arrayVal);
             this.markers = arrayVal;
         },
         created() {

@@ -46280,18 +46280,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 $(document).ready(function () {
     $('#sideContent').on('click', 'a.bookLink', function () {
-        show.daterangepicker;
+        $('#book').data('daterangepicker').setStartDate('03/01/2014');
     });
-
+    var d = new Date();
+    var strDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
     $('#book').daterangepicker({
-        "startDate": "01/11/2018",
-        "endDate": "01/17/2018"
+        "minDate": strDate,
+        "autoApply": true,
+        "opens": "left",
+        "dateLimit": {
+            "days": 14
+        },
+        "isInvalidDate": function isInvalidDate(date) {
+            var formatted = date.format('YYYY-MM-DD');
+            console.log(formatted);
+        }
     }, function (start, end, label) {
         console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
     });
+
+    console.log(strDate);
 });
 
 var theData = '';
@@ -46341,7 +46354,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
                 this.center.lng = pos.lng;
             }.bind(this));
         }
-        console.log(this.assets);
         theData = this.assets;
         var arrayVal = [];
         for (var i = 0; i < theData.length; i++) {
@@ -46350,12 +46362,14 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue2_google_maps__, {
                 position: {
                     lat: theData[i].location.latitude,
                     lng: theData[i].location.longitude
-                }
+                },
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
             };
             arrayVal.push(item);
         }
 
         // JSON responses are automatically parsed.
+        console.log(arrayVal);
         this.markers = arrayVal;
     },
     created: function created() {
@@ -53657,8 +53671,6 @@ var render = function() {
     "div",
     { attrs: { id: "container" } },
     [
-      _c("input", { attrs: { type: "text", id: "book" } }),
-      _vm._v(" "),
       _c("sidebar", [
         _c(
           "div",
@@ -53678,7 +53690,12 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("div", { attrs: { id: "sideContent" } })
+        _c("div", { attrs: { id: "sideContent" } }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control book",
+          attrs: { type: "text", id: "book", readonly: "" }
+        })
       ]),
       _vm._v(" "),
       _c(
@@ -53687,17 +53704,24 @@ var render = function() {
           staticStyle: { width: "100%", height: "100%", position: "absolute" },
           attrs: { center: _vm.center, zoom: 15, options: _vm.options }
         },
-        _vm._l(_vm.markers, function(m, i) {
-          return _c("gmap-marker", {
-            key: i,
-            attrs: { position: m.position, clickable: true },
-            on: {
-              click: function($event) {
-                _vm.toggleInfoWindow(m, i)
-              }
-            }
-          })
-        })
+        [
+          _c(
+            "gmap-cluster",
+            { attrs: { maxZoom: 17 } },
+            _vm._l(_vm.markers, function(m, i) {
+              return _c("gmap-marker", {
+                key: i,
+                attrs: { position: m.position, clickable: true },
+                on: {
+                  click: function($event) {
+                    _vm.toggleInfoWindow(m, i)
+                  }
+                }
+              })
+            })
+          )
+        ],
+        1
       )
     ],
     1
