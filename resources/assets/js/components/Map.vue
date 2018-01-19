@@ -22,6 +22,7 @@
                         :key="i"
                         v-for="(m,i) in markers"
                         :position="m.position"
+                        :icon="m.icon"
                         :clickable="true" @click="toggleInfoWindow(m,i)
         "></gmap-marker>
             </gmap-cluster>

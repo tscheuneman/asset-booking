@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Cas;
 use App\Admin;
+use App\Asset;
+use App\Category;
+use App\Building;
+use App\Region;
 
 class AdminController extends Controller
 {
@@ -15,9 +19,18 @@ class AdminController extends Controller
 
     public function index() {
         $user = Admin::getName(Cas::user());
+        $assetCount = Asset::count();
+        $categoryCount = Category::count();
+        $buildingCount = Building::count();
+        $regionCount = Region::count();
+
         return view('admin.main',
             [
-                'user' => $user
+                'user' => $user,
+                'assetCount' => $assetCount,
+                'categoryCount' => $categoryCount,
+                'buildingCount' => $buildingCount,
+                'regionCount' => $regionCount
             ]
         );
     }
