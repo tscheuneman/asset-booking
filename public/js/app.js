@@ -46282,6 +46282,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 $(document).ready(function () {
     $('#sideContent').on('click', 'a.bookLink', function () {
@@ -53711,7 +53712,7 @@ var render = function() {
             _vm._l(_vm.markers, function(m, i) {
               return _c("gmap-marker", {
                 key: i,
-                attrs: { position: m.position, clickable: true },
+                attrs: { position: m.position, icon: m.icon, clickable: true },
                 on: {
                   click: function($event) {
                     _vm.toggleInfoWindow(m, i)

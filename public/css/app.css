@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,600);@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -1402,7 +1402,7 @@ html {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color: #636b6f;
@@ -7499,7 +7499,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -7633,7 +7633,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -8348,5 +8348,317 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a.actionLink {
+  padding: 13px;
+  float: right;
+  background: #8C1D40;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+  -webkit-transition: .5s background;
+  transition: .5s background;
+}
+
+a.actionLink:hover {
+  background: #c92453;
+}
+
+a.editAction {
+  padding: 8px;
+  border-radius: 3px;
+  background: #2ab27b;
+  color: #fff;
+  float: left;
+  margin-right: 10px;
+}
+
+.deleteAction {
+  padding: 8px;
+  border-radius: 3px;
+  background: #bf5329;
+  color: #fff;
+  float: left;
+  margin-right: 10px;
+  border: none;
+}
+
+.alert.alert-error {
+  color: red;
+}
+
+header {
+  background: #fff;
+  width: 100%;
+}
+
+/*
+Nav
+ */
+
+nav.navbar {
+  height: 59px;
+  border-radius: 0;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-text {
+  color: #f4f4f4;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition: background .5s, color .5s;
+  transition: background .5s, color .5s;
+  height: 58px;
+  padding: 0 15px;
+  line-height: 59px;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-text:hover,
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+  color: #ffb310;
+  background-color: #000000;
+}
+
+div#add {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background: #8C1D40;
+  border: none;
+  border-radius: 50%;
+  font-size: 25px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -webkit-transition: .5s all;
+  transition: .5s all;
+  cursor: pointer;
+}
+
+div#add:hover {
+  background: #c92453;
+}
+
+div.showData {
+  padding: 15px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+#optionsList {
+  margin-top: 15px;
+}
+
+.returnEntry {
+  padding: 15px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  float: left;
+  clear: left;
+  background: #fff;
+  margin-top: 10px;
+}
+
+span.optionData {
+  float: left;
+  margin-right: 5px;
+  font-weight: bold;
+  border: 1px solid #d3e0e9;
+}
+
+div.specification {
+  padding: 15px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  float: left;
+  margin: 10px 10px;
+  border-radius: 10px;
+}
+
+div.specification.active {
+  background: #fff;
+}
+
+.clearfix {
+  clear: left;
+  float: left;
+}
+
+/* Home */
+
+div.adminHeading {
+  float: left;
+  margin-right: 25px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: #fff;
+  border-radius: 15px 0 15px 0;
+}
+
+div.adminHeading header {
+  background: #8C1D40;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  border-radius: 15px 0 0 0;
+}
+
+div.adminHeading section {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+img.overlayImage {
+  width: 100%;
+  display: block;
+}
+
+a.bookLink {
+  margin-top: 15px;
+  padding: 12px;
+  background: #2ab27b;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+span.specItem {
+  padding: 5px;
+  float: left;
+  background: #8C1D40;
+  color: #fff;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+br.clear {
+  clear: both;
+}
+
+sidebar {
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  height: 100%;
+  width: 0;
+  overflow: hidden;
+  background: #232323;
+  -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+sidebar .overlayInfo {
+  color: #f4f4f4;
+}
+
+sidebar h4 {
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid #a2a2a2;
+  font-weight: bold;
+}
+
+sidebar .sideInfo {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+sidebar div#close {
+  position: absolute;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background: #8C1D40;
+  text-align: center;
+  line-height: 45px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  -webkit-transition: .5s all;
+  transition: .5s all;
+}
+
+sidebar div#close:hover {
+  background: #c92453;
+}
+
+nav#navbar {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  border-radius: 0;
+}
+
+nav#navbar li {
+  color: #f4f4f4;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition: background .5s, color .5s;
+  transition: background .5s, color .5s;
+  height: 58px;
+  padding: 0 15px;
+  line-height: 59px;
+  cursor: pointer;
+}
+
+nav#navbar li:hover,
+nav#navbar li.active {
+  background: #000;
+  color: #ffb310;
+}
+
+.navbar-inverse .navbar-collapse {
+  float: left;
+  width: 100%;
+}
+
+.rightSide {
+  float: right;
+  line-height: 59px;
+  font-weight: bold;
+  color: #f4f4f4;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  -webkit-transition: background .5s, color .5s;
+  transition: background .5s, color .5s;
+}
+
+.rightSide:hover {
+  color: #ffb310;
+}
+
+div#filters {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  padding: 10px;
+  background: #f4f4f4;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 

@@ -16,9 +16,19 @@ $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
 
+$asu-maroon: #8C1D40;
+$asu-maroon-hover: #c92453;
+
+$asu-gold: #ffb310;
+
+
+$off-white:#f4f4f4;
+$dark-butt-color: #fff;
+$white: #fff;
+$black: #000;
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
+$font-family-sans-serif: "Lato", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #636b6f;
@@ -36,3 +46,10 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+
+//Shadows
+
+$normalBoxShadow: 0 0 10px rgba(0,0,0,.5);
+
+$normalTextShadow: 0 0 5px rgba(0,0,0,.5);
