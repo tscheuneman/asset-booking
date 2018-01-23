@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Category</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/category') }}" id="submit">
+    <form method="POST" action="{{ url('/admin/category') }}" id="submit" enctype="multipart/form-data">
         {{csrf_field()}}
 
 

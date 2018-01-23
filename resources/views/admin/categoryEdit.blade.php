@@ -5,7 +5,7 @@
 @section('content')
     <h2>Edit {{$category->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/category') }}/{{$category->id}}" id="submit">
+    <form method="POST" action="{{ url('/admin/category') }}/{{$category->id}}" id="submit" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{$category->id}}">
         <div class="form-group">
