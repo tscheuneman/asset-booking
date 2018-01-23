@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Image</label>
+            <label for="image">Image</label>
             <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera" required>
         </div>
 
