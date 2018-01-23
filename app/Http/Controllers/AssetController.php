@@ -9,6 +9,7 @@ use App\Location;
 use App\Building;
 use File;
 use App\Jobs\ProcessImage;
+use Mockery\Exception;
 
 class AssetController extends Controller
 {
@@ -53,8 +54,6 @@ class AssetController extends Controller
         $asset = new Asset();
         $location = new Location();
 
-
-
         $this->validate(request(), [
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
@@ -72,9 +71,16 @@ class AssetController extends Controller
 
         $specs = request('specs');
 
-        $path = $request->file('image')->store(
-            'images/', 'public'
-        );
+        try {
+            $path = $request->file('image')->store(
+                'images/', 'public'
+            );
+        }
+        catch(Exception $e) {
+            \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+            return redirect('/admin/assets');
+        }
+
 
         $specification = $specs;
 
@@ -85,7 +91,6 @@ class AssetController extends Controller
         $location->region_id = request('regionID');
         $location->save();
         $locationID = $location->id;
-
 
         $asset->cat_id = request('category');
         $asset->name = request('name');
@@ -159,42 +164,51 @@ class AssetController extends Controller
         $specs = request('specs');
 
         if(request('image') != null) {
-           $path = $request->file('image')->store(
-               'images/', 'public'
-           );
+            try {
+                $path = $request->file('image')->store(
+                    'images/', 'public'
+                );
+            }
+            catch(Exception $e) {
+                \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+                return redirect('/admin/assets');
+            }
         }
 
         $specification = $specs;
 
-        $asset = Asset::find($id);
-        $location = Location::find(request('loc_id'));
+        try {
+            $asset = Asset::find($id);
+            $location = Location::find(request('loc_id'));
+
+            $location->longitude = request('longitude');
+            $location->latitude = request('latitude');
+            $location->building_id = request('building');
+            $location->asset_id = $id;
+            $location->region_id = request('regionID');
+            $location->save();
+            $locationID = $location->id;
 
 
+            $asset->cat_id = request('category');
+            $asset->name = request('name');
+            $asset->location_id = $locationID;
+            $asset->specifications = $specification;
+            if(request('image') != null) {
+                File::delete(public_path(). '/storage/' .$asset->latest_image);
+                $asset->latest_image = $path;
+                ProcessImage::dispatch($path);
+            }
+            $asset->save();
 
 
-        $location->longitude = request('longitude');
-        $location->latitude = request('latitude');
-        $location->building_id = request('building');
-        $location->asset_id = $id;
-        $location->region_id = request('regionID');
-        $location->save();
-        $locationID = $location->id;
-
-
-        $asset->cat_id = request('category');
-        $asset->name = request('name');
-        $asset->location_id = $locationID;
-        $asset->specifications = $specification;
-        if(request('image') != null) {
-            File::delete(public_path(). '/storage/' .$asset->latest_image);
-         $asset->latest_image = $path;
-         ProcessImage::dispatch($path);
+            \Session::flash('flash_created',request('name') . ' has been edited');
+            return redirect('/admin/assets');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted','Error editing asset');
+            return redirect('/admin/assets');
         }
-        $asset->save();
 
-
-        \Session::flash('flash_created',request('name') . ' has been edited');
-        return redirect('/admin/assets');
 
 
     }
@@ -207,16 +221,22 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        $asset = Asset::find($id);
+        try {
+            $asset = Asset::find($id);
             $asset_name = $asset->name;
-        $location = Location::find($asset->location_id);
+            $location = Location::find($asset->location_id);
 
-        File::delete(public_path(). '/storage/' .$asset->latest_image);
-        $asset->delete();
-        $location->delete();
+            File::delete(public_path(). '/storage/' .$asset->latest_image);
+            $asset->delete();
+            $location->delete();
 
-        \Session::flash('flash_deleted',$asset_name . ' has been deleted');
-        return redirect('/admin/assets');
+            \Session::flash('flash_deleted',$asset_name . ' has been deleted');
+            return redirect('/admin/assets');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted', 'Error deleting asset');
+            return redirect('/admin/assets');
+        }
+
 
     }
 }

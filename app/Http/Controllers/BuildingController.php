@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Building;
 use Illuminate\Support\Facades\Input;
+use Mockery\Exception;
 
 
 class BuildingController extends Controller
@@ -66,26 +68,37 @@ class BuildingController extends Controller
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
         ]);
-        $build = Building::find($id);
-        $build->name = request('name');
-        $build->longitude = request('longitude');
-        $build->latitude = request('latitude');
-        $build->last_updated = date('Y-m-d H:i:s');
+        try {
+            $build = Building::find($id);
+            $build->name = request('name');
+            $build->longitude = request('longitude');
+            $build->latitude = request('latitude');
 
-        $build->save();
+            $build->save();
 
-        \Session::flash('flash_created',request('name') . ' has been edited');
-        return redirect('/admin/locations/buildings');
+            \Session::flash('flash_created',request('name') . ' has been edited');
+            return redirect('/admin/locations/buildings');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted','Error editing building');
+            return redirect('/admin/locations/buildings');
+        }
+
     }
 
     public function destroy($id)
     {
-        $build = Building::find($id);
-        $build_name = $build->name;
-        $build->delete();
+        try {
+            $build = Building::find($id);
+            $build_name = $build->name;
+            $build->delete();
 
-        \Session::flash('flash_deleted',$build_name . ' has been deleted');
-        return redirect('/admin/locations/buildings');
+            \Session::flash('flash_deleted',$build_name . ' has been deleted');
+            return redirect('/admin/locations/buildings');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted','Error: deleting building');
+            return redirect('/admin/locations/buildings');
+        }
+
     }
 
 

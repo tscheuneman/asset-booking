@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Cas;
 use App\Category;
@@ -136,16 +137,22 @@ class CategoryController extends Controller
         }
 
         if ($validator->isValid()) {
-            $cat = Category::find($id);
-            $cat->name = request('name');
-            $cat->slug = $this->createSlug(request('name'));
-            $cat->description = request('description');
-            $cat->specifications = request('specifications');
+            try{
+                $cat = Category::find($id);
+                $cat->name = request('name');
+                $cat->slug = $this->createSlug(request('name'));
+                $cat->description = request('description');
+                $cat->specifications = request('specifications');
 
 
-            $cat->save();
-            \Session::flash('flash_created',request('name') . ' has been edited');
-            return redirect('/admin/categories');
+                $cat->save();
+                \Session::flash('flash_created',request('name') . ' has been edited');
+                return redirect('/admin/categories');
+            } catch(QueryException $e) {
+                \Session::flash('flash_deleted','Error Editing Category');
+                return redirect('/admin/categories');
+            }
+
         } else {
             return redirect('/admin/category/create')->withErrors("Error, Invalid Specification Entry");
         }

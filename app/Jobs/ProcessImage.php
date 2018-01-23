@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use File;
 use App\Asset;
 use Intervention\Image\ImageManager;
+use Mockery\Exception;
 
 
 class ProcessImage implements ShouldQueue
@@ -36,11 +37,16 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
         $manager = new ImageManager(array('driver' => 'imagick'));
+        try {
+            $img = $manager->make(public_path(). '/storage/' . $this->fileLoc)->resize(500, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save(public_path(). '/storage/' . $this->fileLoc, 60);
+        }
+        catch (Exception $e) {
+            report($e);
+         }
 
-        $img = $manager->make(public_path(). '/storage/' . $this->fileLoc)->resize(500, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save(public_path(). '/storage/' . $this->fileLoc, 60);
 
     }
 }

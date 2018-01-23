@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Specification;
 use App\Category;
@@ -181,14 +182,21 @@ class SpecificationController extends Controller
 
 
         if ($validator->isValid()) {
-            $spec = Specification::find($id);
-            $spec->name = request('name');
-            $spec->slug = $this->createSlug(request('name'));
-            $spec->type = request('type');
-            $spec->options = request('jsonOptions');
-            $spec->save();
-            \Session::flash('flash_created',request('name') . ' has been edited');
-            return redirect('/admin/specifications');
+            try {
+                $spec = Specification::find($id);
+                $spec->name = request('name');
+                $spec->slug = $this->createSlug(request('name'));
+                $spec->type = request('type');
+                $spec->options = request('jsonOptions');
+                $spec->save();
+                \Session::flash('flash_created',request('name') . ' has been edited');
+                return redirect('/admin/specifications');
+            }
+            catch(QueryException $e) {
+                \Session::flash('flash_deleted','Error Editing Specification');
+                return redirect('/admin/specifications');
+            }
+
         } else {
             return redirect('/admin/specifications/create')->withErrors("Error, Invalid Options");
         }

@@ -10,6 +10,7 @@ use App\Category;
 use App\Building;
 use App\Region;
 use App\User;
+use Mockery\Exception;
 
 class AdminController extends Controller
 {
@@ -48,15 +49,16 @@ class AdminController extends Controller
             'username' => 'required|unique:admins'
         ]);
 
-        $admin->first_name = request('first_name');
-        $admin->last_name = request('last_name');
-        $admin->email = request('email');
-        $admin->username = request('username');
+            $admin->first_name = request('first_name');
+            $admin->last_name = request('last_name');
+            $admin->email = request('email');
+            $admin->username = request('username');
 
-        $admin->save();
+            $admin->save();
 
-        \Session::flash('flash_created', request('username') . ' has been created');
-        return redirect('/admin/users');
+            \Session::flash('flash_created', request('username') . ' has been created');
+            return redirect('/admin/users');
+
     }
 
     public function show() {
@@ -84,8 +86,6 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $admin = Admin::find($id);
-
         $this->validate(request(), [
             'id' => 'exists:admins',
             'first_name' => 'required',
@@ -94,24 +94,36 @@ class AdminController extends Controller
             'username' => 'required|exists:admins'
         ]);
 
-        $admin->first_name = request('first_name');
-        $admin->last_name = request('last_name');
-        $admin->email = request('email');
-        $admin->updated_at = date('Y-m-d H:i:s');
+        try {
+            $admin = Admin::find($id);
+            $admin->first_name = request('first_name');
+            $admin->last_name = request('last_name');
+            $admin->email = request('email');
+            $admin->updated_at = date('Y-m-d H:i:s');
 
-        $admin->save();
+            $admin->save();
 
-        \Session::flash('flash_created',request('username') . ' has been edited');
-        return redirect('/admin/users');
+            \Session::flash('flash_created', request('username') . ' has been edited');
+            return redirect('/admin/users');
+        } catch (QueryException $e) {
+            \Session::flash('flash_deleted', 'Error Editing Admin');
+            return redirect('/admin/users');
+        }
+
     }
 
     public function destroy($id)
     {
-        $admin = Admin::find($id);
+        try {
+            $admin = Admin::find($id);
             $user = $admin->username;
-        $admin->delete();
+            $admin->delete();
 
-        \Session::flash('flash_deleted',$user . ' has been deleted');
-        return redirect('/admin/users');
+            \Session::flash('flash_deleted', $user . ' has been deleted');
+            return redirect('/admin/users');
+        } catch (QueryException $e) {
+            \Session::flash('flash_deleted', 'Error Deleting Admin');
+            return redirect('/admin/users');
+        }
     }
 }

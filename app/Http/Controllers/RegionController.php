@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Region;
 
@@ -57,26 +58,39 @@ class RegionController extends Controller
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
         ]);
-        $region = Region::find($id);
 
-        $region->name = request('name');
-        $region->longitude = request('longitude');
-        $region->latitude = request('latitude');
+        try {
+            $region = Region::find($id);
 
-        $region->save();
+            $region->name = request('name');
+            $region->longitude = request('longitude');
+            $region->latitude = request('latitude');
 
-        \Session::flash('flash_created',request('name') . ' has been edited');
-        return redirect('/admin/locations/regions');
+            $region->save();
+
+            \Session::flash('flash_created',request('name') . ' has been edited');
+            return redirect('/admin/locations/regions');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted','Error editing region');
+            return redirect('/admin/locations/regions');
+        }
+
     }
 
     public function destroy($id)
     {
-        $region = Region::find($id);
-        $region_name = $region->name;
-        $region->delete();
+        try {
+            $region = Region::find($id);
+            $region_name = $region->name;
+            $region->delete();
 
-        \Session::flash('flash_deleted',$region_name . ' has been deleted');
-        return redirect('/admin/locations/regions');
+            \Session::flash('flash_deleted',$region_name . ' has been deleted');
+            return redirect('/admin/locations/regions');
+        } catch(QueryException $e) {
+            \Session::flash('flash_deleted','Error deleting region');
+            return redirect('/admin/locations/regions');
+        }
+
     }
 
 }
