@@ -115,13 +115,10 @@
                         lat: theData[i].location.latitude,
                         lng: theData[i].location.longitude,
                     },
-                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                    icon: '/storage/' + theData[i].category.marker_img
                 };
                 arrayVal.push(item);
             }
-
-            // JSON responses are automatically parsed.
-            console.log(arrayVal);
             this.markers = arrayVal;
         },
         created() {
@@ -141,7 +138,8 @@
                                     position: {
                                         lat: theData[i].location.latitude,
                                         lng: theData[i].location.longitude
-                                    }
+                                    },
+                                    icon: '/storage/' + theData[i].category.marker_img
                                 };
                                 arrayVal.push(item);
                             }
