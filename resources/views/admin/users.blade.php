@@ -32,11 +32,11 @@
                 <td>{{$user->username}}</td>
                 <td>{{$user->updated_at->format('Y-m-d')}}</td>
                 <td>
-                    <a class="editAction" href="/admin/users/{{$user->id}}/edit">Edit</a>
+                    <a class="editAction" href="/admin/users/{{$user->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
                     <form action="/admin/users/{{$user->id}}/delete" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button class="deleteAction" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button class="deleteAction" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-erase"> </span> Delete</button>
                     </form>
             <tr>
         @endforeach

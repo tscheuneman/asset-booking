@@ -39,7 +39,7 @@
                 {{$category->updated_at->format('Y-m-d')}}
             </td>
             <td>
-                <a class="editAction" href="/admin/category/{{$category->id}}/edit">Edit</a>
+                <a class="editAction" href="/admin/category/{{$category->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
             </td>
             <tr>
         @endforeach

@@ -34,11 +34,11 @@
                     {{$region->updated_at->format('Y-m-d')}}
                 </td>
                 <td>
-                    <a class="editAction" href="/admin/locations/region/{{$region->id}}/edit">Edit</a>
+                    <a class="editAction" href="/admin/locations/region/{{$region->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
                     <form action="/admin/locations/region/{{$region->id}}/delete" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button class="deleteAction" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button class="deleteAction" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-erase"> </span> Delete</button>
                     </form>
                 </td>
             <tr>

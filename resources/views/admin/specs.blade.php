@@ -40,7 +40,7 @@
                     @endforeach
                 </td>
                 <td>
-                    <a class="editAction" href="/admin/specification/{{$spec->id}}/edit">Edit</a>
+                    <a class="editAction" href="/admin/specification/{{$spec->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
                 </td>
             <tr>
         @endforeach
