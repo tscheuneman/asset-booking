@@ -37,14 +37,25 @@ class CategoryController extends Controller
     }
 
 
-    public function store() {
+    public function store(Request $request) {
         $cat = new Category();
 
         $this->validate(request(), [
             'name' => 'required|unique:categories',
             'specifications' => 'json',
+            'marker' => 'required|image',
             'description' => '',
         ]);
+
+        try {
+            $path = $request->file('marker')->store(
+                'markers/', 'public'
+            );
+        }
+        catch(Exception $e) {
+            \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+            return redirect('/admin/categories');
+        }
 
         $validator = new JSONValidate;
 
@@ -76,6 +87,7 @@ class CategoryController extends Controller
         if ($validator->isValid()) {
             $cat->name = request('name');
             $cat->slug = $this->createSlug(request('name'));
+            $cat->marker_img = $path;
             $cat->description = request('description');
             $cat->specifications = request('specifications');
 
@@ -106,10 +118,23 @@ class CategoryController extends Controller
             'id' => 'exists:categories',
             'name' => 'required',
             'specifications' => 'json',
+            'marker' => 'image',
             'description' => '',
         ]);
 
         $validator = new JSONValidate;
+
+        if(request('marker') != null) {
+            try {
+                $path = $request->file('marker')->store(
+                    'markers/', 'public'
+                );
+            }
+            catch(Exception $e) {
+                \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+                return redirect('/admin/categories');
+            }
+        }
 
         $json = json_decode(request('specifications'));
         foreach($json as $obj) {
@@ -143,13 +168,15 @@ class CategoryController extends Controller
                 $cat->slug = $this->createSlug(request('name'));
                 $cat->description = request('description');
                 $cat->specifications = request('specifications');
-
+                if(request('marker') != null) {
+                    $cat->marker_img = $path;
+                }
 
                 $cat->save();
                 \Session::flash('flash_created',request('name') . ' has been edited');
                 return redirect('/admin/categories');
             } catch(QueryException $e) {
-                \Session::flash('flash_deleted','Error Editing Category');
+                \Session::flash('flash_deleted','Error Editing Category' . $e->getMessage());
                 return redirect('/admin/categories');
             }
 
