@@ -1,6 +1,7 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #eaedef;
+$darken-bg: darken($body-bg, 8%);
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -26,6 +27,7 @@ $off-white:#f4f4f4;
 $dark-butt-color: #fff;
 $white: #fff;
 $black: #000;
+
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: "Lato", sans-serif;

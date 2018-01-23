@@ -2,6 +2,9 @@
   margin:0;
   padding:0;
 }
+header h1 {
+  margin:18px 0;
+}
 a.actionLink {
   padding:13px;
   float:right;
@@ -36,10 +39,6 @@ a.editAction {
 }
 .alert.alert-error {
   color:red;
-}
-header {
-  background:$white;
-  width:100%;
 }
 /*
 Nav
@@ -110,7 +109,7 @@ div.specification {
   float:left;
   margin:10px 10px;
   border-radius:10px;
-
+  background:$darken-bg;
     &.active {
       background:$white;
     }
@@ -125,26 +124,64 @@ div.specification {
 
 div.adminHeading {
   float:left;
-  margin-right:25px;
-  box-shadow:$normalBoxShadow;
+  margin-right:2%;
   background:$white;
-  border-radius:15px 0 15px 0;
+  padding:1%;
+  width:18%;
 
-  header {
-      background: $asu-maroon;
-      color:$white;
-      padding:5px 10px;
-      font-weight:bold;
-      font-size:25px;
-      text-align:center;
-      border-radius:15px 0 0 0;
+  div.icon {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-top: -35px;
+    color: #fff;
+    font-size: 25px;
+    text-align: center;
+    line-height: 50px;
+    border-radius:6px;
+    box-shadow:0 0 2px rgba(0,0,0,.65);
+
+    &.blue {
+      background: #0575E6;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #0575E6, #021B79);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #0575E6, #021B79); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-
-  section {
-    padding:10px;
-    font-weight:bold;
-    font-size:25px;
-    text-align:center;
+    &.green {
+      background: #11998e;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    &.orange {
+      background: #fc4a1a;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    &.red {
+      background: #cb2d3e;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    &.purple {
+      background: #42275a;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to bottom, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to bottom, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
   }
+  div.info {
+    float:right;
+    width:55%;
+
+      span.data {
+        font-weight:bold;
+        font-size:20px;
+      }
+      span.desc {
+        clear:both;
+        display:block;
+      }
+  }
+}
+hr {
+  border-top:1px solid $laravel-border-color !important;
 }
 

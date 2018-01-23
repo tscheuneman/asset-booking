@@ -5,7 +5,7 @@
 </head>
 <body>
 
-    <header class="row">
+    <header>
         @include('includes.admin.header')
     </header>
     @include('includes.admin.nav')

@@ -9,6 +9,7 @@ use App\Asset;
 use App\Category;
 use App\Building;
 use App\Region;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -23,6 +24,7 @@ class AdminController extends Controller
         $categoryCount = Category::count();
         $buildingCount = Building::count();
         $regionCount = Region::count();
+        $userCount = User::count();
 
         return view('admin.main',
             [
@@ -30,7 +32,8 @@ class AdminController extends Controller
                 'assetCount' => $assetCount,
                 'categoryCount' => $categoryCount,
                 'buildingCount' => $buildingCount,
-                'regionCount' => $regionCount
+                'regionCount' => $regionCount,
+                'userCount' => $userCount
             ]
         );
     }
