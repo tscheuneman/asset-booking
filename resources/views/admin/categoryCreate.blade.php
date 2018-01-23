@@ -19,6 +19,11 @@
             <textarea class="form-control" id="description" name="description" rows="6"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="marker">Marker Image</label>
+            <input type="file" class="form-control-file" name="marker" id="marker" required>
+        </div>
+
         <hr>
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
