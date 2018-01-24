@@ -103,7 +103,7 @@ class AssetController extends Controller
 
         $location->save();
 
-        ProcessImage::dispatch($path);
+        ProcessImage::dispatch($path, 500, 60);
         \Session::flash('flash_created',request('name') . ' has been created');
         return redirect('/admin/assets');
 
@@ -197,7 +197,7 @@ class AssetController extends Controller
             if(request('image') != null) {
                 File::delete(public_path(). '/storage/' .$asset->latest_image);
                 $asset->latest_image = $path;
-                ProcessImage::dispatch($path);
+                ProcessImage::dispatch($path, 500, 60);
             }
             $asset->save();
 

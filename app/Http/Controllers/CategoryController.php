@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ProcessImage;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Cas;
@@ -91,7 +92,7 @@ class CategoryController extends Controller
             $cat->description = request('description');
             $cat->specifications = request('specifications');
 
-
+            ProcessImage::dispatch($path, 14, 60);
             $cat->save();
             \Session::flash('flash_created',request('name') . ' has been created');
             return redirect('/admin/categories');
@@ -170,6 +171,7 @@ class CategoryController extends Controller
                 $cat->specifications = request('specifications');
                 if(request('marker') != null) {
                     $cat->marker_img = $path;
+                    ProcessImage::dispatch($path, 14, 60);
                 }
 
                 $cat->save();
