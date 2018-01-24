@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Cas;
 use App\Category;
 use App\Specification;
+use File;
 
 use JsonSchema\Validator as JSONValidate;
 use JsonSchema\Constraints\Constraint as Constraint;
@@ -170,6 +171,7 @@ class CategoryController extends Controller
                 $cat->description = request('description');
                 $cat->specifications = request('specifications');
                 if(request('marker') != null) {
+                    File::delete(public_path(). '/storage/' . $cat->marker_img);
                     $cat->marker_img = $path;
                     ProcessImage::dispatch($path, 14, 60);
                 }
