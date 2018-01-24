@@ -2,9 +2,11 @@ body {
   width:100%;
   overflow-x:hidden;
 }
-img.overlayImage {
+div.overlayImage {
   width: 100%;
   display: block;
+  height:250px;
+  background-size:cover !important;
 }
 a.bookLink {
   margin-top:15px;

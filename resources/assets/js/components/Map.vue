@@ -184,7 +184,7 @@
     }
     function fillData(msg) {
         let returnVal = '<div class="overlayInfo">' +
-            '<img class="overlayImage" alt="Image '+msg.id+'" src="/storage/'+msg.latest_image+'" />' +
+            '<div class="overlayImage" style="background: url(/storage/'+msg.latest_image+') center center no-repeat;"> </div>' +
             '<h4>'+msg.name+'</h4>' +
             '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
             '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
