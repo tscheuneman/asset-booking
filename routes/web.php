@@ -19,6 +19,8 @@ Route::group(['middleware' => ['cas.user']], function ()
     Route::get('/campuses', 'IndexController@campusShow');
 
     Route::post('/filter', 'FilterController@show');
+
+    Route::post('/bookings', 'BookingController@bookings');
 });
 
 
