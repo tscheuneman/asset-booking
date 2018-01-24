@@ -16,6 +16,10 @@ use Mockery\Exception;
 
 class ProcessImage implements ShouldQueue
 {
+
+    public $tries = 3;
+    public $timeout = 15;
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $fileLoc, $width, $quality;
@@ -24,6 +28,7 @@ class ProcessImage implements ShouldQueue
      *
      * @return void
      */
+
     public function __construct($fileLocation, $width, $quality = 60)
     {
         $this->fileLoc = $fileLocation;
