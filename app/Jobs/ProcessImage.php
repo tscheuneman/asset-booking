@@ -38,16 +38,15 @@ class ProcessImage implements ShouldQueue
      */
     public function handle()
     {
-        $manager = new ImageManager(array('driver' => 'imagick'));
         try {
-            $img = $manager->make(public_path(). '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
+            $manager = new ImageManager();
+            $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $img->save(public_path(). '/storage/' . $this->fileLoc, $this->quality);
+            $img->save(null, $this->quality);
         }
         catch (Exception $e) {
             report($e);
-
          }
 
 
