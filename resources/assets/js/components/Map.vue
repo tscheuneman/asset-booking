@@ -32,6 +32,7 @@
 </template>
 
 <script>
+    let bookingData = [];
     $(document).ready(function() {
         $('#sideContent').on('click', 'a.bookLink', function() {
             $('#book').data('daterangepicker').setStartDate('03/01/2014');
@@ -175,12 +176,11 @@
                 });
             });
         }
-        else {
-            fillData(returnData);
-            $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
-                right: '0'
-            }, 300);
-        }
+
+        fillData(returnData);
+        $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
+            right: '0'
+        }, 300);
     }
     function fillData(msg) {
         let returnVal = '<div class="overlayInfo">' +
