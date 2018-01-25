@@ -52,12 +52,15 @@
                     'end_date': endDate
                 }
             }).done(function( msg ) {
-                console.log(msg);
-            }).error(function(item) {
-                alert("Error, Booking");
+                let returnData = JSON.parse(msg);
+                if(returnData.status === "Error") {
+                    alert(returnData.message);
+                }
+                else {
+                    alert(returnData.message);
+                    toggleSidebar();
+                }
             });
-
-            console.log(selectedElement + ' | ' + startDate + ' | ' + endDate);
         });
         let d = new Date();
         let strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
