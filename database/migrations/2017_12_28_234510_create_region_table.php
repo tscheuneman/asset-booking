@@ -15,6 +15,7 @@ class CreateRegionTable extends Migration
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('name')->isNullable(false);
             $table->double('longitude', 15, 8)->isNullable(false);
             $table->double('latitude', 15, 8)->isNullable(false);

@@ -15,6 +15,7 @@ class CreateSpecificationTable extends Migration
     {
         Schema::create('specifications', function (Blueprint $table) {
             $table->increments('id');
+            $table->uuid('uuid');
             $table->string('name')->isNullable(false);
             $table->string('slug')->isNullable(false);
             $table->string('type')->isNullable(false);
