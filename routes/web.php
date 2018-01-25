@@ -21,6 +21,8 @@ Route::group(['middleware' => ['cas.user']], function ()
     Route::post('/filter', 'FilterController@show');
 
     Route::post('/bookings', 'BookingController@bookings');
+
+    Route::post('/booking/{id}', 'BookingController@store');
 });
 
 
