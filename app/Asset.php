@@ -11,7 +11,7 @@ class Asset extends Model
     public $incrementing = false;
     //
     public function category() {
-        return $this->belongsTo('App\Category', 'cat_id', 'uuid');
+        return $this->belongsTo('App\Category', 'cat_id', 'id');
 
     }
 

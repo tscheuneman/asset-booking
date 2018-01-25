@@ -51,16 +51,15 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        $asset = new Asset();
-        $location = new Location();
+
 
         $this->validate(request(), [
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
-            'building' => 'required|integer|exists:buildings,id',
-            'regionID' => 'numeric|required|exists:campuses,id',
+            'building' => 'required|string|exists:buildings,id',
+            'regionID' => 'string|required|exists:regions,id',
             'name' => 'required',
-            'category' => 'required|integer',
+            'category' => 'required|string|exists:categories,id',
             'width' => 'nullable|numeric',
             'height' => 'nullable|numeric',
             'color' => 'nullable',
@@ -81,6 +80,8 @@ class AssetController extends Controller
             return redirect('/admin/assets');
         }
 
+        $asset = new Asset();
+        $location = new Location();
 
         $specification = $specs;
 
@@ -153,10 +154,10 @@ class AssetController extends Controller
             'loc_id' => 'required|exists:locations,id',
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
-            'building' => 'required|integer|exists:buildings,id',
-            'regionID' => 'numeric|required|exists:campuses,id',
+            'building' => 'required|string|exists:buildings,id',
+            'regionID' => 'string|required|exists:regions,id',
             'name' => 'required',
-            'category' => 'required|integer',
+            'category' => 'required|string',
             'image' => 'image',
             'specs' => 'json'
         ]);
