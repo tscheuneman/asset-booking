@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use Emadadly\LaravelUuid\Uuids;
 
 class Building extends Model
 {
+    use Uuids;
+
     public static function getByDistance($lat, $lng, $distance)
     {
         $results = DB::select(DB::raw('SELECT id, ( 3959 * acos( cos( radians(' . $lat . ') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(' . $lng . ') ) + sin( radians(' . $lat .') ) * sin( radians(latitude) ) ) ) AS distance FROM buildings HAVING distance < ' . $distance . ' ORDER BY distance LIMIT 12'));

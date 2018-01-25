@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Emadadly\LaravelUuid\Uuids;
 
 class User extends Authenticatable
 {
+    use Uuids;
+
     use Notifiable;
 
     /**

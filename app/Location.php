@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Emadadly\LaravelUuid\Uuids;
 
 class Location extends Model
 {
+    use Uuids;
+
     public function Asset()
     {
         return $this->hasOne('App\Asset');
