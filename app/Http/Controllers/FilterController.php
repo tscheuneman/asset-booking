@@ -50,8 +50,8 @@ class FilterController extends Controller
 
         $this->validate(request(), [
             'buildingName' => 'string',
-            'cat_id' => 'required|integer',
-            'region_id' => 'required|integer'
+            'cat_id' => 'required|string',
+            'region_id' => 'required|string'
         ]);
 
         $cat_id_arr = array();
