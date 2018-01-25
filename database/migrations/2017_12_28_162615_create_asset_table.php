@@ -14,12 +14,12 @@ class CreateAssetTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('id')->unique();
+            $table->primary('id');
             $table->string('name')->nullable(false);
-            $table->integer('cat_id')->nullable(false);
+            $table->uuid('cat_id')->nullable(false);
             $table->string('latest_image');
-            $table->integer('location_id')->nullable(false);
+            $table->uuid('location_id')->nullable(false);
             $table->json('specifications');
             $table->boolean('is_available')->default(true);
             $table->boolean('is_active')->default(true);

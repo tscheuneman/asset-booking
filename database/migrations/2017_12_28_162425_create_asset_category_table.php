@@ -14,8 +14,8 @@ class CreateAssetCategoryTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('id')->unique();
+            $table->primary('id');
             $table->string('name')->nullable(false);
             $table->string('slug')->nullable(false);
             $table->string('marker_img')->nullable(false);

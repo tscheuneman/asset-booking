@@ -14,13 +14,13 @@ class CreateLocationTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('id')->unique();
+            $table->primary('id');
             $table->double('longitude', 15, 8)->nullable(false);
             $table->double('latitude', 15, 8)->nullable(false);
-            $table->integer('asset_id')->nullable(false)->unique();
-            $table->integer('building_id')->required();
-            $table->integer('region_id')->required();
+            $table->uuid('asset_id')->nullable(false)->unique();
+            $table->uuid('building_id')->required();
+            $table->uuid('region_id')->required();
             $table->timestamps();
         });
     }

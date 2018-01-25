@@ -14,8 +14,8 @@ class CreateBookingTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('id')->unique();
+            $table->primary('id');
             $table->integer('asset_id')->nullable(false);
             $table->dateTime('time_from')->nullable(false);
             $table->dateTime('time_to')->nullable(false);
