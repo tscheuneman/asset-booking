@@ -9,7 +9,8 @@
             <div id="sideContent">
 
             </div>
-            <input type="text" id="book" class="form-control book" readonly>
+            <input type="text" id="book" class="form-control book" readonly />
+            <a href="#" class="bookLink">Book</a>
         </sidebar>
         <gmap-map
                 :center="center"
@@ -36,7 +37,7 @@
     let bookingData = [];
     let selectedElement = null;
     $(document).ready(function() {
-        $('#sideContent').on('click', 'a.bookLink', function() {
+        $('sidebar').on('click', 'a.bookLink', function() {
             let drp = $('#book').data('daterangepicker');
             let startDate = drp.startDate.format("YYYY-MM-DD")
             let endDate = drp.endDate.format("YYYY-MM-DD");
@@ -246,7 +247,7 @@
                 '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
                 '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
                 '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>'+ msg.category.description + '<span class="clearfix"></span></div>' +
-                '<br class="clear"><a data-id="'+msg.id+'" class="bookLink" href="#" class="bookLink">Book</a>' +
+                '<br class="clear">' +
                 '</div>';
 
             $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
