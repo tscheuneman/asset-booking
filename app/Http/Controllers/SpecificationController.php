@@ -107,7 +107,7 @@ class SpecificationController extends Controller
             $returnArray = [];
 
             foreach($specs as $spec) {
-                if($spec->id > 0) {
+                if($spec->id != '') {
                     $theSpec =  Specification::find($spec->id);
                     $indiv = array();
                     $indiv['id'] = $spec->id;
