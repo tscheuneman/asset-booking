@@ -74,9 +74,9 @@ class AdminController extends Controller
         return view('admin.usersCreate');
     }
 
-    public function edit($id)
+    public function edit($uuid)
     {
-        $user = Admin::find($id);
+        $user = Admin::where('uuid', '=', $uuid)->first();
         return view('admin.usersEdit',
             [
                 'user' => $user
@@ -84,10 +84,10 @@ class AdminController extends Controller
         );
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $uuid)
     {
         $this->validate(request(), [
-            'id' => 'exists:admins',
+            'uuid' => 'exists:admins',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
@@ -95,7 +95,7 @@ class AdminController extends Controller
         ]);
 
         try {
-            $admin = Admin::find($id);
+            $admin = Admin::where('uuid', '=', $uuid)->first();
             $admin->first_name = request('first_name');
             $admin->last_name = request('last_name');
             $admin->email = request('email');
@@ -112,10 +112,10 @@ class AdminController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($uuid)
     {
         try {
-            $admin = Admin::find($id);
+            $admin = Admin::where('uuid', '=', $uuid)->first();
             $user = $admin->username;
             $admin->delete();
 
