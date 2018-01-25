@@ -16,10 +16,10 @@ class CreateBookingTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->uuid('id')->unique();
             $table->primary('id');
-            $table->integer('asset_id')->nullable(false);
+            $table->uuid('asset_id')->nullable(false);
             $table->dateTime('time_from')->nullable(false);
             $table->dateTime('time_to')->nullable(false);
-            $table->integer('cust_id')->nullable(false);
+            $table->uuid('cust_id')->nullable(false);
             $table->timestamps();
         });
     }
