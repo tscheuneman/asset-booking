@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Xavrsl\Cas\CasServiceProvider::class,
+        Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
 
     ],
 
