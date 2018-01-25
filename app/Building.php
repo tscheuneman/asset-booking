@@ -9,6 +9,13 @@ use Emadadly\LaravelUuid\Uuids;
 class Building extends Model
 {
     use Uuids;
+    public $incrementing = false;
+
+    public function location()
+    {
+        return $this->belongsTo('App\Location','uuid', 'building_id');
+    }
+
 
     public static function getByDistance($lat, $lng, $distance)
     {

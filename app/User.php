@@ -9,6 +9,7 @@ use Emadadly\LaravelUuid\Uuids;
 class User extends Authenticatable
 {
     use Uuids;
+    public $incrementing = false;
 
     use Notifiable;
 

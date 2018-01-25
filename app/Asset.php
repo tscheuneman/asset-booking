@@ -8,9 +8,10 @@ use Emadadly\LaravelUuid\Uuids;
 class Asset extends Model
 {
     use Uuids;
+    public $incrementing = false;
     //
     public function category() {
-        return $this->belongsTo('App\Category', 'cat_id');
+        return $this->belongsTo('App\Category', 'cat_id', 'uuid');
 
     }
 

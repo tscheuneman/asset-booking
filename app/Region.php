@@ -9,6 +9,7 @@ use Emadadly\LaravelUuid\Uuids;
 class Region extends Model
 {
     use Uuids;
+    public $incrementing = false;
 
     public static function getByDistance($lat, $lng, $distance)
     {

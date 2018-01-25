@@ -8,5 +8,6 @@ use Emadadly\LaravelUuid\Uuids;
 class Booking extends Model
 {
     use Uuids;
+    public $incrementing = false;
     //
 }
