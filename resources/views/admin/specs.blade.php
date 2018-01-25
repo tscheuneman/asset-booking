@@ -15,7 +15,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Type</th>
             <th scope="col">Options</th>
@@ -25,9 +24,6 @@
         <tbody>
         @foreach($specs as $spec)
             <tr>
-                <td>
-                    {{$spec->id}}
-                </td>
                 <td>
                     {{$spec->name}}
                 </td>

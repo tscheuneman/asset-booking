@@ -18,17 +18,17 @@ class Location extends Model
 
     public function building()
     {
-        return $this->hasOne('App\Building', 'uuid', 'building_id');
+        return $this->hasOne('App\Building', 'id', 'building_id');
     }
 
-    /*
+
     public function region()
     {
-        return $this->hasOne('App\Region', 'uuid', 'region_id');
+        return $this->hasOne('App\Region', 'id','region_id');
     }
     public function buildingData()
     {
-        return $this->belongsTo('App\Building', 'building_id','uuid');
+        return $this->belongsTo('App\Building', 'id','building_id');
     }
-*/
+
 }

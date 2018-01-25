@@ -34,10 +34,30 @@
 <script>
     import * as moment from 'moment';
     let bookingData = [];
+    let selectedElement = null;
     $(document).ready(function() {
         $('#sideContent').on('click', 'a.bookLink', function() {
-            $('#book').data('daterangepicker').setStartDate('03/01/2014');
+            let drp = $('#book').data('daterangepicker');
+            let startDate = drp.startDate.format("YYYY-MM-DD")
+            let endDate = drp.endDate.format("YYYY-MM-DD");
 
+            $.ajax({
+                method: "POST",
+                url: "/booking/" + selectedElement,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'start_date': startDate,
+                    'end_date': endDate
+                }
+            }).done(function( msg ) {
+                console.log(msg);
+            }).error(function(item) {
+                alert("Error, Booking");
+            });
+
+            console.log(selectedElement + ' | ' + startDate + ' | ' + endDate);
         });
         let d = new Date();
         let strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
@@ -45,7 +65,7 @@
         $('#book').daterangepicker({
             "minDate": strDate,
             "maxDate": strDateFuture,
-            "autoApply": false,
+            "autoUpdateInput": false,
             "opens": "left",
             "dateLimit": {
                 "days": 14
@@ -63,11 +83,15 @@
                 });
                 return returnVal;
             }
-        }, function(start, end, label) {
-            console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
 
-        console.log(strDate);
+        $('#book').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+        });
+
+        $('#book').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
 
     });
 
@@ -200,11 +224,13 @@
                 }
             }).done(function( msg ) {
                 bookingData = msg;
-                console.log(bookingData);
+                selectedElement = returnData.id;
                 fillData(returnData);
                 $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
                     right: '0'
                 }, 300);
+            }).error(function(item) {
+                alert("Error, try again");
             });
 
         }

@@ -15,7 +15,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Username</th>
@@ -26,7 +25,6 @@
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td>{{$user->id}}</td>
                 <td>{{$user->first_name}}</td>
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->username}}</td>

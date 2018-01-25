@@ -15,7 +15,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Updated</th>
             <th scope="col">Actions</th>
@@ -25,17 +24,14 @@
         @foreach($regions as $region)
             <tr>
                 <td>
-                    {{$region->id}}
-                </td>
-                <td>
                     {{$region->name}}
                 </td>
                 <td>
                     {{$region->updated_at->format('Y-m-d')}}
                 </td>
                 <td>
-                    <a class="editAction" href="/admin/locations/region/{{$region->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
-                    <form action="/admin/locations/region/{{$region->id}}/delete" method="POST">
+                    <a class="editAction" href="/admin/locations/region/edit/{{$region->id}}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
+                    <form action="/admin/locations/region/delete/{{$region->id}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE" />
                         <button class="deleteAction" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-erase"> </span> Delete</button>
