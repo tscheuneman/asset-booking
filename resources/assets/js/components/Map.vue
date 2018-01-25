@@ -32,6 +32,7 @@
 </template>
 
 <script>
+    import * as moment from 'moment';
     let bookingData = [];
     $(document).ready(function() {
         $('#sideContent').on('click', 'a.bookLink', function() {
@@ -40,16 +41,27 @@
         });
         let d = new Date();
         let strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
+        let strDateFuture = (d.getMonth()+4) + "/" + d.getDate() + "/" + d.getFullYear();
         $('#book').daterangepicker({
             "minDate": strDate,
-            "autoApply": true,
+            "maxDate": strDateFuture,
+            "autoApply": false,
             "opens": "left",
             "dateLimit": {
                 "days": 14
             },
             "isInvalidDate": function (date) {
-                let formatted = date.format('YYYY-MM-DD');
-                console.log(formatted);
+                let returnVal = false;
+                bookingData.forEach(function(element) {
+
+                    let disabled_start = moment(element.time_from);
+                    let disabled_end = moment(element.time_to);
+                    if(date.isSameOrAfter(disabled_start) && date.isSameOrBefore(disabled_end)) {
+                        returnVal = true;
+                        return;
+                    }
+                });
+                return returnVal;
             }
         }, function(start, end, label) {
             console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
@@ -176,23 +188,39 @@
                 });
             });
         }
+        else {
+            $.ajax({
+                method: "POST",
+                url: "/bookings",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'asset_id': returnData.id,
+                }
+            }).done(function( msg ) {
+                bookingData = msg;
+                console.log(bookingData);
+                fillData(returnData);
+                $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
+                    right: '0'
+                }, 300);
+            });
 
-        fillData(returnData);
-        $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
-            right: '0'
-        }, 300);
+        }
     }
     function fillData(msg) {
-        let returnVal = '<div class="overlayInfo">' +
-            '<div class="overlayImage" style="background: url(/storage/'+msg.latest_image+') center center no-repeat;"> </div>' +
-            '<h4>'+msg.name+'</h4>' +
-            '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
-            '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
-            '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
-            '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>'+ msg.category.description + '<span class="clearfix"></span></div>' +
-            '<br class="clear"><a data-id="'+msg.id+'" class="bookLink" href="#" class="bookLink">Book</a>' +
-            '</div>';
+            let returnVal = '<div class="overlayInfo">' +
+                '<div class="overlayImage" style="background: url(/storage/'+msg.latest_image+') center center no-repeat;"> </div>' +
+                '<h4>'+msg.name+'</h4>' +
+                '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
+                '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
+                '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
+                '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>'+ msg.category.description + '<span class="clearfix"></span></div>' +
+                '<br class="clear"><a data-id="'+msg.id+'" class="bookLink" href="#" class="bookLink">Book</a>' +
+                '</div>';
 
-        $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
+            $('sidebar #sideContent').empty().append(returnVal).fadeIn(500);
+
     }
 </script>
