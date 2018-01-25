@@ -68,7 +68,7 @@ class CategoryController extends Controller
                 (object)[
                     "type"=>"object",
                     "properties"=>(object)[
-                        "uuid"=>(object)[
+                        "id"=>(object)[
                             "type"=>"string",
                             "required"=>true
                         ],
@@ -103,9 +103,9 @@ class CategoryController extends Controller
 
     }
 
-    public function edit($uuid)
+    public function edit($id)
     {
-        $category = Category::where('uuid', '=', $uuid)->first();
+        $category = Category::find($id);
         $specs = Specification::get();
         return view('admin.categoryEdit',
             [
@@ -115,7 +115,7 @@ class CategoryController extends Controller
         );
     }
 
-    public function update(Request $request, $uuid) {
+    public function update(Request $request, $id) {
         $this->validate(request(), [
             'id' => 'exists:categories',
             'name' => 'required',
@@ -145,7 +145,7 @@ class CategoryController extends Controller
                 (object)[
                     "type"=>"object",
                     "properties"=>(object)[
-                        "uuid"=>(object)[
+                        "id"=>(object)[
                             "type"=>"string",
                             "required"=>true
                         ],
@@ -165,7 +165,7 @@ class CategoryController extends Controller
 
         if ($validator->isValid()) {
             try{
-                $cat = Category::where('uuid', '=', $uuid)->first();
+                $cat = Category::find($id);
                 $cat->name = request('name');
                 $cat->slug = $this->createSlug(request('name'));
                 $cat->description = request('description');
@@ -185,7 +185,7 @@ class CategoryController extends Controller
             }
 
         } else {
-            return redirect('/admin/category/edit/'.$uuid)->withErrors("Error, Invalid Specification Entry");
+            return redirect('/admin/category/edit/'.$id)->withErrors("Error, Invalid Specification Entry");
         }
 
     }

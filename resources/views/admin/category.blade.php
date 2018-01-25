@@ -16,7 +16,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Slug</th>
             <th scope="col">Updated</th>
@@ -27,9 +26,6 @@
         @foreach($categories as $category)
             <tr>
             <td>
-              {{$category->id}}
-            </td>
-            <td>
               {{$category->name}}
             </td>
             <td>
@@ -39,7 +35,7 @@
                 {{$category->updated_at->format('Y-m-d')}}
             </td>
             <td>
-                <a class="editAction" href="/admin/category/edit/{{$category->uuid}}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
+                <a class="editAction" href="/admin/category/edit/{{$category->id}}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
             </td>
             <tr>
         @endforeach

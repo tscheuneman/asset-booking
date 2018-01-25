@@ -11,6 +11,6 @@ class Category extends Model
     public $incrementing = false;
 
     public function getAssets() {
-        return $this->hasMany('Asset', 'cat_id', 'uuid');
+        return $this->hasMany('Asset', 'cat_id');
     }
 }
