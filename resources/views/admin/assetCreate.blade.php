@@ -123,6 +123,7 @@
                 $('#region').val(msg.region.name).prop('readonly', true);
 
                 msg.building.forEach(function(element) {
+                    console.log(element);
                     $('#building').append($('<option>', {
                         value: element.id,
                         text: element.name

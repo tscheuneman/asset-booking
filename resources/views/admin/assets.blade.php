@@ -14,7 +14,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Region</th>
@@ -26,9 +25,6 @@
 
         @foreach($assets as $asset)
             <tr>
-                <td>
-                    {{$asset->id}}
-                </td>
                 <td>
                     {{$asset->name}}
                 </td>
@@ -42,8 +38,8 @@
                     {{$asset->location->building->name}}
                 </td>
                 <td>
-                    <a class="editAction" href="/admin/asset/{{$asset->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
-                    <form action="/admin/asset/{{$asset->id}}/delete" method="POST">
+                    <a class="editAction" href="/admin/asset/edit/{{$asset->id}}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
+                    <form action="/admin/asset/delete/{{$asset->id}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE" />
                         <button class="deleteAction" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-erase"> </span> Delete</button>
