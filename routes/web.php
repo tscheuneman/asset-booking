@@ -87,4 +87,7 @@ Route::group(['middleware' => ['cas.admin']], function ()
     //Admin "API" Actions
     Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
     Route::get('/admin/location/verify', 'LocationController@verify');
+
+    Route::get('/admin/import/buildings', 'ImportController@buildings');
+    Route::get('/admin/import/regions', 'ImportController@regions');
 });
