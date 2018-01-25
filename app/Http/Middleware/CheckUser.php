@@ -6,6 +6,7 @@ use Closure;
 use Cas;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUser
 {
@@ -26,9 +27,11 @@ class CheckUser
                 $thisUser->email = Cas::user() . '@' . env('EMAIL_APPEND');
                 $thisUser->password = Hash::make(Cas::user());
                 $thisUser->save();
+                Auth::login($thisUser);
                 return redirect('/');
             }
             else {
+                Auth::login($user);
                 return $next($request);
             }
         }
