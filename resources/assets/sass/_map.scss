@@ -75,8 +75,6 @@ sidebar {
 }
 
 
-
-
 nav#navbar {
   position: absolute;
   z-index: 999;
@@ -124,4 +122,9 @@ div#filters {
   background:$off-white;
   box-shadow:$normalBoxShadow;
   z-index:999;
+}
+
+input#book {
+  width:90%;
+  margin:15px auto;
 }
