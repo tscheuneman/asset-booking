@@ -68,8 +68,8 @@ class CategoryController extends Controller
                 (object)[
                     "type"=>"object",
                     "properties"=>(object)[
-                        "id"=>(object)[
-                            "type"=>"integer",
+                        "uuid"=>(object)[
+                            "type"=>"string",
                             "required"=>true
                         ],
                         "name"=>(object)[
@@ -103,9 +103,9 @@ class CategoryController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit($uuid)
     {
-        $category = Category::find($id);
+        $category = Category::where('uuid', '=', $uuid)->first();
         $specs = Specification::get();
         return view('admin.categoryEdit',
             [
@@ -115,7 +115,7 @@ class CategoryController extends Controller
         );
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $uuid) {
         $this->validate(request(), [
             'id' => 'exists:categories',
             'name' => 'required',
@@ -145,8 +145,8 @@ class CategoryController extends Controller
                 (object)[
                     "type"=>"object",
                     "properties"=>(object)[
-                        "id"=>(object)[
-                            "type"=>"integer",
+                        "uuid"=>(object)[
+                            "type"=>"string",
                             "required"=>true
                         ],
                         "name"=>(object)[
@@ -165,7 +165,7 @@ class CategoryController extends Controller
 
         if ($validator->isValid()) {
             try{
-                $cat = Category::find($id);
+                $cat = Category::where('uuid', '=', $uuid)->first();
                 $cat->name = request('name');
                 $cat->slug = $this->createSlug(request('name'));
                 $cat->description = request('description');
@@ -185,7 +185,7 @@ class CategoryController extends Controller
             }
 
         } else {
-            return redirect('/admin/category/create')->withErrors("Error, Invalid Specification Entry");
+            return redirect('/admin/category/edit/'.$uuid)->withErrors("Error, Invalid Specification Entry");
         }
 
     }

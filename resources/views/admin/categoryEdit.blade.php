@@ -5,9 +5,9 @@
 @section('content')
     <h2>Edit {{$category->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/category') }}/{{$category->id}}" id="submit" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/category') }}/{{$category->uuid}}" id="submit" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="hidden" name="id" value="{{$category->id}}">
+        <input type="hidden" name="uuid" value="{{$category->uuid}}">
         <div class="form-group">
             <label for="name">Category Name</label>
             <input type="text" class="form-control" id="name" name="name" required value="{{$category->name}}">
@@ -20,14 +20,14 @@
 
         <div class="form-group">
             <label for="marker">Marker Image</label>
-            <input type="file" class="form-control-file" name="marker" id="marker" required>
+            <input type="file" class="form-control-file" name="marker" id="marker">
         </div>
 
         <hr>
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
             @foreach($specs as $spec)
-                <div class="specification" data-id="{{$spec->id}}" data-name="{{$spec->name}}">
+                <div class="specification" data-uuid="{{$spec->uuid}}" data-name="{{$spec->name}}">
                     <strong>Name: </strong> {{$spec->name}}
                     <br>
                     <strong>Type: </strong> {{$spec->type}}
@@ -43,7 +43,7 @@
                 </div>
             @endforeach
         </div>
-        <input type="hidden" name="specifications" id="specifications" value='[{"id":0,"name":"","defaultVal":""}]'>
+        <input type="hidden" name="specifications" id="specifications" value='[{"uuid":0,"name":"","defaultVal":""}]'>
 
         <br style="clear:both;" />
         <br>
@@ -59,10 +59,10 @@
         $(document).ready(function() {
             $('div.specification').each(function() {
                 let x = false;
-                let elmID = $(this).data('id');
+                let elmID = $(this).data('uuid');
                 let thisElement = $(this);
                 jsonData.forEach(function(elm) {
-                    if(elm.id === elmID) {
+                    if(elm.uuid === elmID) {
                         $(thisElement).addClass('active');
                         $('input', thisElement).val(elm.defaultVal);
                         return;
@@ -91,12 +91,12 @@
             $('div.specification').each(function() {
                 if($(this).hasClass("active")) {
                     let name = $(this).data("name");
-                    let id = $(this).data("id");
+                    let id = $(this).data("uuid");
                     let thisElm = $(this);
                     let defaultVal = $('input.default', thisElm).val();
                     let item = {};
 
-                    item["id"] = id;
+                    item["uuid"] = id;
                     item["name"] = name;
                     item["defaultVal"] = defaultVal;
                     obj.push(item);
