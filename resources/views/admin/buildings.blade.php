@@ -19,7 +19,6 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Updated</th>
             <th scope="col">Actions</th>
@@ -29,17 +28,14 @@
         @foreach($buildings as $building)
             <tr>
                 <td>
-                    {{$building->id}}
-                </td>
-                <td>
                     {{$building->name}}
                 </td>
                 <td>
                     {{$building->updated_at->format('Y-m-d')}}
                 </td>
                 <td>
-                    <a class="editAction" href="/admin/locations/building/{{$building->id}}/edit"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
-                    <form action="/admin/locations/building/{{$building->id}}/delete" method="POST">
+                    <a class="editAction" href="/admin/locations/building/edit/{{$building->id}}"><span class="glyphicon glyphicon-pencil"> </span> Edit</a>
+                    <form action="/admin/locations/building/delete/{{$building->id}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE" />
                         <button class="deleteAction" onclick="return confirm('Are you sure?')"><span class="glyphicon glyphicon-erase"> </span> Delete</button>
