@@ -23,8 +23,10 @@
                 </ul>
 
                 <div class="rightSide">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                    {{username}}
+                    <a :href="/user/ + username">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        {{username}}
+                    </a>
                 </div>
             </div><!-- /.navbar-collapse -->
 
