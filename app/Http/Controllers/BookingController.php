@@ -39,8 +39,6 @@ class BookingController extends Controller
             return json_encode($returnData);
         }
 
-
-
         $startDate = request('start_date');
         $endDate = request('end_date');
 
@@ -55,11 +53,11 @@ class BookingController extends Controller
             return json_encode($returnData);
         }
 
-        $val = Booking::where('asset_id', '=', $id)->where('time_from', '>=', $startDate)->where('time_to', '<=', $endDate)->first();
+        $val = Booking::where('asset_id', '=', $id)->whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->first();
+
         if($val === null) {
             if (Auth::check())
             {
-
                 $user = Auth::id();
                 $asset_id = $id;
 
@@ -79,7 +77,9 @@ class BookingController extends Controller
                 return json_encode($returnData);
             }
             else {
-                return "Error, not logged in";
+                $returnData['status'] = 'Error';
+                $returnData['message'] = 'Not logged In';
+                return json_encode($returnData);
             }
         }
         else {
