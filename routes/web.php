@@ -23,6 +23,8 @@ Route::group(['middleware' => ['cas.user']], function ()
     Route::post('/bookings', 'BookingController@bookings');
 
     Route::post('/booking/{id}', 'BookingController@store');
+
+    Route::get('/user/{username}', 'IndexController@userShow');
 });
 
 

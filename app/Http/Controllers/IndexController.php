@@ -8,6 +8,8 @@ use App\Asset;
 use Cas;
 use App\Region;
 use App\Category;
+use App\User;
+use App\Booking;
 
 class IndexController extends Controller
 {
@@ -33,5 +35,18 @@ class IndexController extends Controller
     public function campusShow() {
         $campus = Region::orderBy('name', 'ASC')->get();
         return $campus;
+    }
+
+    public function userShow($username) {
+        $date = date('Y-m-d');
+        $user = User::where('username', '=', $username)->first();
+        $bookings = Booking::with('asset.location.building')->where('cust_id', '=', $user->id)->where('time_from', '>=', $date)->get();
+
+        return view('index.user',
+            [
+                'user' => $user,
+                'booking' => $bookings
+            ]
+        );
     }
 }
