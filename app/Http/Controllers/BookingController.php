@@ -49,6 +49,11 @@ class BookingController extends Controller
             $returnData['message'] = 'That is an invalid date!';
             return json_encode($returnData);
         }
+        if($startDate > date('Y-m-d', strtotime('+3 months'))) {
+            $returnData['status'] = 'Error';
+            $returnData['message'] = 'That is an invalid date.  Not within allowed date range!';
+            return json_encode($returnData);
+        }
 
         $val = Booking::where('asset_id', '=', $id)->where('time_from', '>=', $startDate)->where('time_to', '<=', $endDate)->first();
         if($val === null) {
@@ -60,6 +65,7 @@ class BookingController extends Controller
 
                 $startTime = date('Y-m-d H:i:s', strtotime($startDate));
                 $endTime = date('Y-m-d H:i:s', strtotime($endDate));
+
 
                 $booking = new Booking();
                     $booking->asset_id = $asset_id;
