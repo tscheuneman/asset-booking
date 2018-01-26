@@ -9,6 +9,7 @@
             <div id="sideContent">
 
             </div>
+            <span class="sideBarTitle">Book Dates</span>
             <input type="text" id="book" class="form-control book" readonly />
             <a href="#" class="bookLink">Book</a>
         </sidebar>

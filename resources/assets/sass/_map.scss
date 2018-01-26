@@ -9,13 +9,22 @@ div.overlayImage {
   background-size:cover !important;
 }
 a.bookLink {
-  margin-top:15px;
-  padding:12px;
-  background:$brand-success;
-  color: $dark-butt-color;
-  font-weight:bold;
-  display:inline-block;
-  margin-left:10px;
+  margin-top: 15px;
+  padding: 15px 0;
+  background: #2ab27b;
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  text-shadow:$normalTextShadow;
+  transition:.5s background-color;
+    &:hover {
+      background: #2be8ac;
+    }
 }
 span.specItem {
   padding:5px;
@@ -40,6 +49,13 @@ sidebar {
 
   .overlayInfo {
     color:$off-white;
+  }
+  span.sideBarTitle {
+    display:block;
+    text-indent:25px;
+    color:$white;
+    font-weight:bold;
+    font-size:16px;
   }
   h4 {
     width:100%;
