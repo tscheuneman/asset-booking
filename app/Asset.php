@@ -17,7 +17,7 @@ class Asset extends Model
 
     public function location()
     {
-        return $this->hasOne('App\Location');
+        return $this->hasOne('App\Location', 'id', 'location_id');
     }
 
     public function building() {
