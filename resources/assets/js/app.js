@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+window.moment = require('moment');
 
 window.Vue = require('vue');
 window.VueBus = require('vue-bus');

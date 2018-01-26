@@ -234,8 +234,6 @@
                 $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
                     right: '0'
                 }, 300);
-            }).error(function(item) {
-                alert("Error, try again");
             });
 
         }
