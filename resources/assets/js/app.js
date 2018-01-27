@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 window.moment = require('moment');
+window.daterangepicker = require('daterangepicker');
 
 window.Vue = require('vue');
 window.VueBus = require('vue-bus');
@@ -23,6 +24,7 @@ Vue.component('example', require('./components/ExampleComponent.vue'));
 Vue.component('googlemap', require('./components/Map.vue'));
 Vue.component('navigation', require('./components/Nav.vue'));
 Vue.component('filters', require('./components/Filters.vue'));
+Vue.component('userbookings', require('./components/Bookings.vue'));
 
 const app = new Vue({
     el: '#app'
