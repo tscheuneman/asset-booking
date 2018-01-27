@@ -39,12 +39,13 @@ class IndexController extends Controller
 
     public function userShow($username) {
         $date = date('Y-m-d');
-        $user = User::where('username', '=', $username)->first();
-        $bookings = Booking::with('asset.location.building')->where('cust_id', '=', $user->id)->where('time_from', '>=', $date)->get();
+        $user = User::select('id', 'username')->where('username', '=', $username)->first();
+        $bookings = Booking::with('asset.publicLocation.publicBuilding', 'asset.publicCategory', 'asset.publicLocation.publicRegion')
+            ->where('cust_id', '=', $user->id)->where('time_from', '>=', $date)->get();
 
         return view('index.user',
             [
-                'user' => $user,
+                'user' => $user->username,
                 'booking' => $bookings
             ]
         );
