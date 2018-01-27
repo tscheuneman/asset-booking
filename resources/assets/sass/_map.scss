@@ -10,7 +10,7 @@ div.overlayImage {
 }
 a.bookLink {
   margin-top: 15px;
-  padding: 15px 0;
+  padding: 20px 0;
   background: #2ab27b;
   color: #fff;
   font-weight: bold;
@@ -24,6 +24,8 @@ a.bookLink {
   transition:.5s background-color;
     &:hover {
       background: #2be8ac;
+      text-decoration:none;
+      border:none;
     }
 }
 span.specItem {
@@ -121,13 +123,21 @@ nav#navbar {
   float: right;
   line-height: 59px;
   font-weight: bold;
-  color: $off-white;
   text-shadow: $normalTextShadow;
   cursor: pointer;
   transition: background .5s, color .5s;
     &:hover {
       color:#ffb310;
     }
+
+  a {
+    color:$off-white;
+    transition:.5s all;
+  }
+  &:hover a, &:active a {
+    color:$asu-gold;
+    text-decoration:none;
+  }
 }
 
 div#filters {
