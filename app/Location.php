@@ -20,12 +20,22 @@ class Location extends Model
     {
         return $this->hasOne('App\Building', 'id', 'building_id');
     }
+    public function publicBuilding()
+    {
+        return $this->hasOne('App\Building', 'id', 'building_id')->select('id', 'name');
+    }
 
 
     public function region()
     {
         return $this->hasOne('App\Region', 'id','region_id');
     }
+
+    public function publicRegion()
+    {
+        return $this->hasOne('App\Region', 'id','region_id')->select('id', 'name');
+    }
+
     public function buildingData()
     {
         return $this->belongsTo('App\Building', 'id','building_id');

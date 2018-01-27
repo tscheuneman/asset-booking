@@ -24,4 +24,17 @@ class Asset extends Model
         return $this->hasManyThrough('App\Building', 'App\Location');
     }
 
+    /* Public Calls */
+    public function publicCategory() {
+        return $this->belongsTo('App\Category', 'cat_id', 'id')->select('id', 'name', 'description');
+    }
+    public function publicLocation()
+    {
+        return $this->hasOne('App\Location', 'id', 'location_id')->select('id', 'asset_id', 'building_id','region_id');
+    }
+
+    public function publicBuilding() {
+        return $this->hasManyThrough('App\Building', 'App\Location');
+    }
+
 }
