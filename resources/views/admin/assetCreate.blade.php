@@ -9,6 +9,9 @@
         {{csrf_field()}}
 
 
+        <div id="map" style="height:500px; width:500px; position:relative; margin:0 auto;">
+         </div>
+
         <div class="form-group">
             <label for="longitude">Longitude</label>
             <input type="text" class="form-control" id="longitude" name="longitude" readonly required>
@@ -69,6 +72,11 @@
 
     </form>
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtj2Hj9Nr7fZkBnfmbf8DgKnw0-dM1afg&callback=initMap">
+        </script>
+    <script>
+
+    </script>
     <script>
         $(document).ready(function() {
             //Load Specs
@@ -123,7 +131,6 @@
                 $('#region').val(msg.region.name).prop('readonly', true);
 
                 msg.building.forEach(function(element) {
-                    console.log(element);
                     $('#building').append($('<option>', {
                         value: element.id,
                         text: element.name
@@ -134,6 +141,7 @@
                 $('#campusID').val(msg.region.id);
 
              });
+            createMap(crd.latitude, crd.longitude);
         };
 
         function error(err) {
@@ -190,6 +198,42 @@
             returnElm += '</div>';
 
             $('#specifications').append(returnElm);
+        }
+
+        function createMap(lat, lng) {
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: new google.maps.LatLng(lat, lng),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            let marker = new google.maps.Marker({
+                position: {lat: lat, lng: lng},
+                map: map,
+                draggable:true,
+            });
+
+            let noPoi = [
+                {
+                    featureType: "poi",
+                    stylers: [
+                        {
+                            visibility: "off"
+                        }
+                    ]
+                }
+            ];
+
+            map.setOptions({styles: noPoi});
+
+            google.maps.event.addListener(marker, 'dragend', function(theMarker) {
+                let currentLatitude = theMarker.latLng.lat();
+                let currentLongitude = theMarker.latLng.lng();
+
+                $('#latitude').val(currentLatitude);
+                $('#longitude').val(currentLongitude);
+            });
+
         }
     </script>
 @stop
