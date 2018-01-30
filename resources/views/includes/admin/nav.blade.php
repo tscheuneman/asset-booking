@@ -26,8 +26,15 @@
                 </li>
                 <li class="{{ Request::is('admin/specification*') ? 'active' : '' }}"><a href="{{ url('/admin/specifications') }}">Specifications</a></li>
                 <li class="{{ Request::is('admin/bookings*') ? 'active' : '' }}"><a href="{{ url('/admin/bookings') }}">Bookings</a></li>
-            </ul>
 
+                <li class="dropdown {{ Request::is('admin/locations*') ? 'active' : '' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('/admin/installers') }}">Installers</a></li>
+                        <li class="special"><a href="{{ url('/installers') }}">Installation Center </a></li>
+                    </ul>
+                </li>
+            </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
