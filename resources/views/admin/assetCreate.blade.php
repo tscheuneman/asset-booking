@@ -72,7 +72,7 @@
 
     </form>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtj2Hj9Nr7fZkBnfmbf8DgKnw0-dM1afg&callback=initMap">
+        <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API')}}&callback=initMap">
         </script>
     <script>
 
