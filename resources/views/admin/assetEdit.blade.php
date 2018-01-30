@@ -8,14 +8,17 @@
     <form method="POST" action="{{ url('/admin/asset') }}/{{$asset->id}}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
+        <div id="map" style="height:300px; width:100%; position:relative; margin:0 auto 15px auto;">
+        </div>
+
         <input type="hidden" name="id" value="{{$asset->id}}">
         <input type="hidden" name="loc_id" value="{{$asset->location_id}}">
-        <div class="form-group">
+        <div class="form-group" style="display:none;">
             <label for="longitude">Longitude</label>
             <input type="text" class="form-control" id="longitude" name="longitude" value="{{$asset->location->longitude}}" readonly required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none;">
             <label for="latitude">Latitude</label>
             <input type="text" class="form-control" id="latitude" name="latitude" value="{{$asset->location->latitude}}" readonly required>
         </div>
@@ -73,6 +76,8 @@
 
     </form>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API')}}&callback=initMap">
+    </script>
     <script>
         $(document).ready(function() {
             getInitalSpecs();
@@ -102,79 +107,17 @@
 
             });
 
-            getBuildingRegion();
+            let lat = $('#latitude').val();
+            let lng = $('#longitude').val();
+
+            getBuildingRegionUpdated(lat, lng);
+            createMap(lat, lng);
         });
         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
-
-        function success(pos) {
-            var crd = pos.coords;
-            $('#latitude').val(crd.latitude);
-            $('#longitude').val(crd.longitude);
-            $.ajax({
-                method: "GET",
-                url: "{{ url('/admin/location/verify') }}",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'lat': crd.latitude,
-                    'lng': crd.longitude
-                }
-            }).done(function( msg ) {
-                $('#region').val(msg.region.name).prop('readonly', true);
-
-                msg.building.forEach(function(element) {
-                    $('#building').append($('<option>', {
-                        value: element.id,
-                        text: element.name
-                    }));
-                });
-
-                $('#buildingID').val(msg.building.id);
-                $('#campusID').val(msg.region.id);
-
-            });
-        };
-
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-        };
-
-        function getBuildingRegion() {
-            let lat = $('#latitude').val();
-            let lng = $('#longitude').val();
-            $.ajax({
-                method: "GET",
-                url: "{{ url('/admin/location/verify') }}",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'lat': lat,
-                    'lng': lng
-                }
-            }).done(function( msg ) {
-                $('#region').val(msg.region.name).prop('readonly', true);
-
-                msg.building.forEach(function(element) {
-                    $('#building').append($('<option>', {
-                        value: element.id,
-                        text: element.name
-                    }));
-                });
-
-                $('#buildingID').val(msg.building.id);
-                $('#campusID').val(msg.region.id);
-
-            });
-        };
-
-        //navigator.geolocation.getCurrentPosition(success, error, options);
-
 
         function getSpecs() {
             let selectedCat = $('#category').val();
@@ -301,6 +244,68 @@
                 returnElm += '</div>';
                 $('#specifications').append(returnElm);
             }
+        }
+
+        function createMap(lat, lng) {
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: new google.maps.LatLng(lat, lng),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            $('<div/>').addClass('centerMarker').appendTo(map.getDiv());
+
+            let noPoi = [
+                {
+                    featureType: "poi.business",
+                    stylers: [
+                        {
+                            visibility: "off"
+                        }
+                    ]
+                }
+            ];
+
+            map.setOptions({styles: noPoi});
+
+            google.maps.event.addListener(map, 'dragend', function() {
+                let currentLatitude = map.getCenter().lat();
+                let currentLongitude = map.getCenter().lng();
+
+                $('#latitude').val(currentLatitude);
+                $('#longitude').val(currentLongitude);
+
+                getBuildingRegionUpdated(currentLatitude, currentLongitude);
+            });
+
+        }
+
+        function getBuildingRegionUpdated(lat, lng) {
+            $.ajax({
+                method: "GET",
+                url: "{{ url('/admin/location/verify') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'lat': lat,
+                    'lng': lng
+                }
+            }).done(function( msg ) {
+                $('#building').empty();
+                $('#region').val(msg.region.name).prop('readonly', true);
+
+                msg.building.forEach(function(element) {
+                    $('#building').append($('<option>', {
+                        value: element.id,
+                        text: element.name
+                    }));
+                });
+
+                $('#buildingID').val(msg.building.id);
+                $('#campusID').val(msg.region.id);
+
+            });
         }
     </script>
 @stop

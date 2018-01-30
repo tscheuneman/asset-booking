@@ -9,15 +9,15 @@
         {{csrf_field()}}
 
 
-        <div id="map" style="height:500px; width:500px; position:relative; margin:0 auto;">
+        <div id="map" style="height:300px; width:100%; position:relative; margin:0 auto 15px auto;">
          </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             <label for="longitude">Longitude</label>
             <input type="text" class="form-control" id="longitude" name="longitude" readonly required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             <label for="latitude">Latitude</label>
             <input type="text" class="form-control" id="latitude" name="latitude" readonly required>
         </div>
@@ -117,30 +117,9 @@
             var crd = pos.coords;
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
-            $.ajax({
-                method: "GET",
-                url: "{{ url('/admin/location/verify') }}",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'lat': crd.latitude,
-                    'lng': crd.longitude
-                }
-            }).done(function( msg ) {
-                $('#region').val(msg.region.name).prop('readonly', true);
 
-                msg.building.forEach(function(element) {
-                    $('#building').append($('<option>', {
-                        value: element.id,
-                        text: element.name
-                    }));
-                });
+            getBuildingRegion(crd.latitude, crd.longitude);
 
-                $('#buildingID').val(msg.building.id);
-                $('#campusID').val(msg.region.id);
-
-             });
             createMap(crd.latitude, crd.longitude);
         };
 
@@ -207,15 +186,11 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            let marker = new google.maps.Marker({
-                position: {lat: lat, lng: lng},
-                map: map,
-                draggable:true,
-            });
+            $('<div/>').addClass('centerMarker').appendTo(map.getDiv());
 
             let noPoi = [
                 {
-                    featureType: "poi",
+                    featureType: "poi.business",
                     stylers: [
                         {
                             visibility: "off"
@@ -226,14 +201,44 @@
 
             map.setOptions({styles: noPoi});
 
-            google.maps.event.addListener(marker, 'dragend', function(theMarker) {
-                let currentLatitude = theMarker.latLng.lat();
-                let currentLongitude = theMarker.latLng.lng();
+            google.maps.event.addListener(map, 'dragend', function() {
+                let currentLatitude = map.getCenter().lat();
+                let currentLongitude = map.getCenter().lng();
 
                 $('#latitude').val(currentLatitude);
                 $('#longitude').val(currentLongitude);
+
+                getBuildingRegion(currentLatitude, currentLongitude);
             });
 
+        }
+
+        function getBuildingRegion(lat, lng) {
+            $.ajax({
+                method: "GET",
+                url: "{{ url('/admin/location/verify') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'lat': lat,
+                    'lng': lng
+                }
+            }).done(function( msg ) {
+                $('#building').empty();
+                $('#region').val(msg.region.name).prop('readonly', true);
+
+                msg.building.forEach(function(element) {
+                    $('#building').append($('<option>', {
+                        value: element.id,
+                        text: element.name
+                    }));
+                });
+
+                $('#buildingID').val(msg.building.id);
+                $('#campusID').val(msg.region.id);
+
+            });
         }
     </script>
 @stop
