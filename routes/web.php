@@ -92,10 +92,28 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/specification/{id}/edit', 'SpecificationController@edit');
     Route::post('/admin/specification/{id}', 'SpecificationController@update');
 
+    //Admin Installer Actions
+    Route::get('/admin/installers', 'InstallerController@index');
+    Route::get('/admin/installer/create', 'InstallerController@create');
+    Route::post('/admin/installer', 'InstallerController@store');
+
+
     //Admin "API" Actions
     Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
     Route::get('/admin/location/verify', 'LocationController@verify');
 
     Route::get('/admin/import/buildings', 'ImportController@buildings');
     Route::get('/admin/import/regions', 'ImportController@regions');
+
+
+/*
+ * Installer Section
+ */
+    Route::get('/installers', 'InstallerController@index');
+
+
+
 });
+
+
+
