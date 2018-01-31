@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Jobs\ProcessImage;
 use Illuminate\Database\QueryException;
@@ -12,6 +12,7 @@ use File;
 
 use JsonSchema\Validator as JSONValidate;
 use JsonSchema\Constraints\Constraint as Constraint;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {

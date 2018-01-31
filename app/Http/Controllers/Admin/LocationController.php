@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Building;
 use App\Region;
 use App\Asset;
+use App\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {

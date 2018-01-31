@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Building;
 use Illuminate\Support\Facades\Input;
 use Mockery\Exception;
+use App\Http\Controllers\Controller;
 
 
 class BuildingController extends Controller

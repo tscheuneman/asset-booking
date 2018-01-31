@@ -35,87 +35,83 @@ Route::group(['middleware' => ['cas.user']], function ()
 
 
 //Internal API's
-Route::get('/asset', 'LocationController@index');
+Route::get('/asset', 'Admin/LocationController@index');
 
 
 Route::group(['middleware' => ['cas.admin']], function ()
 {
     //Admin User Actions
-    Route::get('/admin', 'AdminController@index');
-    Route::get('/admin/users/create', 'AdminController@create');
-    Route::get('/admin/users', 'AdminController@show');
-    Route::post('/admin/users', 'AdminController@store');
+    Route::get('/admin', 'Admin\AdminController@index');
+    Route::get('/admin/users/create', 'Admin\AdminController@create');
+    Route::get('/admin/users', 'Admin\AdminController@show');
+    Route::post('/admin/users', 'Admin\AdminController@store');
 
-    Route::get('/admin/users/edit/{id}', 'AdminController@edit');
-    Route::post('/admin/users/{id}', 'AdminController@update');
-    Route::delete('/admin/users/delete/{id}', 'AdminController@destroy');
+    Route::get('/admin/users/edit/{id}', 'Admin\AdminController@edit');
+    Route::post('/admin/users/{id}', 'Admin\AdminController@update');
+    Route::delete('/admin/users/delete/{id}', 'Admin\AdminController@destroy');
 
 
     //Admin Asset Actions
-    Route::get('/admin/assets', 'AssetController@index');
-    Route::get('/admin/asset/create', 'AssetController@create');
-    Route::post('/admin/assets', 'AssetController@store');
-    Route::get('/admin/asset/edit/{id}', 'AssetController@edit');
-    Route::post('/admin/asset/{id}', 'AssetController@update');
-    Route::delete('/admin/asset/delete/{id}', 'AssetController@destroy');
+    Route::get('/admin/assets', 'Admin\AssetController@index');
+    Route::get('/admin/asset/create', 'Admin\AssetController@create');
+    Route::post('/admin/assets', 'Admin\AssetController@store');
+    Route::get('/admin/asset/edit/{id}', 'Admin\AssetController@edit');
+    Route::post('/admin/asset/{id}', 'Admin\AssetController@update');
+    Route::delete('/admin/asset/delete/{id}', 'Admin\AssetController@destroy');
 
 
 
     //Admin Category Actions
-    Route::get('/admin/categories', 'CategoryController@index');
-    Route::get('/admin/category/create', 'CategoryController@create');
-    Route::post('/admin/category', 'CategoryController@store');
-    Route::get('/admin/category/edit/{id}', 'CategoryController@edit');
-    Route::post('/admin/category/{id}', 'CategoryController@update');
+    Route::get('/admin/categories', 'Admin\CategoryController@index');
+    Route::get('/admin/category/create', 'Admin\CategoryController@create');
+    Route::post('/admin/category', 'Admin\CategoryController@store');
+    Route::get('/admin/category/edit/{id}', 'Admin\CategoryController@edit');
+    Route::post('/admin/category/{id}', 'Admin\CategoryController@update');
 
 
     //Admin Building Actions
-    Route::get('/admin/locations/buildings', 'BuildingController@index');
-    Route::get('/admin/locations/building/create', 'BuildingController@create');
-    Route::post('/admin/locations/building', 'BuildingController@store');
-    Route::get('/admin/locations/building/edit/{id}', 'BuildingController@edit');
-    Route::post('/admin/locations/building/{id}', 'BuildingController@update');
-    Route::delete('/admin/locations/building/delete/{id}', 'BuildingController@destroy');
+    Route::get('/admin/locations/buildings', 'Admin\BuildingController@index');
+    Route::get('/admin/locations/building/create', 'Admin\BuildingController@create');
+    Route::post('/admin/locations/building', 'Admin\BuildingController@store');
+    Route::get('/admin/locations/building/edit/{id}', 'Admin\BuildingController@edit');
+    Route::post('/admin/locations/building/{id}', 'Admin\BuildingController@update');
+    Route::delete('/admin/locations/building/delete/{id}', 'Admin\BuildingController@destroy');
 
     //Admin Region Actions
-    Route::get('/admin/locations/regions', 'RegionController@index');
-    Route::get('/admin/locations/region/create', 'RegionController@create');
-    Route::post('/admin/locations/region', 'RegionController@store');
-    Route::get('/admin/locations/region/edit/{id}', 'RegionController@edit');
-    Route::post('/admin/locations/region/{id}', 'RegionController@update');
-    Route::delete('/admin/locations/region/delete/{id}', 'RegionController@destroy');
+    Route::get('/admin/locations/regions', 'Admin\RegionController@index');
+    Route::get('/admin/locations/region/create', 'Admin\RegionController@create');
+    Route::post('/admin/locations/region', 'Admin\RegionController@store');
+    Route::get('/admin/locations/region/edit/{id}', 'Admin\RegionController@edit');
+    Route::post('/admin/locations/region/{id}', 'Admin\RegionController@update');
+    Route::delete('/admin/locations/region/delete/{id}', 'Admin\RegionController@destroy');
 
     //Admin Specification Actions
-    Route::get('/admin/specifications', 'SpecificationController@index');
-    Route::get('/admin/specifications/create', 'SpecificationController@create');
-    Route::post('/admin/specification', 'SpecificationController@store');
-    Route::get('/admin/specification/{id}/edit', 'SpecificationController@edit');
-    Route::post('/admin/specification/{id}', 'SpecificationController@update');
+    Route::get('/admin/specifications', 'Admin\SpecificationController@index');
+    Route::get('/admin/specifications/create', 'Admin\SpecificationController@create');
+    Route::post('/admin/specification', 'Admin\SpecificationController@store');
+    Route::get('/admin/specification/{id}/edit', 'Admin\SpecificationController@edit');
+    Route::post('/admin/specification/{id}', 'Admin\SpecificationController@update');
 
     //Admin Installer Actions
-    Route::get('/admin/installers', 'InstallerController@index');
-    Route::get('/admin/installer/create', 'InstallerController@create');
-    Route::post('/admin/installer', 'InstallerController@store');
-    Route::get('/admin/installer/edit/{id}', 'InstallerController@edit');
-    Route::post('/admin/installer/{id}', 'InstallerController@update');
-    Route::delete('/admin/installer/delete/{id}', 'InstallerController@destroy');
+    Route::get('/admin/installers', 'Admin\InstallerController@index');
+    Route::get('/admin/installer/create', 'Admin\InstallerController@create');
+    Route::post('/admin/installer', 'Admin\InstallerController@store');
+    Route::get('/admin/installer/edit/{id}', 'Admin\InstallerController@edit');
+    Route::post('/admin/installer/{id}', 'Admin\InstallerController@update');
+    Route::delete('/admin/installer/delete/{id}', 'Admin\InstallerController@destroy');
 
     //Admin "API" Actions
-    Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
-    Route::get('/admin/location/verify', 'LocationController@verify');
+    Route::post('/admin/asset/specifications/{id}', 'Admin\SpecificationController@show');
+    Route::get('/admin/location/verify', 'Admin\LocationController@verify');
 
-    Route::get('/admin/import/buildings', 'ImportController@buildings');
-    Route::get('/admin/import/regions', 'ImportController@regions');
+    Route::get('/admin/import/buildings', 'Admin\ImportController@buildings');
+    Route::get('/admin/import/regions', 'Admin\ImportController@regions');
+
+});
 
 
 /*
  * Installer Section
  */
-    Route::get('/installers', 'InstallerController@index');
-
-
-
-});
-
-
+Route::get('/installers', 'Installers/IndexController@index');
 

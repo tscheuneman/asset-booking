@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Asset;
@@ -10,6 +10,9 @@ use App\Building;
 use File;
 use App\Jobs\ProcessImage;
 use Mockery\Exception;
+use App\Http\Controllers\Controller;
+
+
 
 class AssetController extends Controller
 {

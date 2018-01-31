@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Region;
+use App\Http\Controllers\Controller;
 
 class RegionController extends Controller
 {

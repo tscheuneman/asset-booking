@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Cas;
 use App\Installer;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class InstallerController extends Controller
 {

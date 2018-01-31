@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Cas;
@@ -11,6 +11,8 @@ use App\Building;
 use App\Region;
 use App\User;
 use Mockery\Exception;
+use App\Http\Controllers\Controller;
+
 
 class AdminController extends Controller
 {
