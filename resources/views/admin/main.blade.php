@@ -85,6 +85,24 @@
     <br>
     <hr>
     <div class="row">
+        <div id="quick-actions">
+            <a href="{{ url('/admin/asset/create') }}">
+                <div class="button success">
+                    <span class="glyphicon glyphicon glyphicon-plus-sign"></span> Create Asset
+                </div>
+            </a>
 
+            <a href="{{ url('/admin/category/create') }}">
+                <div class="button success">
+                    <span class="glyphicon glyphicon-tags"></span> Create Category
+                </div>
+            </a>
+
+            <a href="{{ url('/admin/specifications/create') }}">
+                <div class="button success">
+                    <span class="glyphicon glyphicon-grain"></span> Create Specification
+                </div>
+            </a>
+        </div>
     </div>
 @stop
