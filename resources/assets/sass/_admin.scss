@@ -4,6 +4,15 @@
 }
 header h1 {
   margin:18px 0;
+
+  .headerTitDesc {
+    background:$asu-maroon;
+    color:#fff;
+    padding:7px;
+    font-weight:bold;
+    margin-left:8px;
+    font-size:30px;
+  }
 }
 a.actionLink {
   padding:13px;
@@ -193,4 +202,10 @@ li.special a{
   &:hover {
     background:$asu-gold-light !important;
   }
+}
+.dropdown-menu > li > a {
+  padding: 10px 20px;
+}
+.dropdown-menu {
+  padding:0;
 }
