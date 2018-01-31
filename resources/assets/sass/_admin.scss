@@ -209,3 +209,32 @@ li.special a{
 .dropdown-menu {
   padding:0;
 }
+
+/* Installer */
+div#quick-actions {
+  width:100%;
+
+  .button {
+    width:30%;
+    float:left;
+    margin:20px 1%;
+    background:$brand-success;
+    padding:1%;
+    color:$white;
+    font-size:20px;
+    text-align:center;
+    transition:.5s all;
+    font-weight:bold;
+
+    &:hover {
+      background:$brand-success-light;
+    }
+  }
+  span.glyphicon {
+    font-size:50px;
+    text-align:center;
+    display:block;
+    color:$white;
+    margin-bottom:10px;
+  }
+}
