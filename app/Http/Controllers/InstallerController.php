@@ -41,4 +41,55 @@ class InstallerController extends Controller
         \Session::flash('flash_created', request('username') . ' has been created');
         return redirect('/admin/installers');
     }
+
+    public function edit($id)
+    {
+        $installer = Installer::find($id);
+        return view('admin.installerEdit',
+            [
+                'installer' => $installer
+            ]
+        );
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate(request(), [
+            'id' => 'exists:installers',
+            'username' => 'required',
+            'email' => 'required|email',
+            'company' => 'required'
+        ]);
+
+        try {
+            $installer = Installer::find($id);
+            $installer->username = request('username');
+            $installer->company = request('company');
+            $installer->email = request('email');
+
+            $installer->save();
+
+            \Session::flash('flash_created', request('username') . ' has been edited');
+            return redirect('/admin/installers');
+        } catch (QueryException $e) {
+            \Session::flash('flash_deleted', 'Error Editing Installer');
+            return redirect('/admin/installers');
+        }
+
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $installer = Installer::find($id);
+            $user = $installer->username;
+            $installer->delete();
+
+            \Session::flash('flash_deleted', $user . ' has been deleted');
+            return redirect('/admin/installers');
+        } catch (QueryException $e) {
+            \Session::flash('flash_deleted', 'Error Deleting Installer');
+            return redirect('/admin/installers');
+        }
+    }
 }
