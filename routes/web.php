@@ -96,7 +96,9 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/installers', 'InstallerController@index');
     Route::get('/admin/installer/create', 'InstallerController@create');
     Route::post('/admin/installer', 'InstallerController@store');
-
+    Route::get('/admin/installer/edit/{id}', 'InstallerController@edit');
+    Route::post('/admin/installer/{id}', 'InstallerController@update');
+    Route::delete('/admin/installer/delete/{id}', 'InstallerController@destroy');
 
     //Admin "API" Actions
     Route::post('/admin/asset/specifications/{id}', 'SpecificationController@show');
