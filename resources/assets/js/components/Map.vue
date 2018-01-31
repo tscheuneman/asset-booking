@@ -121,11 +121,6 @@
         data () {
             return {
                 center: {lat: 10.0, lng: 10.0},
-                infoContent: '',
-                infoWindowPos: {
-                    lat: 0,
-                    lng: 0
-                },
                 options: {
                     disableDefaultUI: false,
                     styles: [{"elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
