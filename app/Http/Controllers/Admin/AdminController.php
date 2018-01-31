@@ -65,7 +65,7 @@ class AdminController extends Controller
 
     public function show() {
         $users = Admin::paginate(25);
-        return view('admin.users',
+        return view('admin.users.users',
             [
                 'users' => $users
             ]
@@ -73,13 +73,13 @@ class AdminController extends Controller
     }
 
     public function create() {
-        return view('admin.usersCreate');
+        return view('admin.users.usersCreate');
     }
 
     public function edit($id)
     {
         $user = Admin::find($id);
-        return view('admin.usersEdit',
+        return view('admin.users.usersEdit',
             [
                 'user' => $user
             ]

@@ -24,7 +24,7 @@ class AssetController extends Controller
     public function index()
     {
         $assets = Asset::with('location.building', 'category', 'location.region')->paginate(50);
-        return view('admin.assets',
+        return view('admin.assets.assets',
             [
                 'assets' => $assets
             ]
@@ -39,7 +39,7 @@ class AssetController extends Controller
     public function create()
     {
         $cat = Category::get();
-        return view('admin.assetCreate',
+        return view('admin.assets.assetCreate',
             [
                 'categories' => $cat
             ]
@@ -135,7 +135,7 @@ class AssetController extends Controller
     {
         $asset = Asset::with('location.building', 'category', 'location.region')->where('id', '=', $id)->first();
         $cat = Category::get();
-        return view('admin.assetEdit',
+        return view('admin.assets.assetEdit',
             [
                 'categories' => $cat,
                 'asset' => $asset

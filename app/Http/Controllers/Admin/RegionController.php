@@ -11,7 +11,7 @@ class RegionController extends Controller
 {
     public function index() {
         $region = Region::paginate(25);
-        return view('admin.regions',
+        return view('admin.regions.regions',
             [
                 'regions' => $region
             ]
@@ -19,7 +19,7 @@ class RegionController extends Controller
     }
 
     public function create() {
-        return view('admin.regionCreate');
+        return view('admin.regions.regionCreate');
     }
 
     public function store() {
@@ -44,7 +44,7 @@ class RegionController extends Controller
     public function edit($id)
     {
         $region = Region::find($id);
-        return view('admin.regionEdit',
+        return view('admin.regions.regionEdit',
             [
                 'region' => $region
             ]

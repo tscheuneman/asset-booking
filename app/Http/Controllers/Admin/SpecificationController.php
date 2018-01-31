@@ -22,7 +22,7 @@ class SpecificationController extends Controller
      */
     public function index() {
         $specs = Specification::paginate(25);
-        return view('admin.specs',
+        return view('admin.specs.specs',
             [
                 'specs' => $specs
             ]
@@ -35,7 +35,7 @@ class SpecificationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.specsCreate');
+        return view('admin.specs.specsCreate');
     }
 
     /**
@@ -133,7 +133,7 @@ class SpecificationController extends Controller
     public function edit($id)
     {
         $spec = Specification::find($id);
-        return view('admin.specsEdit',
+        return view('admin.specs.specsEdit',
             [
                 'spec' => $spec
             ]

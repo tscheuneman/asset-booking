@@ -12,7 +12,7 @@ class InstallerController extends Controller
 {
     public function index() {
         $installer = Installer::paginate(25);
-        return view('admin.installers',
+        return view('admin.installers.installers',
             [
                 'installers' => $installer
             ]
@@ -20,7 +20,7 @@ class InstallerController extends Controller
     }
 
     public function create() {
-        return view('admin.installerCreate');
+        return view('admin.installers.installerCreate');
     }
 
     public function store() {
@@ -46,7 +46,7 @@ class InstallerController extends Controller
     public function edit($id)
     {
         $installer = Installer::find($id);
-        return view('admin.installerEdit',
+        return view('admin.installers.installerEdit',
             [
                 'installer' => $installer
             ]

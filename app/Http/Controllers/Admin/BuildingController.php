@@ -21,14 +21,14 @@ class BuildingController extends Controller
 
         }
 
-        return view('admin.buildings',
+        return view('admin.buildings.buildings',
             [
                 'buildings' => $buildings
             ]
         );
     }
     public function create() {
-        return view('admin.buildingCreate');
+        return view('admin.buildings.buildingCreate');
     }
 
     public function store() {
@@ -54,7 +54,7 @@ class BuildingController extends Controller
     public function edit($id)
     {
         $building = Building::find($id);
-        return view('admin.buildingEdit',
+        return view('admin.buildings.buildingEdit',
             [
                 'building' => $building
             ]

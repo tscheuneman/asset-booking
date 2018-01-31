@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
     public function index() {
         $cat = Category::paginate(20);
-        return view('admin.category',
+        return view('admin.categories.category',
             [
                 'categories' => $cat
             ]
@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
     public function create() {
         $specs = Specification::get();
-        return view('admin.categoryCreate',
+        return view('admin.categories.categoryCreate',
             [
                 'specs' => $specs
             ]
@@ -108,7 +108,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $specs = Specification::get();
-        return view('admin.categoryEdit',
+        return view('admin.categories.categoryEdit',
             [
                 'category' => $category,
                 'specs' => $specs

@@ -113,5 +113,5 @@ Route::group(['middleware' => ['cas.admin']], function ()
 /*
  * Installer Section
  */
-Route::get('/installers', 'Installers/IndexController@index');
+Route::get('/installers', 'Installers\IndexController@index');
 
