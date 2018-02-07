@@ -117,6 +117,8 @@ Route::group(['middleware' => ['cas.installer']], function ()
 {
     Route::get('/installers', 'Installers\IndexController@index');
 
+
+
 });
 
 
