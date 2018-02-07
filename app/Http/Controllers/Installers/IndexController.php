@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Installers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Booking;
+
 class IndexController extends Controller
 {
     /**
@@ -14,9 +16,12 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('admin.main',
+        $pendingBookings = Booking::where('active', true)->count();
+        $lateBookings = Booking::where('active', true)->where('time_from', '<=', date('Y-m-d'))->count();
+        return view('installers.main',
             [
-
+                'pendingBookings' => $pendingBookings,
+                'lateBookings' => $lateBookings
             ]
         );
     }
