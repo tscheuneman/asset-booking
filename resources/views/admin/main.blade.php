@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    Admin
+    Home
 @stop
 @section('content')
     <br>

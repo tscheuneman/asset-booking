@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Building</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/locations/building') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/locations/building') }}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
 

@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Specification</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/specification') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/specification') }}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
 

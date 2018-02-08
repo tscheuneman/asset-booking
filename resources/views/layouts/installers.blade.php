@@ -9,7 +9,7 @@
     @include('includes.installers.header')
 </header>
 @include('includes.installers.nav')
-<div class="container">
+<div class="container admin">
     <div id="main" class="row">
 
         @yield('content')

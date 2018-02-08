@@ -5,7 +5,7 @@
 @section('content')
     <h2>Create Installer</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/installer') }}">
+    <form method="POST" action="{{ url('/admin/installer') }}" id="submit">
         {{csrf_field()}}
         <div class="form-group">
             <label for="username">Username</label>
