@@ -11,7 +11,7 @@
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
     <br>
-    <div class="row">
+    <div id="installerMain"  class="row">
         <div class="col">
             <div class="adminHeading">
                 <section>

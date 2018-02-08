@@ -4,15 +4,6 @@
 }
 header h1 {
   margin:18px 0;
-
-  .headerTitDesc {
-    background:$asu-maroon;
-    color:#fff;
-    padding:7px;
-    font-weight:bold;
-    margin-left:8px;
-    font-size:30px;
-  }
 }
 a.actionLink {
   padding:13px;
@@ -128,58 +119,47 @@ div.specification {
   clear:left;
   float:left;
 }
-
+.admin.container {
+  width: 83%;
+  float:right;
+}
 /* Home */
 
 div.adminHeading {
   float:left;
   margin-right:2%;
   background:$white;
-  padding:1%;
-  width:18%;
+  width:12%;
+  height:80px;
 
   div.icon {
     float: left;
-    width: 50px;
-    height: 50px;
-    margin-top: -35px;
+    width: 56px;
+    height: 100%;
     color: #fff;
     font-size: 25px;
     text-align: center;
-    line-height: 50px;
-    border-radius:6px;
-    box-shadow:0 0 2px rgba(0,0,0,.65);
-    text-shadow:0 0 2px rgba(0,0,0,.5);
-
+    line-height:80px;
     &.blue {
-      background: #0575E6;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #0575E6, #021B79);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #0575E6, #021B79); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #1c98e6;  /* fallback for old browsers */
     }
     &.green {
-      background: #11998e;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #3ac0ac;  /* fallback for old browsers */
     }
     &.orange {
-      background: #fc4a1a;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #fc8a40;  /* fallback for old browsers */
     }
     &.red {
-      background: #cb2d3e;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #cb5b4e;  /* fallback for old browsers */
     }
     &.purple {
-      background: #42275a;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #9a61b3;  /* fallback for old browsers */
     }
   }
   div.info {
     float:right;
-    width:55%;
+    width: 58%;
+    margin-top: 9px;
 
       span.data {
         font-weight:bold;
@@ -193,15 +173,6 @@ div.adminHeading {
 }
 hr {
   border-top:1px solid $laravel-border-color !important;
-}
-
-li.special a{
-  background:$asu-gold;
-  color:$black !important;
-
-  &:hover {
-    background:$asu-gold-light !important;
-  }
 }
 .dropdown-menu > li > a {
   padding: 10px 20px;
@@ -236,5 +207,109 @@ div#quick-actions {
     display:block;
     color:$white;
     margin-bottom:10px;
+  }
+}
+
+sidebar.navbar {
+  float: left;
+  width: 14%;
+  background:$navbar;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius:0;
+  ul {
+    margin-top:80px;
+  }
+  .navbar-nav > li {
+    float:none;
+    display:block;
+
+    a {
+      color:$off-white;
+      font-weight:bold;
+      transition:.5s all;
+      font-size: 16px;
+      text-indent:10px;
+
+      &:hover, .open, .on {
+        background:$navbar-hover;
+      }
+    }
+    &.active a {
+      background:$navbar-hover;
+    }
+  }
+  .navbar-nav {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    float: none;
+      li a {
+        background:$navbar-sub;
+      }
+
+    li.special a{
+      background:$asu-gold;
+      color:$black !important;
+
+      &:hover {
+        background:$asu-gold-light !important;
+      }
+    }
+  }
+
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background:$navbar-hover !important;
+  border-color: #000;
+}
+
+div#main {
+  margin-top:80px;
+}
+
+div#top {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  z-index: 9999;
+  background: $topbar;
+  box-shadow:$normalBoxShadow;
+
+  div.leftSide{
+    float:left;
+    width:14%;
+    font-family:$name-font;
+    text-align: center;
+
+    span.topHeader {
+      color:$off-white;
+      font-size: 25px;
+      margin-top: 17px;
+      text-align: center;
+      padding-bottom: 2px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+      text-shadow:$normalTextShadow;
+    }
+    span.headerTitDesc {
+      display:block;
+      color:$asu-gold;
+      padding-top:2px;
+      font-size:16px;
+    }
+  }
+  span.rightHeader {
+    color:$off-white;
+    float: right;
+    font-weight: bold;
+    line-height: 70px;
+    margin-right: 90px;
   }
 }

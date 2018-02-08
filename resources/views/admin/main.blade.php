@@ -4,8 +4,7 @@
 @stop
 @section('content')
     <br>
-    <Br>
-    <div class="row">
+    <div id="adminMain" class="row">
         <div class="col">
             <div class="adminHeading">
                 <section>
@@ -82,8 +81,9 @@
             </div>
         </div>
     </div>
-    <br>
     <hr>
+
+    <!--
     <div class="row">
         <div id="quick-actions">
             <a href="{{ url('/admin/asset/create') }}">
@@ -105,4 +105,5 @@
             </a>
         </div>
     </div>
+    -->
 @stop

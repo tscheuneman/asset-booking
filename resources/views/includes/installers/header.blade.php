@@ -1,3 +1,8 @@
-<div class="container">
-    <h1>{{env('APP_NAME', 'Asset Booking App')}} <span class="headerTitDesc">Installers</span></h1>
+<div id="top">
+    <div class="leftSide">
+         <span class="topHeader">
+             {{env('APP_NAME', 'Asset Booking App')}}
+         </span><span class="headerTitDesc"> Installers </span>
+    </div>
+
 </div>

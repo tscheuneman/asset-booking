@@ -9,7 +9,7 @@
         @include('includes.admin.header')
     </header>
     @include('includes.admin.nav')
-    <div class="container">
+    <div class="admin container">
     <div id="main" class="row">
 
         @yield('content')
