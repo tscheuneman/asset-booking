@@ -15,4 +15,9 @@ class Booking extends Model
         return $this->hasOne('App\Asset', 'id', 'asset_id')->select('id', 'name', 'location_id', 'cat_id');
     }
 
+    public function customer()
+    {
+        return $this->hasOne('App\User', 'id', 'cust_id');
+    }
+
 }
