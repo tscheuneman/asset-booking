@@ -54,7 +54,7 @@ class BookingController extends Controller
             return json_encode($returnData);
         }
 
-        $val = Booking::where('asset_id', '=', $id)->whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->first();
+        $val = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->first();
 
         if($val === null) {
             if (Auth::check())
