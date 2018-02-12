@@ -12,9 +12,11 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
-    <form action="" method="GET">
-        <input type="text" name="keyword" class="form-control"/>
-    </form>
+    <div class="sort">
+        <form action="" method="GET">
+            <input type="text" name="keyword" class="form-control"/>
+        </form>
+    </div>
     <br>
     <table class="table">
         <thead>
