@@ -124,7 +124,7 @@ div.specification {
   width: 83%;
   float:right;
 }
-.admin.container form#submit {
+.admin.container form#submit, .sort form {
   width:700px;
 }
 /* Home */
@@ -223,8 +223,41 @@ sidebar.navbar {
   left: 0;
   top: 0;
   border-radius:0;
+  border:none;
+  box-shadow: none;
+
+  div.navTop{
+    float:left;
+    width:100%;
+    font-family:$name-font;
+    background: $topbar;
+    text-align: center;
+    height:$topbarHeight;
+
+    span.topHeader {
+      color:$off-white;
+      font-size: 25px;
+      margin-top: 17px;
+      text-align: center;
+      padding-bottom: 2px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.65);
+      text-shadow:$normalTextShadow;
+    }
+    span.headerTitDesc {
+      display:block;
+      color:$asu-gold;
+      padding-top:2px;
+      font-size:16px;
+    }
+    span.normalText {
+      color:$off-white;
+      border-left: 2px solid rgba(255, 255, 255, 0.65);
+      padding-left: 2px;
+    }
+  }
+
   ul {
-    margin-top:80px;
+    margin-top:15px;
   }
   .navbar-nav > li {
     float:none;
@@ -283,44 +316,16 @@ div#main {
 
 div#top {
   position: absolute;
-  width: 100%;
-  height: 70px;
-  z-index: 9999;
+  right:0;
+  width: 86%;
+  height: $topbarHeight;
   background: $topbar;
-  box-shadow:$normalBoxShadow;
 
-  div.leftSide{
-    float:left;
-    width:14%;
-    font-family:$name-font;
-    text-align: center;
-
-    span.topHeader {
-      color:$off-white;
-      font-size: 25px;
-      margin-top: 17px;
-      text-align: center;
-      padding-bottom: 2px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.65);
-      text-shadow:$normalTextShadow;
-    }
-    span.headerTitDesc {
-      display:block;
-      color:$asu-gold;
-      padding-top:2px;
-      font-size:16px;
-    }
-    span.normalText {
-      color:$off-white;
-      border-left: 2px solid rgba(255, 255, 255, 0.65);
-      padding-left: 2px;
-    }
-  }
   span.rightHeader {
     color:$off-white;
     float: right;
     font-weight: bold;
-    line-height: 70px;
+    line-height: $topbarHeight;
     margin-right: 90px;
   }
 }
