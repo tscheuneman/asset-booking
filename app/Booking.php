@@ -12,7 +12,7 @@ class Booking extends Model
 
     public function asset()
     {
-        return $this->hasOne('App\Asset', 'id', 'asset_id')->select('id', 'name', 'location_id', 'cat_id');
+        return $this->hasOne('App\Asset', 'id', 'asset_id')->select('id', 'name', 'location_id', 'cat_id', 'specifications', 'latest_image');
     }
 
     public function customer()
