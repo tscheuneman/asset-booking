@@ -5,6 +5,11 @@
 header h1 {
   margin:18px 0;
 }
+.row {
+  @media screen and (max-width: $mobileBreak) {
+    margin:0;
+  }
+}
 a.actionLink {
   padding:13px;
   float:right;
@@ -123,9 +128,17 @@ div.specification {
 .admin.container {
   width: 83%;
   float:right;
+
+  @media screen and (max-width: $mobileBreak) {
+    width:98%;
+    float:none;
+    margin:0 auto;
+  }
+
 }
 .admin.container form#submit, .sort form {
   width:700px;
+  max-width:100%;
 }
 /* Home */
 
@@ -135,6 +148,11 @@ div.adminHeading {
   background:$white;
   width:12%;
   height:80px;
+
+  @media screen and (max-width: $mobileBreak) {
+    width:48%;
+    margin-bottom:15px;
+  }
 
   div.icon {
     float: left;
@@ -226,6 +244,13 @@ sidebar.navbar {
   border:none;
   box-shadow: none;
 
+  @media screen and (max-width: $mobileBreak) {
+    width:80%;
+    position:absolute;
+    left:0;
+    display:none;
+  }
+
   div.navTop{
     float:left;
     width:100%;
@@ -312,6 +337,9 @@ sidebar.navbar {
 
 div#main {
   margin-top:80px;
+  @media screen and (max-width: $mobileBreak) {
+    margin-top:0;
+  }
 }
 
 div#top {
@@ -320,6 +348,11 @@ div#top {
   width: 86%;
   height: $topbarHeight;
   background: $topbar;
+
+  @media screen and (max-width: $mobileBreak) {
+    width:100%;
+    position:relative;
+  }
 
   span.rightHeader {
     color:$off-white;

@@ -65,6 +65,10 @@
         <div class="col-xs-6">
             <span class="title">Installer Form</span>
             <form method="POST" action="{{ url('/installers/install/' . $booking->id) }}" enctype="multipart/form-data" id="submit">
+
+                <input type="hidden" id="book_id" name="book_id" value="{{$booking->id}}">
+                <input type="hidden" id="asset_id" name="asset_id" value="{{$booking->asset->id}}">
+                <input type="hidden" id="cust_id" name="cust_id" value="{{$booking->customer->id}}">
                 {{csrf_field()}}
 
                 <div class="form-group">
