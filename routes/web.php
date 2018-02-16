@@ -120,6 +120,8 @@ Route::group(['middleware' => ['cas.installer']], function ()
 {
     Route::get('/installers', 'Installers\IndexController@index');
 
+    Route::get('/installers/install/{id}', 'Installers\InstallController@show');
+
 });
 
 
