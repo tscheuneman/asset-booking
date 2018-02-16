@@ -17,7 +17,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $settings = Setting::get();
+        $settings = Setting::with('setting')->get();
         return view('admin.settings.settings',
             [
                 'settings' => $settings
