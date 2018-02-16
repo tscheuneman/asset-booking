@@ -331,6 +331,56 @@ div#top {
 }
 
 /* Installers */
+span.title {
+  font-size:25px;
+}
 tr.past_due {
   background:$past-due;
+}
+
+div.blockData {
+  width: 23%;
+  float: left;
+  margin-right: 2%;
+
+  div.bookingTime {
+    font-size: 15px;
+
+    div.bookingTimeBooked {
+      margin-top: 13px;
+      padding: 10px;
+      background: $white;
+      float: left;
+      clear: both;
+      box-shadow: $normalBoxShadow;
+    }
+  }
+  div.tags {
+    margin-top: 12px;
+
+    span.tag {
+      margin-right: 7px;
+      margin-bottom: 5px;
+      padding: 5px;
+      background: $asu-maroon;
+      box-shadow: $normalBoxShadow;
+      color: $white;
+    }
+  }
+}
+
+div.formRight {
+  float:right;
+  width:48%;
+
+  form {
+    width:100%;
+  }
+}
+
+img.largeImage {
+  max-width:80%;
+  margin:0 auto;
+  text-align:center;
+  display: block;
 }
