@@ -17,7 +17,7 @@
     </div>
 
     <footer class="row">
-
+        @include('includes.installers.footer')
     </footer>
 </div>
 </body>

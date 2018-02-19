@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-       $('#openSide').on('click', function() {
+       $('.openSide').on('click', function() {
            $('sidebar.navbar').fadeToggle(500);
        });
     });

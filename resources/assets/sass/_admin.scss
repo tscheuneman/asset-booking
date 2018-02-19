@@ -10,6 +10,84 @@ header h1 {
     margin:0;
   }
 }
+
+table {
+  max-width:100%;
+  overflow-x:scroll;
+
+  @media screen and (max-width: $mobileBreak) {
+
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+
+    }
+
+    tr {
+      border: 1px solid #ccc;
+      margin-bottom:20px;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+    td form {
+      float:left;
+    }
+    td a, td button {
+      float:none !important;
+      display:inline-block;
+    }
+  }
+}
+
+div.openSide {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  line-height: 50px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  float: left;
+  text-indent: 0;
+  transition:.5s all;
+  display:none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  @media screen and (max-width: $mobileBreak) {
+    display:block;
+  }
+}
+
 a.actionLink {
   padding:13px;
   float:right;
@@ -24,6 +102,18 @@ a.actionLink {
     &:hover {
       background: $asu-maroon-hover;
     }
+
+    @media screen and (max-width: $mobileBreak) {
+      float: none;
+      width: 100%;
+      border-radius: 0;
+      margin: 0;
+      margin-top: 20px;
+      display: block;
+      height: 50px;
+      line-height: 25px;
+    }
+
 }
 
 a.editAction {
@@ -258,6 +348,11 @@ sidebar.navbar {
     background: $topbar;
     text-align: center;
     height:$topbarHeight;
+
+      @media screen and (max-width: $mobileBreak) {
+        text-align:left;
+        text-indent:15px;
+      }
 
     span.topHeader {
       color:$off-white;
