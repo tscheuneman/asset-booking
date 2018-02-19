@@ -288,6 +288,7 @@ div.adminHeading {
 }
 hr {
   border-top:1px solid $laravel-border-color !important;
+  clear:both;
 }
 .dropdown-menu > li > a {
   padding: 10px 20px;
@@ -329,10 +330,10 @@ sidebar.navbar {
   float: left;
   width: 14%;
   background:$navbar;
-  height: calc(100% - 70px);
+  height: calc(100%);
   position: fixed;
+  z-index:2;
   left: 0;
-  top: 70px;
   border-radius:0;
   border:none;
   box-shadow: none;
@@ -347,7 +348,7 @@ sidebar.navbar {
   }
 
   ul {
-    margin-top:15px;
+    margin-top:40px;
   }
   .navbar-nav > li {
     float:none;
@@ -408,8 +409,10 @@ div#main {
 }
 
 div#top {
-  position: absolute;
+  position: fixed;
+  top:0;
   right:0;
+  z-index:999;
   width: 100%;
   height: $topbarHeight;
   background: $topbar;

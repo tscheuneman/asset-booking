@@ -47,6 +47,5 @@
         @endforeach
         </tbody>
     </table>
-
     {{ $buildings->appends(Request::except('page'))->links() }}
 @stop
