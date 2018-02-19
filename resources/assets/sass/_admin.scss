@@ -78,6 +78,7 @@ div.openSide {
   text-indent: 0;
   transition:.5s all;
   display:none;
+  margin-top:10px;
 
   &:hover {
     background: rgba(255, 255, 255, 0.5);
@@ -102,7 +103,6 @@ a.actionLink {
     &:hover {
       background: $asu-maroon-hover;
     }
-
     @media screen and (max-width: $mobileBreak) {
       float: none;
       width: 100%;
@@ -198,6 +198,9 @@ span.optionData {
   margin-right:5px;
   font-weight:bold;
   border:1px solid $laravel-border-color;
+  @media screen and (max-width: $mobileBreak) {
+    float:none;
+  }
 }
 div.specification {
   padding:15px;
@@ -326,54 +329,21 @@ sidebar.navbar {
   float: left;
   width: 14%;
   background:$navbar;
-  height: 100%;
+  height: calc(100% - 70px);
   position: fixed;
   left: 0;
-  top: 0;
+  top: 70px;
   border-radius:0;
   border:none;
   box-shadow: none;
+  overflow-y:hidden;
 
   @media screen and (max-width: $mobileBreak) {
     width:80%;
     position:absolute;
     left:0;
     display:none;
-  }
-
-  div.navTop{
-    float:left;
-    width:100%;
-    font-family:$name-font;
-    background: $topbar;
-    text-align: center;
-    height:$topbarHeight;
-
-      @media screen and (max-width: $mobileBreak) {
-        text-align:left;
-        text-indent:15px;
-      }
-
-    span.topHeader {
-      color:$off-white;
-      font-size: 25px;
-      margin-top: 17px;
-      text-align: center;
-      padding-bottom: 2px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.65);
-      text-shadow:$normalTextShadow;
-    }
-    span.headerTitDesc {
-      display:block;
-      color:$asu-gold;
-      padding-top:2px;
-      font-size:16px;
-    }
-    span.normalText {
-      color:$off-white;
-      border-left: 2px solid rgba(255, 255, 255, 0.65);
-      padding-left: 2px;
-    }
+    margin: 0;
   }
 
   ul {
@@ -440,9 +410,45 @@ div#main {
 div#top {
   position: absolute;
   right:0;
-  width: 86%;
+  width: 100%;
   height: $topbarHeight;
   background: $topbar;
+
+  div.navTop{
+    float:left;
+    width:14%;
+    font-family:$name-font;
+    background: $topbar;
+    text-align: center;
+    height:$topbarHeight;
+
+    @media screen and (max-width: $mobileBreak) {
+      width:auto;
+      text-align:left;
+      text-indent:15px;
+    }
+
+    span.topHeader {
+      color:$off-white;
+      font-size: 25px;
+      margin-top: 17px;
+      text-align: center;
+      padding-bottom: 2px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.65);
+      text-shadow:$normalTextShadow;
+    }
+    span.headerTitDesc {
+      display:block;
+      color:$asu-gold;
+      padding-top:2px;
+      font-size:16px;
+    }
+    span.normalText {
+      color:$off-white;
+      border-left: 2px solid rgba(255, 255, 255, 0.65);
+      padding-left: 2px;
+    }
+  }
 
   @media screen and (max-width: $mobileBreak) {
     width:100%;
@@ -455,6 +461,10 @@ div#top {
     font-weight: bold;
     line-height: $topbarHeight;
     margin-right: 90px;
+
+    @media screen and (max-width: $mobileBreak) {
+      margin-right:15px;
+    }
   }
 }
 
@@ -470,6 +480,11 @@ div.blockData {
   width: 23%;
   float: left;
   margin-right: 2%;
+
+  @media screen and (max-width: $mobileBreak) {
+    width: 98%;
+    margin:10px auto;
+  }
 
   div.bookingTime {
     font-size: 15px;
