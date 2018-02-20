@@ -8433,7 +8433,7 @@ div.openSide {
   font-size: 22px;
   line-height: 50px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -8446,7 +8446,7 @@ div.openSide {
 }
 
 div.openSide:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 @media screen and (max-width: 600px) {
@@ -8775,6 +8775,12 @@ sidebar.navbar ul {
   margin-top: 90px;
 }
 
+@media screen and (max-width: 600px) {
+  sidebar.navbar ul {
+    margin-top: 40px;
+  }
+}
+
 sidebar.navbar .navbar-nav > li {
   float: none;
   display: block;
@@ -8867,6 +8873,7 @@ div#top div.navTop {
   div#top div.navTop {
     width: auto;
     text-align: left;
+    width: 100%;
     text-indent: 15px;
   }
 }
@@ -9118,6 +9125,9 @@ nav#navbar li.active {
 .navbar-inverse .navbar-collapse {
   float: left;
   width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 999;
 }
 
 .rightSide {
@@ -9146,6 +9156,28 @@ nav#navbar li.active {
   text-decoration: none;
 }
 
+@media screen and (max-width: 600px) {
+  .rightSide {
+    float: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+  }
+}
+
+div#showFilters {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+}
+
 div#filters {
   position: absolute;
   top: 100px;
@@ -9154,7 +9186,28 @@ div#filters {
   background: #f4f4f4;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 99;
+}
+
+@media screen and (max-width: 600px) {
+  div#filters {
+    bottom: 0;
+    left: 0;
+    top: inherit;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: none;
+  }
+}
+
+div#filters button {
+  background: #8C1D40;
+  color: #fff;
+  padding: 8px;
+  font-weight: bold;
+  border: none;
 }
 
 #map .centerMarker {

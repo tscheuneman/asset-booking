@@ -116,8 +116,11 @@ nav#navbar {
 }
 
 .navbar-inverse .navbar-collapse {
-  float:left;
-  width:100%;
+  float: left;
+  width: 100%;
+  background: rgba(0,0,0,.8);
+  position: absolute;
+  z-index: 999;
 }
 
 .rightSide {
@@ -139,6 +142,26 @@ nav#navbar {
     color:$asu-gold;
     text-decoration:none;
   }
+
+  @media screen and (max-width: $mobileBreak) {
+    float:left;
+    border-top: 1px solid rgba(255,255,255,.5);
+    width: 100%;
+  }
+}
+
+div#showFilters {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.5);
+  height: 30px;
+  line-height:30px;
+  width: 100%;
+  text-align:center;
+  font-size:15px;
+  color:$white;
 }
 
 div#filters {
@@ -148,7 +171,27 @@ div#filters {
   padding:10px;
   background:$off-white;
   box-shadow:$normalBoxShadow;
-  z-index:999;
+  z-index:99;
+
+  @media screen and (max-width: $mobileBreak) {
+    bottom: 0;
+    left: 0;
+    top: inherit;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,0,0,.8);
+    color:$white;
+    display:none;
+  }
+
+  button {
+    background:$asu-maroon;
+    color:$white;
+    padding:8px;
+    font-weight:bold;
+    border:none;
+  }
+
 }
 
 #map .centerMarker{
