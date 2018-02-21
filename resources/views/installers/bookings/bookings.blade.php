@@ -3,13 +3,14 @@
     Booking for {{$booking->customer->username}}
 @stop
 @section('content')
-    @if(Session::has('flash_deleted'))
-        <div class="alert alert-warning"><span class="glyphicon glyphicon-remove-circle"></span><em> {!! session('flash_deleted') !!}</em></div>
+    @if(Session::has('lateItem'))
+        <br>
+        <div class="alert alert-danger"><span class="glyphicon glyphicon-remove-circle"></span><em> {!! session('lateItem') !!}</em></div>
     @endif
-    @if(Session::has('flash_created'))
-        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
+    @if(Session::has('howManyDays'))
+        <br>
+        <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('howManyDays') !!}</em></div>
     @endif
-    <br>
     <h1>Booking for {{$booking->customer->username}}</h1>
     <hr>
     <a href="#" id="showBooking"><span class="changeInfo">Show</span> Booking Info</a>

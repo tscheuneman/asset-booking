@@ -97,6 +97,20 @@ class InstallController extends Controller
     {
         $booking = Booking::with('asset', 'asset.location.building', 'asset.location.region', 'customer')->find($id);
         $installer = Cas::user();
+        \Session::flush('lateItem');
+        if(date('Y-m-d', strtotime($booking->time_from)) < date('Y-m-d')) {
+            $currentTime = time();
+            $dueTime = strtotime($booking->time_from);
+            $datediff = $currentTime - $dueTime;
+
+            \Session::flash('lateItem', 'This item is currently '.round($datediff / (60 * 60 * 24)).' days late');
+        }
+        else {
+            $currentTime = time();
+            $dueTime = strtotime($booking->time_from);
+            $datediff = $currentTime - $dueTime;
+            \Session::flash('howManyDays', round($datediff / (60 * 60 * 24)) . ' days until this is due');
+        }
         return view('installers.bookings.bookings',
             [
                 'booking' => $booking,
