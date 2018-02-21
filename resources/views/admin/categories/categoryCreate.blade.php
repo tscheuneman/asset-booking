@@ -48,10 +48,10 @@
         <input type="hidden" name="specifications" id="specifications" value='[{"id":0,"name":"","defaultVal":""}]'>
 
         <br style="clear:both;" />
-        <br>
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
 
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+        <br>
         @include('layouts.errors')
 
     </form>
