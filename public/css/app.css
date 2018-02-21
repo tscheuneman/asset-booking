@@ -8596,6 +8596,19 @@ span.optionData {
 @media screen and (max-width: 600px) {
   span.optionData {
     float: none;
+    margin-top: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 35px;
+  }
+
+  .navbar-nav .open .dropdown-menu > li:first-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -8611,6 +8624,14 @@ div.specification {
 
 div.specification.active {
   background: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  div.specification {
+    width: 98%;
+    margin: 15px auto;
+    float: none;
+  }
 }
 
 .clearfix {
@@ -8645,6 +8666,8 @@ div.adminHeading {
   background: #fff;
   width: 12%;
   height: 80px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 600px) {
@@ -8662,6 +8685,7 @@ div.adminHeading div.icon {
   font-size: 25px;
   text-align: center;
   line-height: 80px;
+  top: 0px;
 }
 
 div.adminHeading div.icon.blue {
@@ -8750,6 +8774,12 @@ div#quick-actions span.glyphicon {
   margin-bottom: 10px;
 }
 
+@media screen and (max-width: 600px) {
+  .navbar-nav {
+    margin: 0;
+  }
+}
+
 sidebar.navbar {
   float: left;
   width: 14%;
@@ -8763,6 +8793,8 @@ sidebar.navbar {
   -webkit-box-shadow: none;
           box-shadow: none;
   overflow-y: hidden;
+  -webkit-box-shadow: inset -8px 8px 24px rgba(0, 0, 0, 0.5);
+          box-shadow: inset -8px 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 600px) {
@@ -8772,6 +8804,9 @@ sidebar.navbar {
     left: 0;
     display: none;
     margin: 0;
+    top: 0;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -8781,7 +8816,7 @@ sidebar.navbar ul {
 
 @media screen and (max-width: 600px) {
   sidebar.navbar ul {
-    margin-top: 40px;
+    margin-top: 85px;
   }
 }
 
@@ -8862,6 +8897,8 @@ div#top {
   width: 100%;
   height: 75px;
   background: #16161e;
+  -webkit-box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+          box-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
 }
 
 div#top div.navTop {
@@ -9082,7 +9119,7 @@ br.clear {
 
 sidebar {
   position: absolute;
-  z-index: 999;
+  z-index: 9999;
   right: 0;
   height: 100%;
   width: 0;

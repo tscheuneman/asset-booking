@@ -202,8 +202,23 @@ span.optionData {
   border:1px solid $laravel-border-color;
   @media screen and (max-width: $mobileBreak) {
     float:none;
+    margin-top:5px;
+    border:1px solid rgba(0,0,0,.2);
+    padding:2px;
   }
 }
+.navbar-nav .open .dropdown-menu > li {
+  @media screen and (max-width: $mobileBreak) {
+    & > a {
+      line-height:35px;
+    }
+
+    &:first-child {
+      border-bottom: 1px solid rgba(0,0,0,.2);
+    }
+  }
+}
+
 div.specification {
   padding:15px;
   box-shadow:$normalBoxShadow;
@@ -214,6 +229,12 @@ div.specification {
     &.active {
       background:$white;
     }
+  @media screen and (max-width: $mobileBreak) {
+    width:98%;
+    margin:15px auto;
+    float:none;
+
+  }
 }
 
 .clearfix {
@@ -243,6 +264,7 @@ div.adminHeading {
   background:$white;
   width:12%;
   height:80px;
+  box-shadow:$lightBoxShadow;
 
   @media screen and (max-width: $mobileBreak) {
     width:48%;
@@ -257,6 +279,7 @@ div.adminHeading {
     font-size: 25px;
     text-align: center;
     line-height:80px;
+    top: 0px;
     &.blue {
       background: #1c98e6;  /* fallback for old browsers */
     }
@@ -327,7 +350,11 @@ div#quick-actions {
     margin-bottom:10px;
   }
 }
-
+.navbar-nav {
+  @media screen and (max-width: $mobileBreak) {
+    margin:0;
+  }
+}
 sidebar.navbar {
   float: left;
   width: 14%;
@@ -340,6 +367,7 @@ sidebar.navbar {
   border:none;
   box-shadow: none;
   overflow-y:hidden;
+  box-shadow:$insetSideBarShadow;
 
   @media screen and (max-width: $mobileBreak) {
     width:80%;
@@ -347,12 +375,14 @@ sidebar.navbar {
     left:0;
     display:none;
     margin: 0;
+    top: 0;
+    box-shadow:$normalBoxShadow;
   }
 
   ul {
     margin-top:90px;
     @media screen and (max-width: $mobileBreak) {
-      margin-top:40px;
+      margin-top:85px;
     }
   }
   .navbar-nav > li {
@@ -421,6 +451,7 @@ div#top {
   width: 100%;
   height: $topbarHeight;
   background: $topbar;
+  box-shadow:$darkBoxShadow;
 
   div.navTop{
     float:left;
