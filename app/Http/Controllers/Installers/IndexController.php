@@ -17,7 +17,7 @@ class IndexController extends Controller
     public function index()
     {
         $pendingBookings = Booking::where('active', true)->count();
-        $lateBookings = Booking::where('active', true)->where('time_from', '<=', date('Y-m-d'))->count();
+        $lateBookings = Booking::where('active', true)->where('time_from', '<', date('Y-m-d'))->count();
         $bookingInfo = Booking::with('asset.location.building', 'asset.location.region', 'customer')->where('active', true)->where('time_from', '<=', date('Y-m-d', strtotime('+7 days')))->orderBy('time_from', 'asc')->get();
         return view('installers.main',
             [

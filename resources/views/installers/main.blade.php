@@ -59,8 +59,10 @@
             </thead>
             <tbody>
                 @foreach($bookingInfo as $book)
-                    @if(date('Y-m-d', strtotime($book->time_from)) <= date('Y-m-d'))
+                    @if(date('Y-m-d', strtotime($book->time_from)) < date('Y-m-d'))
                         <tr class="past_due">
+                    @elseif(date('Y-m-d', strtotime($book->time_from)) === date('Y-m-d'))
+                        <tr class="due_today">
                     @else
                         <tr>
                     @endif
