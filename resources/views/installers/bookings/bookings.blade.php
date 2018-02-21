@@ -12,50 +12,53 @@
     <br>
     <h1>Booking for {{$booking->customer->username}}</h1>
     <hr>
-    <div class="blockData">
-        <span class="title">Time </span>
-        <div class="bookingTime">
-            <strong>Booked At: </strong> {{date('Y-m-d h:i:s a', strtotime($booking->created_at))}}
-            <br class="clear" />
-            <div class="bookingTimeBooked">
-                <strong>Booking Start: </strong> {{date('Y-m-d', strtotime($booking->time_from))}}
-                <br/>
-                <strong>Booking End: </strong> {{date('Y-m-d', strtotime($booking->time_to))}}
+    <a href="#" id="showBooking"><span class="changeInfo">Show</span> Booking Info</a>
+    <div id="bookingInfo">
+        <div class="blockData">
+            <span class="title">Time </span>
+            <div class="bookingTime">
+                <strong>Booked At: </strong> {{date('Y-m-d h:i:s a', strtotime($booking->created_at))}}
+                <br class="clear" />
+                <div class="bookingTimeBooked">
+                    <strong>Booking Start: </strong> {{date('Y-m-d', strtotime($booking->time_from))}}
+                    <br/>
+                    <strong>Booking End: </strong> {{date('Y-m-d', strtotime($booking->time_to))}}
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="blockData">
-        <span class="title">Customer </span>
-        <div class="bookingTime">
-            <strong>Customer Email: </strong> {{$booking->customer->email}}
-        </div>
-    </div>
-
-    <div class="blockData">
-        <span class="title">Location Info </span>
-        <div class="bookingTime">
-            <strong>Region: </strong> {{$booking->asset->location->region->name}}
-            <br>
-            <strong>Building: </strong> {{$booking->asset->location->building->name}}
-            <br>
-            <br>
-            <a class="editAction" href="http://maps.google.com/?q={{$booking->asset->location->latitude}},{{$booking->asset->location->longitude}}" target="_blank">Open in Google Maps</a>
-        </div>
-    </div>
-
-    <div class="blockData">
-        <span class="title">Asset Info </span>
-        <div class="bookingTime">
-            <strong>Name: </strong> {{$booking->asset->name}}
-            <br>
-            <strong>Specifications: </strong>
-            <div class="tags">
-
+        <div class="blockData">
+            <span class="title">Customer </span>
+            <div class="bookingTime">
+                <strong>Customer Email: </strong> {{$booking->customer->email}}
             </div>
         </div>
+
+        <div class="blockData">
+            <span class="title">Location Info </span>
+            <div class="bookingTime">
+                <strong>Region: </strong> {{$booking->asset->location->region->name}}
+                <br>
+                <strong>Building: </strong> {{$booking->asset->location->building->name}}
+                <br>
+                <br>
+                <a class="editAction" href="http://maps.google.com/?q={{$booking->asset->location->latitude}},{{$booking->asset->location->longitude}}" target="_blank">Open in Google Maps</a>
+            </div>
+        </div>
+
+        <div class="blockData">
+            <span class="title">Asset Info </span>
+            <div class="bookingTime">
+                <strong>Name: </strong> {{$booking->asset->name}}
+                <br>
+                <strong>Specifications: </strong>
+                <div class="tags">
+
+                </div>
+            </div>
+        </div>
+        <br class="clear" />
     </div>
-    <br class="clear" />
     <hr>
     <div id="installSecondary" class="row">
         <div class="col-xs-6">
@@ -96,7 +99,18 @@
 
 
     <script>
-        populateSpecs();
+        $(document).ready(function() {
+            populateSpecs();
+            $('#showBooking').on('click', function() {
+                let changeVal = "Show";
+                if($('.changeInfo', this).text() === "Show") {
+                    changeVal = "Hide";
+                }
+                $('#bookingInfo').stop().slideToggle(500);
+                $('.changeInfo', this).text(changeVal);
+            });
+        });
+
         function populateSpecs() {
             let mainObj = '{!! $booking->asset->specifications !!}';
             mainObj = JSON.parse(mainObj);
