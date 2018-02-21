@@ -10,7 +10,9 @@ header h1 {
     margin:0;
   }
 }
-
+.table > tbody > tr >td {
+  vertical-align: middle;
+}
 table {
   max-width:100%;
   overflow-x:scroll;
@@ -482,7 +484,9 @@ span.title {
 tr.past_due {
   background:$past-due;
 }
-
+tr.due_today {
+  background:$due_today;
+}
 div.blockData {
   width: 23%;
   float: left;
@@ -534,3 +538,33 @@ img.largeImage {
   text-align:center;
   display: block;
 }
+
+.col-xs-6 {
+  @media screen and (max-width: $mobileBreak) {
+    width:100%;
+
+    &:first-child {
+      display:none;
+    }
+  }
+}
+
+#showBooking {
+  background:$asu-maroon;
+  color:$white;
+  padding:8px;
+  border-radius:6px;
+  display:none;
+  text-decoration: none;
+  @media screen and (max-width: $mobileBreak) {
+    display:inline-block;
+  }
+}
+
+#bookingInfo {
+  display:block;
+  @media screen and (max-width: $mobileBreak) {
+    display:none;
+  }
+}
+

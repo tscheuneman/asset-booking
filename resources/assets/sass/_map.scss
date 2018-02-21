@@ -116,11 +116,13 @@ nav#navbar {
 }
 
 .navbar-inverse .navbar-collapse {
-  float: left;
-  width: 100%;
-  background: rgba(0,0,0,.8);
-  position: absolute;
-  z-index: 999;
+  @media screen and (max-width: $mobileBreak) {
+    float: left;
+    width: 100%;
+    background: rgba(0,0,0,.8);
+    position: absolute;
+    z-index: 999;
+  }
 }
 
 .rightSide {
@@ -156,13 +158,18 @@ div#showFilters {
   left: 0;
   z-index: 9999;
   background: rgba(0,0,0,.5);
-  height: 30px;
-  line-height:30px;
+  height: 35px;
+  line-height:35px;
   width: 100%;
   text-align:center;
   font-size:15px;
   color:$white;
+  display:none;
+  @media screen and (max-width: $mobileBreak) {
+    display:block;
+  }
 }
+
 
 div#filters {
   position:absolute;

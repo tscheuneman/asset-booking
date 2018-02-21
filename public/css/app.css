@@ -8365,6 +8365,10 @@ header h1 {
   }
 }
 
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
 table {
   max-width: 100%;
   overflow-x: scroll;
@@ -8932,6 +8936,10 @@ tr.past_due {
   background: #ffe4df;
 }
 
+tr.due_today {
+  background: #ebfff0;
+}
+
 div.blockData {
   width: 23%;
   float: left;
@@ -8987,6 +8995,41 @@ img.largeImage {
   margin: 0 auto;
   text-align: center;
   display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .col-xs-6 {
+    width: 100%;
+  }
+
+  .col-xs-6:first-child {
+    display: none;
+  }
+}
+
+#showBooking {
+  background: #8C1D40;
+  color: #fff;
+  padding: 8px;
+  border-radius: 6px;
+  display: none;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  #showBooking {
+    display: inline-block;
+  }
+}
+
+#bookingInfo {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  #bookingInfo {
+    display: none;
+  }
 }
 
 body {
@@ -9122,12 +9165,14 @@ nav#navbar li.active {
   color: #ffb310;
 }
 
-.navbar-inverse .navbar-collapse {
-  float: left;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  z-index: 999;
+@media screen and (max-width: 600px) {
+  .navbar-inverse .navbar-collapse {
+    float: left;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    z-index: 999;
+  }
 }
 
 .rightSide {
@@ -9170,12 +9215,19 @@ div#showFilters {
   left: 0;
   z-index: 9999;
   background: rgba(0, 0, 0, 0.5);
-  height: 30px;
-  line-height: 30px;
+  height: 35px;
+  line-height: 35px;
   width: 100%;
   text-align: center;
   font-size: 15px;
   color: #fff;
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  div#showFilters {
+    display: block;
+  }
 }
 
 div#filters {
