@@ -27,10 +27,9 @@ class LocationController extends Controller
     public function verify(Request $request) {
         $lat = $request->get('lat');
         $lng = $request->get('lng');
-        $distance = 1.2;
 
-        $getBuilding = Building::getByDistance($lat, $lng, $distance);
-        $getRegion = Region::getByDistance($lat, $lng, 10);
+        $getBuilding = Building::getByDistance($lat, $lng, env('BUILDING_DISTANCE_RADIUS', 1.2));
+        $getRegion = Region::getByDistance($lat, $lng, env('REGION_DISTANCE_RADIUS', 15));
 
         $arrayVal = array();
         $prevBuildings = array();
