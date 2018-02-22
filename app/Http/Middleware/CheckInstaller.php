@@ -30,11 +30,11 @@ class CheckInstaller
                 return $next($request);
             }
             else {
-                return redirect('/error');
+                return redirect('/');
             }
         }
         else {
-            return redirect('/error');
+            return redirect('/cas/error');
         }
 
     }
