@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Admin;
 
 class CreateAdminTable extends Migration
 {
@@ -22,6 +23,15 @@ class CreateAdminTable extends Migration
             $table->string('email')->nullable(false);
             $table->timestamps();
         });
+
+        //Create default admin user
+        $admin = new Admin();
+            $admin->username = env('INITAL_ADMIN_USER', 'admin');
+            $admin->first_name = "FirstName";
+            $admin->last_name = "LastName";
+            $admin->email = env('INITAL_ADMIN_USER', 'admin') . '@' . env('EMAIL_APPEND', 'google.com');
+            $admin->save();
+
     }
 
     /**
