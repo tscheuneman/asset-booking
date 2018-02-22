@@ -8654,8 +8654,8 @@ div.specification.active {
 
 .admin.container form#submit,
 .sort form {
-  width: 700px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 700px;
 }
 
 /* Home */
@@ -9119,7 +9119,7 @@ br.clear {
 
 sidebar {
   position: absolute;
-  z-index: 9999;
+  z-index: 1999;
   right: 0;
   height: 100%;
   width: 0;
