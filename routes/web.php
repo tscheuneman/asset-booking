@@ -12,6 +12,8 @@
 */
 use App\Http\Middleware\CheckAge;
 
+Route::get('/installer/error', 'Installers\IndexController@error');
+
 Route::group(['middleware' => ['cas.user']], function ()
 {
     Route::get('/', 'IndexController@index');

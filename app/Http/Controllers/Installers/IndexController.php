@@ -33,6 +33,11 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function error()
+    {
+        return view('installers.error');
+    }
+
     public function create()
     {
         //
