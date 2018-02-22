@@ -8,8 +8,8 @@
                 <li class="dropdown {{ Request::is('admin/locations*') ? 'active' : '' }}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/admin/locations/buildings') }}">Buildings</a></li>
-                        <li><a href="{{ url('/admin/locations/regions') }}">Regions</a></li>
+                        <li class="{{ Request::is('admin/locations/building*') ? 'active' : '' }}"><a href="{{ url('/admin/locations/buildings') }}">Buildings</a></li>
+                        <li class="{{ Request::is('admin/locations/region*') ? 'active' : '' }}"><a href="{{ url('/admin/locations/regions') }}">Regions</a></li>
                     </ul>
                 </li>
                 <li class="{{ Request::is('admin/specification*') ? 'active' : '' }}"><a href="{{ url('/admin/specifications') }}">Specifications</a></li>

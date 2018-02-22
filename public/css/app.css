@@ -8847,11 +8847,7 @@ sidebar.navbar .navbar-nav > li.active a {
   color: #ffb310;
 }
 
-sidebar.navbar .navbar-nav {
-  width: 100%;
-}
-
-sidebar.navbar .dropdown-menu {
+sidebar.navbar .navbar-nav > li .dropdown-menu {
   position: relative;
   width: 100%;
   border-radius: 0;
@@ -8859,17 +8855,30 @@ sidebar.navbar .dropdown-menu {
   float: none;
 }
 
-sidebar.navbar .dropdown-menu li a {
+sidebar.navbar .navbar-nav > li .dropdown-menu li a {
   background: #444660;
+  color: #fff;
 }
 
-sidebar.navbar .dropdown-menu li.special a {
+sidebar.navbar .navbar-nav > li .dropdown-menu li a:hover {
+  background: #595b7e;
+}
+
+sidebar.navbar .navbar-nav > li .dropdown-menu li.active a {
+  background: #595b7e;
+}
+
+sidebar.navbar .navbar-nav > li .dropdown-menu li.special a {
   background: #ffb310;
   color: #000 !important;
 }
 
-sidebar.navbar .dropdown-menu li.special a:hover {
+sidebar.navbar .navbar-nav > li .dropdown-menu li.special a:hover {
   background: #ffdf5c !important;
+}
+
+sidebar.navbar .navbar-nav {
+  width: 100%;
 }
 
 .nav .open > a,
