@@ -5,7 +5,7 @@
 @section('content')
     <h2>Edit {{$user->first_name . ' ' . $user->last_name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/users') }}/{{$user->id}}">
+    <form method="POST" action="{{ url('/admin/users') }}/{{$user->id}}" id="submit">
         {{csrf_field()}}
         <input type="hidden" name="id" value="{{$user->id}}">
         <div class="form-group">

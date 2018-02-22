@@ -5,7 +5,7 @@
 @section('content')
     <h2>Edit {{$building->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/locations/building') }}/{{$building->id}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/locations/building') }}/{{$building->id}}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
         <input type="hidden" name="id" value="{{$building->id}}">

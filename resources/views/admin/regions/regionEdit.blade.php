@@ -5,7 +5,7 @@
 @section('content')
     <h2>Edit {{$region->name}}</h2>
     <hr>
-    <form method="POST" action="{{ url('/admin/locations/region') }}/{{$region->id}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ url('/admin/locations/region') }}/{{$region->id}}" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
         <input type="hidden" value="{{$region->id}}">
         <div class="form-group">
