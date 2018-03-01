@@ -23,9 +23,8 @@
                 </ul>
 
                 <div class="rightSide">
-                    <a :href="/user/ + username">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                        {{username}}
+                    <a :href="/cart/ + username">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> Cart (<span class="items">0</span>)
                     </a>
                 </div>
             </div><!-- /.navbar-collapse -->
