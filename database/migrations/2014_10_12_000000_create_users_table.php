@@ -18,6 +18,10 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->string('username');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('department');
+            $table->string('agency_org');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
