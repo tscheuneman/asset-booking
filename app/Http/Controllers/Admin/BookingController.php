@@ -8,7 +8,9 @@ use Validator;
 use Cas;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use App\Cart;
+use App\CartEntry;
+use Illuminate\Database\QueryException;
 
 class BookingController extends Controller
 {
@@ -59,23 +61,59 @@ class BookingController extends Controller
         if($val === null) {
             if (Auth::check())
             {
-                $user = Auth::id();
-                $asset_id = $id;
+                try {
+                    $user = Auth::id();
+                    $asset_id = $id;
 
-                $startTime = date('Y-m-d H:i:s', strtotime($startDate));
-                $endTime = date('Y-m-d H:i:s', strtotime($endDate));
+                    $startTime = date('Y-m-d H:i:s', strtotime($startDate));
+                    $endTime = date('Y-m-d H:i:s', strtotime($endDate));
 
+                    try {
+                        $cart = Cart::where('cust_id', $user)->first();
+                        if (!$cart) {
+                            $newCart = new Cart();
+                            $newCart->cust_id = $user;
+                            $newCart->save();
+                            $cart_id = $newCart->id;
+                        }
+                        else {
+                            $cart_id = $cart->id;
+                        }
 
-                $booking = new Booking();
+                    } catch(QueryException $e) {
+                        $returnData['status'] = 'Error';
+                        $returnData['message'] = 'Failed to add to cart';
+                        return json_encode($returnData);
+                    }
+
+                    $booking = new Booking();
                     $booking->asset_id = $asset_id;
                     $booking->time_from = $startTime;
                     $booking->time_to = $endTime;
                     $booking->cust_id = $user;
                     $booking->save();
 
-                $returnData['status'] = 'Success';
-                $returnData['message'] = 'That time has been booked!';
-                return json_encode($returnData);
+                    try {
+                        $cartEntry = new CartEntry();
+                        $cartEntry->booking_id = $booking->id;
+                        $cartEntry->cart_id = $cart_id;
+                        $cartEntry->save();
+                    } catch(QueryException $e) {
+                        $returnData['status'] = 'Error';
+                        $returnData['message'] = 'Failed to add to cart2';
+                        return json_encode($returnData);
+                    }
+
+                    $returnData['status'] = 'Success';
+                    $returnData['message'] = 'That booking has been added to your cart';
+                    return json_encode($returnData);
+
+                } catch(QueryException $e) {
+                    $returnData['status'] = 'Error';
+                    $returnData['message'] = 'Failed to create booking';
+                    return json_encode($returnData);
+                }
+
             }
             else {
                 $returnData['status'] = 'Error';
