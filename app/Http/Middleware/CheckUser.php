@@ -22,13 +22,7 @@ class CheckUser
         if(Cas::authenticate()) {
             $user = User::where('username', Cas::user())->first();
             if($user === null){
-                $thisUser = new User();
-                $thisUser->username = Cas::user();
-                $thisUser->email = Cas::user() . '@' . env('EMAIL_APPEND');
-                $thisUser->password = Hash::make(Cas::user());
-                $thisUser->save();
-                Auth::login($thisUser);
-                return redirect('/');
+                return redirect('/register');
             }
             else {
                 Auth::login($user);
