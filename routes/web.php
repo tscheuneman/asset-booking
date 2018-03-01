@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Middleware\CheckAge;
+
 
 Route::get('/installer/error', 'Installers\IndexController@error');
 
