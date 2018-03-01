@@ -17,6 +17,7 @@ class CreateCartentriesTable extends Migration
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->uuid('booking_id')->nullable(false);
+            $table->uuid('cart_id')->nullable(false);
             $table->timestamps();
         });
     }
