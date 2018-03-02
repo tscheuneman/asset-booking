@@ -23,8 +23,8 @@
                 </ul>
 
                 <div class="rightSide">
-                    <a :href="/cart/ + username">
-                        <i class="glyphicon glyphicon-shopping-cart"></i> Cart (<span class="items">0</span>)
+                    <a :href="/cart/">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> Cart (<span class="items">{{ $store.state.count }}</span>)
                     </a>
                 </div>
             </div><!-- /.navbar-collapse -->
@@ -35,22 +35,39 @@
 </template>
 
 <script>
+    import { mapMutations, mapGetters } from 'vuex'
+    import { store } from './store';
+
     export default {
         props: {
             username: String,
-            region: Array
+            region: Array,
         },
         data () {
             return {
                 activeItemId: '',
-                elements: [],
+                elements: []
             }
 
         },
         mounted() {
             this.elements = this.region;
+            fetch('/cart/count')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(myJson) {
+                    store.commit('change', myJson);
+                });
         },
         methods: {
+            ...mapMutations([
+                'change',
+            ]),
+            ...mapGetters([
+                // Mounts the "safelyStoredNumber" getter to the scope of your component.
+                'countGet'
+            ]),
             centerMap: function(elm) {
                 Vue.bus.emit('changeCenter', elm);
             },
