@@ -11,8 +11,10 @@ window.daterangepicker = require('daterangepicker');
 
 window.Vue = require('vue');
 window.VueBus = require('vue-bus');
-Vue.use(VueBus);
 
+import {store} from './components/store';
+
+Vue.use(VueBus);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,5 +29,6 @@ Vue.component('filters', require('./components/Filters.vue'));
 Vue.component('userbookings', require('./components/Bookings.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });
