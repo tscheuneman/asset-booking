@@ -35,6 +35,8 @@
 
 <script>
     import * as moment from 'moment';
+    import { mapMutations } from 'vuex';
+    import { store } from './store';
     let bookingData = [];
     let selectedElement = null;
     $(document).ready(function() {
@@ -59,6 +61,7 @@
                     alert(returnData.message);
                 }
                 else {
+                    store.commit('increment');
                     alert(returnData.message);
                     toggleSidebar();
                 }
@@ -157,6 +160,7 @@
                 arrayVal.push(item);
             }
             this.markers = arrayVal;
+
         },
         created() {
             let self = this;
@@ -187,6 +191,9 @@
                 });
         },
         methods: {
+            ...mapMutations([
+                'increment',
+            ]),
             toggleInfoWindow: function(marker, idx) {
                 let returnData = theData.find(x => x.id === marker.id);
                 toggleSidebar(returnData);
