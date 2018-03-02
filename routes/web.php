@@ -30,6 +30,8 @@ Route::group(['middleware' => ['cas.user']], function ()
     Route::post('/booking/{id}', 'Admin\BookingController@store');
 
     Route::get('/user/{username}', 'IndexController@userShow');
+
+    Route::get('/cart/count', 'CartController@count');
 });
 
 
