@@ -23,6 +23,7 @@
         "marker-clusterer-plus": "^2.1.4",
         "moment": "^2.20.1",
         "vue-bus": "^1.0.0",
-        "vue2-google-maps": "^0.8.4"
+        "vue2-google-maps": "^0.8.4",
+        "vuex": "^3.0.1"
     }
 }
