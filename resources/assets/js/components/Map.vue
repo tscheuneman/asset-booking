@@ -25,8 +25,8 @@
                         v-for="(m,i) in markers"
                         :position="m.position"
                         :icon="m.icon"
-                        :clickable="true" @click="toggleInfoWindow(m,i)
-        "></gmap-marker>
+                        :clickable="true" @click="toggleInfoWindow(m,i)"
+                />
             </gmap-cluster>
 
         </gmap-map>
@@ -42,7 +42,7 @@
     $(document).ready(function() {
         $('sidebar').on('click', 'a.bookLink', function() {
             let drp = $('#book').data('daterangepicker');
-            let startDate = drp.startDate.format("YYYY-MM-DD")
+            let startDate = drp.startDate.format("YYYY-MM-DD");
             let endDate = drp.endDate.format("YYYY-MM-DD");
 
             $.ajax({
