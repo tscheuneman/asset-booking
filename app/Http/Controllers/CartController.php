@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+
+    public function index() {
+        $user = Auth::id();
+        $cart = Cart::where('cust_id', $user)->first();
+        $entries = CartEntry::where('cart_id', $cart)->get();
+        return view('admin.cart',
+            [
+                'entries' => $entries,
+            ]
+        );
+    }
+
+
     public function count()
     {
         $user = Auth::id();
