@@ -27,6 +27,8 @@ Vue.component('googlemap', require('./components/Map.vue'));
 Vue.component('navigation', require('./components/Nav.vue'));
 Vue.component('filters', require('./components/Filters.vue'));
 Vue.component('userbookings', require('./components/Bookings.vue'));
+Vue.component('cart', require('./components/Cart.vue'));
+Vue.component('entry', require('./components/CartEntry.vue'));
 
 const app = new Vue({
     el: '#app',
