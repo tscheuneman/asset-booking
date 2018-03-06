@@ -18,10 +18,12 @@ class IndexController extends Controller
         $region = Region::orderBy('name', 'ASC')->get();
 
         $categories = Category::orderBy('name', 'ASC')->get();
+
+        $user = User::where('username', Cas::user())->first();
         return view('index.map',
             [
                 'assets' => $assets,
-                'user' => Cas::user(),
+                'user' => $user,
                 'region' => $region,
                 'categories' => $categories
             ]
