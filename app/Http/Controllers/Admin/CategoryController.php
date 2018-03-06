@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories',
             'specifications' => 'json',
             'marker' => 'required|image',
-            'description' => '',
+            'description' => 'required',
         ]);
 
         try {
