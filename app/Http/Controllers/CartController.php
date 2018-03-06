@@ -13,7 +13,7 @@ class CartController extends Controller
     public function index() {
         $user = Auth::id();
         $cart = Cart::where('cust_id', $user)->first();
-        $entries = CartEntry::with('booking.asset.location')->where('cart_id', $cart->id)->get();
+        $entries = CartEntry::with('booking.asset.location.building', 'booking.asset.location.region')->where('cart_id', $cart->id)->get();
         return $entries;
     }
 
