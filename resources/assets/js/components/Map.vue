@@ -56,15 +56,26 @@
                     'end_date': endDate
                 }
             }).done(function( msg ) {
-                let returnData = JSON.parse(msg);
-                if(returnData.status === "Error") {
-                    alert(returnData.message);
+                try {
+                    let returnData = JSON.parse(msg);
+                    if(returnData.status === "Error") {
+                        alert(returnData.message);
+                    }
+                    else {
+                        store.commit('increment');
+                        store.commit('addToCart',msg);
+                        alert("Added to Cart");
+                        toggleSidebar();
+                    }
                 }
-                else {
+                catch(err) {
                     store.commit('increment');
-                    alert(returnData.message);
+                    store.commit('addToCart',msg);
+                    alert("Added to Cart");
                     toggleSidebar();
                 }
+
+
             });
         });
         let d = new Date();
@@ -193,6 +204,7 @@
         methods: {
             ...mapMutations([
                 'increment',
+                'addToCart'
             ]),
             toggleInfoWindow: function(marker, idx) {
                 let returnData = theData.find(x => x.id === marker.id);
