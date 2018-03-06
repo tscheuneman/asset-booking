@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
         try {
             $path = $request->file('marker')->store(
-                'markers/', 'public'
+                'markers', 'public'
             );
         }
         catch(Exception $e) {
@@ -130,7 +130,7 @@ class CategoryController extends Controller
         if(request('marker') != null) {
             try {
                 $path = $request->file('marker')->store(
-                    'markers/', 'public'
+                    'markers', 'public'
                 );
             }
             catch(Exception $e) {
