@@ -105,8 +105,8 @@ class BookingController extends Controller
                     }
 
                     $returnData['status'] = 'Success';
-                    $returnData['message'] = 'That booking has been added to your cart';
-                    return json_encode($returnData);
+                    $returnData['message'] = 'Entry Created';
+                    return $cartEntry;
 
                 } catch(QueryException $e) {
                     $returnData['status'] = 'Error';
