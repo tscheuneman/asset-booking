@@ -23,9 +23,13 @@
                 </ul>
 
                 <div class="rightSide">
-                    <a :href="/cart/">
+                    <div
+                       :clickable="true"
+                       @click="showCart()"
+                       class="cart"
+                     >
                         <i class="glyphicon glyphicon-shopping-cart"></i> Cart (<span class="items">{{ $store.state.count }}</span>)
-                    </a>
+                    </div>
                 </div>
             </div><!-- /.navbar-collapse -->
 
@@ -40,7 +44,7 @@
 
     export default {
         props: {
-            username: String,
+            user: String,
             region: Array,
         },
         data () {
@@ -52,24 +56,29 @@
         },
         mounted() {
             this.elements = this.region;
-            fetch('/cart/count')
+            let data = JSON.parse(this.user);
+            fetch('/cart')
                 .then(function(response) {
                     return response.json();
                 })
-                .then(function(myJson) {
-                    store.commit('change', myJson);
+                .then(function(jsonVal) {
+                    let count = jsonVal.length;
+                    store.commit('change', count);
+                    store.commit('addBookingEvent', jsonVal);
                 });
+            store.commit('changeFirstName', data.first_name);
         },
         methods: {
             ...mapMutations([
                 'change',
-            ]),
-            ...mapGetters([
-                // Mounts the "safelyStoredNumber" getter to the scope of your component.
-                'countGet'
+                'changeFirstName',
+                'addBookingEvent'
             ]),
             centerMap: function(elm) {
                 Vue.bus.emit('changeCenter', elm);
+            },
+            showCart: function() {
+                $('#cart').stop().slideToggle(500);
             },
             setActiveItemId(itemIndex) {
                 this.activeItemId = itemIndex
