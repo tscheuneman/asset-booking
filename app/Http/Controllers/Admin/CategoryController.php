@@ -122,7 +122,7 @@ class CategoryController extends Controller
             'name' => 'required',
             'specifications' => 'json',
             'marker' => 'image',
-            'description' => '',
+            'description' => 'required',
         ]);
 
         $validator = new JSONValidate;
