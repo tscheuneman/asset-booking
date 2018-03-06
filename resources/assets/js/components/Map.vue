@@ -122,7 +122,7 @@
 
     Vue.use(VueGoogleMaps, {
         load: {
-            key: process.env.GOOGLE_MAPS_API,
+            key: 'AIzaSyBtj2Hj9Nr7fZkBnfmbf8DgKnw0-dM1afg'
             // libraries: 'places', //// If you need to use place input
         }
     });
