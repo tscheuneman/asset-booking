@@ -118,12 +118,11 @@
     /////////////////////////////////////////
     // New in 0.4.0
     import * as VueGoogleMaps from 'vue2-google-maps';
-
     import axios from 'axios';
 
     Vue.use(VueGoogleMaps, {
         load: {
-            key: '',
+            key: process.env.GOOGLE_MAPS_API,
             // libraries: 'places', //// If you need to use place input
         }
     });
