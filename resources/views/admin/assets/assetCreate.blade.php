@@ -125,7 +125,7 @@
         };
 
         let tryAPIGeolocation = function() {
-            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key={{env('GOOGLE_MAPS_API')}}", function(success) {
+            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBXp4rAvEu5pvnPuP4EgWc1g6GhDgWCcp4", function(success) {
                 apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
             })
                 .fail(function(err) {
