@@ -84,7 +84,7 @@
             //On category change, load specs again
             $('select#category').on('change', function() {
                 getSpecs();
-            })
+            });
 
             $('#submit').submit(function() {
                 let obj = [];
@@ -164,7 +164,7 @@
                 navigator.geolocation.getCurrentPosition(
                     browserGeolocationSuccess,
                     browserGeolocationFail,
-                    {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+                    {maximumAge: 0, timeout: 20000, enableHighAccuracy: true});
             }
         };
 
