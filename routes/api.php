@@ -17,4 +17,6 @@ Route::group(['middleware' => ['cas.user']], function () {
     Route::get('/assets', 'Admin\AssetController@getAllAssets');
 
     Route::get('/location/regions', 'Admin\RegionController@getAllRegions');
+
+    Route::get('/categories', 'Admin\CategoryController@getAllCategories');
 });
