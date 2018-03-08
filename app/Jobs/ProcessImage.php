@@ -45,13 +45,16 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
         try {
+            if(!File::exists(public_path() . '/storage/markers')) {
+                File::makeDirectory(public_path() . '/storage/markers', 775);
+            }
+            if(!File::exists(public_path() . '/storage/images')) {
+                File::makeDirectory(public_path() . '/storage/images', 775);
+            }
             $manager = new ImageManager();
             $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            if(!File::exists(storage_path(public_path() . '/storage/' . $this->fileLoc))) {
-                File::makeDirectory(storage_path(public_path() . '/storage/' . $this->fileLoc));
-            }
             $img->save();
         }
         catch (Exception $e) {
