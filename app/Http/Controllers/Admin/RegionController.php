@@ -95,7 +95,7 @@ class RegionController extends Controller
     }
 
     public function getAllRegions() {
-        return Region::orderBy('name', 'ASC')->get(['latitude', 'longitude', 'name']);
+        return Region::orderBy('name', 'ASC')->get(['id', 'latitude', 'longitude', 'name']);
     }
 
 }
