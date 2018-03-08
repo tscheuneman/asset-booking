@@ -198,4 +198,8 @@ class CategoryController extends Controller
 
     }
 
+    public function getAllCategories() {
+        return Category::orderBy('name', 'ASC')->get(['id', 'name']);
+    }
+
 }
