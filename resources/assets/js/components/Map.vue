@@ -145,62 +145,6 @@
             }
         },
         mounted(){
-
-            let apiGeolocationSuccess = function(position) {
-                let pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                this.center.lat = pos.lat;
-                this.center.lng = pos.lng;
-            }.bind(this);
-
-            let tryAPIGeolocation = function() {
-                jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBXp4rAvEu5pvnPuP4EgWc1g6GhDgWCcp4", function(success) {
-                    apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
-                })
-                    .fail(function(err) {
-                        alert("API Geolocation error! \n\n"+err);
-                    });
-            };
-
-            let browserGeolocationSuccess = function(position) {
-                let pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                this.center.lat = pos.lat;
-                this.center.lng = pos.lng;
-            }.bind(this);
-
-            let browserGeolocationFail = function(error) {
-                switch (error.code) {
-                    case error.TIMEOUT:
-                        alert("Browser geolocation error !\n\nTimeout.");
-                        break;
-                    case error.PERMISSION_DENIED:
-                        if(error.message.indexOf("Only secure origins are allowed") == 0) {
-                            tryAPIGeolocation();
-                        }
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        tryAPIGeolocation();
-                        break;
-                }
-            };
-
-            let tryGeolocation = function() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        browserGeolocationSuccess,
-                        browserGeolocationFail,
-                        {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
-                }
-            };
-
-            tryGeolocation();
-
-            /*
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     let pos = {
@@ -212,7 +156,7 @@
 
                 }.bind(this));
             }
-            */
+
             theData = this.assets;
             let arrayVal = [];
             for(let i = 0; i < theData.length; i++) {

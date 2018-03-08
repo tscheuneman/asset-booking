@@ -107,13 +107,13 @@
 
             });
         });
-
         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
+<<<<<<< HEAD
         let apiGeolocationSuccess = function(position) {
             console.log(position);
             let crd = position.coords;
@@ -137,6 +137,10 @@
 
         let browserGeolocationSuccess = function(position) {
             let crd = position.coords;
+=======
+        function success(pos) {
+            var crd = pos.coords;
+>>>>>>> parent of 17e6ead... Fallback for nonssl locations
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
 
@@ -145,6 +149,7 @@
             createMap(crd.latitude, crd.longitude);
         };
 
+<<<<<<< HEAD
         let browserGeolocationFail = function(error) {
             switch (error.code) {
                 case error.TIMEOUT:
@@ -168,12 +173,13 @@
                     browserGeolocationFail,
                     {maximumAge: 0, timeout: 20000, enableHighAccuracy: true});
             }
+=======
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+>>>>>>> parent of 17e6ead... Fallback for nonssl locations
         };
 
-        tryGeolocation();
-
-
-        //navigator.geolocation.getCurrentPosition(success, error, options);
+        navigator.geolocation.getCurrentPosition(success, error, options);
 
 
         function getSpecs() {
