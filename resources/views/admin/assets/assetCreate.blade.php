@@ -112,72 +112,15 @@
             timeout: 5000,
             maximumAge: 0
         };
-
-<<<<<<< HEAD
-        let apiGeolocationSuccess = function(position) {
-            console.log(position);
-            let crd = position.coords;
-            $('#latitude').val(crd.latitude);
-            $('#longitude').val(crd.longitude);
-
-            getBuildingRegion(crd.latitude, crd.longitude);
-
-            createMap(crd.latitude, crd.longitude);
-        };
-
-        let tryAPIGeolocation = function() {
-            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBXp4rAvEu5pvnPuP4EgWc1g6GhDgWCcp4", function(success) {
-                alert(success.accuracy);
-                apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
-            })
-                .fail(function(err) {
-                    alert("API Geolocation error! \n\n"+err);
-                });
-        };
-
-        let browserGeolocationSuccess = function(position) {
-            let crd = position.coords;
-=======
         function success(pos) {
-            var crd = pos.coords;
->>>>>>> parent of 17e6ead... Fallback for nonssl locations
+            let crd = pos.coords;
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
 
             getBuildingRegion(crd.latitude, crd.longitude);
 
             createMap(crd.latitude, crd.longitude);
-        };
-
-<<<<<<< HEAD
-        let browserGeolocationFail = function(error) {
-            switch (error.code) {
-                case error.TIMEOUT:
-                    alert("Browser geolocation error !\n\nTimeout.");
-                    break;
-                case error.PERMISSION_DENIED:
-                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
-                        tryAPIGeolocation();
-                    }
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    tryAPIGeolocation();
-                    break;
-            }
-        };
-
-        let tryGeolocation = function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    browserGeolocationSuccess,
-                    browserGeolocationFail,
-                    {maximumAge: 0, timeout: 20000, enableHighAccuracy: true});
-            }
-=======
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
->>>>>>> parent of 17e6ead... Fallback for nonssl locations
-        };
+        }
 
         navigator.geolocation.getCurrentPosition(success, error, options);
 
