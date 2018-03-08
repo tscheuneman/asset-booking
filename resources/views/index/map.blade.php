@@ -14,7 +14,7 @@
         <cart>
 
         </cart>
-        <filters :categories="{{$categories}}">
+        <filters>
 
         </filters>
 
