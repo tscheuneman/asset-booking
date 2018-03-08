@@ -4,19 +4,21 @@
 @stop
 @section('content')
     <div id="app">
-        <navigation :region="{{$region}}" :username="'{{$user}}'">
+        <navigation :user="'{{$user}}'">
 
         </navigation>
 
         <div id="showFilters">
             <span class="glyphicon glyphicon-chevron-up"></span>
         </div>
+        <cart>
 
-        <filters :categories="{{$categories}}" :region="{{$region}}">
+        </cart>
+        <filters :categories="{{$categories}}">
 
         </filters>
 
-        <googleMap :assets="{{$assets}}">
+        <googleMap>
 
         </googleMap>
     </div>
