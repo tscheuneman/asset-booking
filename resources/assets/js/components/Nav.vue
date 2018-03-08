@@ -14,7 +14,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li v-for="element in elements"
+                    <li v-for="element in $store.state.regions"
                     :clickable="true"
                     @click="centerMap(element) + setActiveItemId(element.id)"
                     :class="{'active': activeItemId === element.id}"
@@ -49,8 +49,7 @@
         },
         data () {
             return {
-                activeItemId: '',
-                elements: []
+                activeItemId: ''
             }
 
         },
@@ -71,7 +70,6 @@
                 .then(function (response) {
                     let returnData = response.data;
                     store.commit('addRegions', returnData);
-                    self.populateRegions(store.state.regions);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -94,9 +92,6 @@
             },
             setActiveItemId(itemIndex) {
                 this.activeItemId = itemIndex
-            },
-            populateRegions(regions) {
-                this.elements = regions;
             }
         }
     }
