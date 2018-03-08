@@ -35,8 +35,12 @@
 
 <script>
     import * as moment from 'moment';
+    import * as VueGoogleMaps from 'vue2-google-maps';
+    import axios from 'axios';
     import { mapMutations } from 'vuex';
     import { store } from './store';
+
+
     let bookingData = [];
     let selectedElement = null;
     $(document).ready(function() {
@@ -117,8 +121,6 @@
     let theData = '';
     /////////////////////////////////////////
     // New in 0.4.0
-    import * as VueGoogleMaps from 'vue2-google-maps';
-    import axios from 'axios';
 
     Vue.use(VueGoogleMaps, {
         load: {
@@ -129,7 +131,7 @@
 
     export default {
         props: {
-            assets: Array
+
         },
         data () {
             return {
@@ -141,10 +143,12 @@
                 infoWinOpen: false,
                 currentMidx: null,
                 //optional: offset infowindow so it visually sits nicely on top of our marker
-                markers: []
+                markers: [],
+                assets: [],
             }
         },
         mounted(){
+            let self = this;
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     let pos = {
@@ -157,20 +161,15 @@
                 }.bind(this));
             }
 
-            theData = this.assets;
-            let arrayVal = [];
-            for(let i = 0; i < theData.length; i++) {
-                let item = {
-                    id: theData[i].id,
-                    position: {
-                        lat: theData[i].location.latitude,
-                        lng: theData[i].location.longitude,
-                    },
-                    icon: '/storage/' + theData[i].category.marker_img
-                };
-                arrayVal.push(item);
-            }
-            this.markers = arrayVal;
+            axios.get('/api/assets')
+                .then(function (response) {
+                    let returnData = response.data;
+                    store.commit('addAssets', returnData);
+                    self.populateMarkets(store.state.assets);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
         },
         created() {
@@ -203,8 +202,7 @@
         },
         methods: {
             ...mapMutations([
-                'increment',
-                'addToCart'
+                'addAssets',
             ]),
             toggleInfoWindow: function(marker, idx) {
                 let returnData = theData.find(x => x.id === marker.id);
@@ -212,6 +210,22 @@
             },
             closeSidebar: function() {
                 toggleSidebar();
+            },
+            populateMarkets: function(data) {
+                theData = data;
+                let arrayVal = [];
+                for(let i = 0; i < theData.length; i++) {
+                    let item = {
+                        id: theData[i].id,
+                        position: {
+                            lat: theData[i].location.latitude,
+                            lng: theData[i].location.longitude,
+                        },
+                        icon: '/storage/' + theData[i].category.marker_img
+                    };
+                    arrayVal.push(item);
+                }
+                this.markers = arrayVal;
             }
         }
     }
