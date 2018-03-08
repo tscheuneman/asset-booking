@@ -10,6 +10,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 use Illuminate\Support\Facades\File;
 
+use Storage;
+
 use App\Asset;
 use Intervention\Image\ImageManager;
 use Mockery\Exception;
@@ -53,9 +55,12 @@ class ProcessImage implements ShouldQueue
             }
             $manager = new ImageManager();
             $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
-                $constraint->aspectRatio();
+                $constraint->aspectRatio(public_path() . '/storage/' . $this->fileLoc);
             });
-            $img->save();
+            $img->stream('jpg', 90);
+            Storage::put(public_path() . '/storage/' . $this->fileLoc, $img);
+
+
         }
         catch (Exception $e) {
             report($e);
