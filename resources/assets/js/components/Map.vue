@@ -184,7 +184,7 @@
                         }
                         break;
                     case error.POSITION_UNAVAILABLE:
-                        alert("Browser geolocation error !\n\nPosition unavailable.");
+                        tryAPIGeolocation();
                         break;
                 }
             };
