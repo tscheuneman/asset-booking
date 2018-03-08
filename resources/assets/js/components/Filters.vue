@@ -16,13 +16,13 @@
                     class="form-control"
                     :name="'categories'"
                     :id="'categories'"
-                    v-model="cat_id"
+                    v-model="cat"
             >
                 <option value="0">All</option>
                 <option
-                        v-for="cat_id in categories"
-                        v-bind:value="cat_id.id"
-                >{{cat_id.name}}</option>
+                        v-for="cat in $store.state.categories"
+                        v-bind:value="cat.id"
+                >{{cat.name}}</option>
             </select>
 
             <label :for="'region'">Region:</label>
@@ -30,13 +30,13 @@
                     class="form-control"
                     :name="'region'"
                     :id="'region'"
-                    v-model="region_id"
+                    v-model="region"
             >
                 <option value="0">All</option>
                 <option
-                        v-for="region_id in region"
-                        v-bind:value="region_id.id"
-                >{{region_id.name}}</option>
+                        v-for="region in $store.state.regions"
+                        v-bind:value="region.id"
+                >{{region.name}}</option>
             </select>
 
             <br>
@@ -48,20 +48,35 @@
 </template>
 
 <script>
+    import axios from 'axios';
+    import { mapMutations } from 'vuex';
+    import { store } from './store';
+
     export default {
-        props: {
-            categories: Array,
-            region: Array
-        },
         data () {
             return {
                 output: '',
                 build_name: '',
-                cat_id: "0",
-                region_id: "0"
+                cat: "0",
+                region: "0"
             }
         },
+        mounted() {
+            let self = this;
+
+            axios.get('/api/categories')
+                .then(function (response) {
+                    let returnData = response.data;
+                    store.commit('addCategories', returnData);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
         methods: {
+            ...mapMutations([
+                'addCategories'
+            ]),
             onSubmit: function() {
                 console.log("Test");
                 /*
@@ -77,8 +92,8 @@
                     },
                     data: {
                         'build_name': this.build_name,
-                        'cat_id': this.cat_id,
-                        'region_id': this.region_id
+                        'cat_id': this.cat,
+                        'region_id': this.region
                     }
                 }).done(function( msg ) {
                     Vue.bus.emit('filterMarkers', msg);
