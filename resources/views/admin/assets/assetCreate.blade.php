@@ -107,14 +107,15 @@
 
             });
         });
+
         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
-        function success(pos) {
-            var crd = pos.coords;
+        let apiGeolocationSuccess = function(position) {
+            let crd = position.coords;
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
 
@@ -123,11 +124,54 @@
             createMap(crd.latitude, crd.longitude);
         };
 
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`);
+        let tryAPIGeolocation = function() {
+            jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBtj2Hj9Nr7fZkBnfmbf8DgKnw0-dM1afg", function(success) {
+                apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+            })
+                .fail(function(err) {
+                    alert("API Geolocation error! \n\n"+err);
+                });
         };
 
-        navigator.geolocation.getCurrentPosition(success, error, options);
+        let browserGeolocationSuccess = function(position) {
+            let crd = position.coords;
+            $('#latitude').val(crd.latitude);
+            $('#longitude').val(crd.longitude);
+
+            getBuildingRegion(crd.latitude, crd.longitude);
+
+            createMap(crd.latitude, crd.longitude);
+        };
+
+        let browserGeolocationFail = function(error) {
+            switch (error.code) {
+                case error.TIMEOUT:
+                    alert("Browser geolocation error !\n\nTimeout.");
+                    break;
+                case error.PERMISSION_DENIED:
+                    if(error.message.indexOf("Only secure origins are allowed") == 0) {
+                        tryAPIGeolocation();
+                    }
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Browser geolocation error !\n\nPosition unavailable.");
+                    break;
+            }
+        };
+
+        let tryGeolocation = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    browserGeolocationSuccess,
+                    browserGeolocationFail,
+                    {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+            }
+        };
+
+        tryGeolocation();
+
+
+        //navigator.geolocation.getCurrentPosition(success, error, options);
 
 
         function getSpecs() {
