@@ -8,9 +8,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-use Illuminate\Support\Facades\File;
-
 use Storage;
+use File;
 
 use App\Asset;
 use Intervention\Image\ImageManager;
@@ -47,18 +46,12 @@ class ProcessImage implements ShouldQueue
     public function handle()
     {
         try {
-            if(!File::exists(public_path() . '/storage/markers')) {
-                File::makeDirectory(public_path() . '/storage/markers', 775);
-            }
-            if(!File::exists(public_path() . '/storage/images')) {
-                File::makeDirectory(public_path() . '/storage/images', 775);
-            }
             $manager = new ImageManager();
             $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
                 $constraint->aspectRatio(public_path() . '/storage/' . $this->fileLoc);
             })->stream();
 
-
+            File::delete(public_path(). '/storage/' . $this->fileLoc);
             Storage::disk('public')->put($this->fileLoc, $img);
 
 
