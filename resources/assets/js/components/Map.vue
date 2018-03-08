@@ -133,7 +133,7 @@
         },
         data () {
             return {
-                center: {lat: 10.0, lng: 10.0},
+                center: {lat: 33.4241871, lng: -111.9404409},
                 options: {
                     disableDefaultUI: false,
                     styles: [{"elementType":"labels.icon","stylers":[{"visibility":"off"}]}]
