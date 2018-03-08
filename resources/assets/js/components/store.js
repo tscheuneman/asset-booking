@@ -7,6 +7,7 @@ export const store = new Vuex.Store({
         bookingEvents: [],
         assets: [],
         regions: [],
+        categories: [],
         count: 0,
         username: '',
         first_name: '',
@@ -32,6 +33,9 @@ export const store = new Vuex.Store({
         },
         addAssets (state, value) {
             state.assets = value;
+        },
+        addCategories (state, value) {
+            state.categories = value;
         },
         addRegions (state, value) {
             state.regions = value;
