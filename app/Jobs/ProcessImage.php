@@ -56,8 +56,8 @@ class ProcessImage implements ShouldQueue
             $manager = new ImageManager();
             $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
                 $constraint->aspectRatio(public_path() . '/storage/' . $this->fileLoc);
-            });
-            $img->stream('jpg', 90);
+            })->stream();
+            
             Storage::put(public_path() . '/storage/' . $this->fileLoc, $img);
 
 
