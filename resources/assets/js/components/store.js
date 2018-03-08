@@ -5,6 +5,8 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
     state: {
         bookingEvents: [],
+        assets: [],
+        regions: [],
         count: 0,
         username: '',
         first_name: '',
@@ -27,6 +29,12 @@ export const store = new Vuex.Store({
         },
         addBookingEvent (state, value) {
             state.bookingEvents = value;
+        },
+        addAssets (state, value) {
+            state.assets = value;
+        },
+        addRegions (state, value) {
+            state.regions = value;
         },
         increment (state) {
             // mutate state
