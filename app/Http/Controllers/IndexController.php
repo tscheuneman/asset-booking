@@ -14,13 +14,10 @@ use App\Booking;
 class IndexController extends Controller
 {
     public function index() {
-        $categories = Category::orderBy('name', 'ASC')->get();
-
         $user = User::where('username', Cas::user())->first(['first_name', 'last_name', 'username']);
         return view('index.map',
             [
                 'user' => $user,
-                'categories' => $categories
             ]
         );
     }
