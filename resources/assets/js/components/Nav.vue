@@ -39,13 +39,13 @@
 </template>
 
 <script>
-    import { mapMutations, mapGetters } from 'vuex'
+    import axios from 'axios';
+    import { mapMutations } from 'vuex';
     import { store } from './store';
 
     export default {
         props: {
             user: String,
-            region: Array,
         },
         data () {
             return {
@@ -55,7 +55,7 @@
 
         },
         mounted() {
-            this.elements = this.region;
+            let self = this;
             let data = JSON.parse(this.user);
             fetch('/cart')
                 .then(function(response) {
@@ -66,13 +66,25 @@
                     store.commit('change', count);
                     store.commit('addBookingEvent', jsonVal);
                 });
+
+            axios.get('/api/location/regions')
+                .then(function (response) {
+                    let returnData = response.data;
+                    store.commit('addRegions', returnData);
+                    self.populateRegions(store.state.regions);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
             store.commit('changeFirstName', data.first_name);
         },
         methods: {
             ...mapMutations([
                 'change',
                 'changeFirstName',
-                'addBookingEvent'
+                'addBookingEvent',
+                'addRegions'
             ]),
             centerMap: function(elm) {
                 Vue.bus.emit('changeCenter', elm);
@@ -82,6 +94,9 @@
             },
             setActiveItemId(itemIndex) {
                 this.activeItemId = itemIndex
+            },
+            populateRegions(regions) {
+                this.elements = regions;
             }
         }
     }
