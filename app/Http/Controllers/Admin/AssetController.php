@@ -243,4 +243,8 @@ class AssetController extends Controller
 
 
     }
+
+    public function getAllAssets() {
+        return Asset::with('location.building', 'location.region', 'category')->get();
+    }
 }
