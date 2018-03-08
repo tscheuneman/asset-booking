@@ -49,7 +49,7 @@ class ProcessImage implements ShouldQueue
                 $constraint->aspectRatio();
             });
 
-            $img->save(public_path() . '/storage/' . $this->fileLoc, $this->quality);
+            $img->save();
         }
         catch (Exception $e) {
             report($e);
