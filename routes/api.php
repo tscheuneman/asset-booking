@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['cas.user']], function () {
+    Route::get('/assets', 'Admin\AssetController@getAllAssets');
+
+    Route::get('/location/regions', 'Admin\RegionController@getAllRegions');
 });
