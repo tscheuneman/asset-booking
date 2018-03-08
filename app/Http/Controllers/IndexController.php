@@ -14,17 +14,12 @@ use App\Booking;
 class IndexController extends Controller
 {
     public function index() {
-        $assets = Asset::with('location.building', 'location.region', 'category')->get();
-        $region = Region::orderBy('name', 'ASC')->get();
-
         $categories = Category::orderBy('name', 'ASC')->get();
 
         $user = User::where('username', Cas::user())->first(['first_name', 'last_name', 'username']);
         return view('index.map',
             [
-                'assets' => $assets,
                 'user' => $user,
-                'region' => $region,
                 'categories' => $categories
             ]
         );
