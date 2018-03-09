@@ -17,9 +17,10 @@ class CreateSettingsTable extends Migration
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->string('name')->nullable(false);
+            $table->string('slug')->nullable(false);
             $table->string('type')->nullable(false);
             $table->string('description');
-            $table->boolean('global')->default(true);
+            $table->boolean('global')->default(false);
             $table->timestamps();
         });
     }
