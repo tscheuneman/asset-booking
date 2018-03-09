@@ -19,36 +19,40 @@ class RegisterController extends Controller
     {
         if(Cas::authenticate()) {
             $username = Cas::user();
+            $user = User::where('username', $username)->first();
+            if($user === null){
+                $json = json_decode(file_get_contents(env('LDAP_API', 'https://google.com') . '?username=' . $username), true);
 
-            $json = json_decode(file_get_contents(env('LDAP_API', 'https://google.com') . '?username=' . $username), true);
+                $department = '';
+                $first_name = '';
+                $last_name = '';
+                $email = $username . '@' . env('EMAIL_APPEND', 'google.com');
+                if(isset($json[0]['department'][0])) {
+                    $department = $json[0]['department'][0];
+                }
+                if(isset($json[0]['givenname'][0])) {
+                    $first_name = $json[0]['givenname'][0];
+                }
+                if(isset($json[0]['sn'][0])) {
+                    $last_name = $json[0]['sn'][0];
+                }
+                if(isset($json[0]['mail'][0])) {
+                    $email = $json[0]['mail'][0];
+                }
 
-            $department = '';
-            $first_name = '';
-            $last_name = '';
-            $email = $username . '@' . env('EMAIL_APPEND', 'google.com');
-            if(isset($json[0]['department'][0])) {
-                $department = $json[0]['department'][0];
-            }
-            if(isset($json[0]['givenname'][0])) {
-                $first_name = $json[0]['givenname'][0];
-            }
-            if(isset($json[0]['sn'][0])) {
-                $last_name = $json[0]['sn'][0];
-            }
-            if(isset($json[0]['mail'][0])) {
-                $email = $json[0]['mail'][0];
+                return view('auth.register',
+                    [
+                        'user' => $username,
+                        'department' => $department,
+                        'first_name' => $first_name,
+                        'last_name' => $last_name,
+                        'email' => $email
+                    ]
+                );
+            } else {
+                return redirect('/');
             }
 
-
-            return view('auth.register',
-                [
-                    'user' => $username,
-                    'department' => $department,
-                    'first_name' => $first_name,
-                    'last_name' => $last_name,
-                    'email' => $email
-                ]
-            );
         }
     }
 
