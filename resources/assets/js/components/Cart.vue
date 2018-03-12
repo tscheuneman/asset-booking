@@ -17,7 +17,9 @@
                     :booking="{m}"
             />
         </div>
+        <button>Checkout</button>
     </div>
+
 </template>
 
 <script>
@@ -45,11 +47,23 @@
         left:0;
         z-index: 999;
         display:none;
+        overflow-y:scroll;
     }
     div.close {
         float:right;
         margin-top:25px;
         font-size:30px;
         color:#000;
+    }
+    button {
+        position:absolute;
+        bottom:0;
+        width:100%;
+        height:60px;
+        background:#2ab27b;
+        font-size:22px;
+        font-weight:bold;
+        border:none;
+        color:#fff;
     }
 </style>
