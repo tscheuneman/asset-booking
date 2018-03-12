@@ -24,7 +24,7 @@ class BookingController extends Controller
         $asset_id = request('asset_id');
         $date = date("Y-m-d H:i:s", strtotime('+3 months'));
 
-        return Booking::where('asset_id', '=', $asset_id)->where('time_to', '<=', $date)->get();
+        return Booking::where('asset_id', '=', $asset_id)->where('time_to', '<=', $date)->where('active', '=', true)->get();
 
     }
 
@@ -56,7 +56,18 @@ class BookingController extends Controller
             return json_encode($returnData);
         }
 
-        $val = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->first();
+        $val = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->where('active', '=', true)->first();
+
+        if (Auth::check()) {
+                $user = Auth::id();
+                $userCart = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->where('cust_id', '=', $user)->first();
+
+                if($val != null) {
+                    $returnData['status'] = 'Error';
+                    $returnData['message'] = 'This is already in your cart';
+                    return json_encode($returnData);
+                }
+        }
 
         if($val === null) {
             if (Auth::check())
