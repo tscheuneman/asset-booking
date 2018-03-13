@@ -6,12 +6,20 @@
             <span><strong>Building:</strong> {{booking.m.booking.asset.location.building.name}}</span>
             <span><strong>Region:</strong> {{booking.m.booking.asset.location.region.name}}</span>
             <span><strong>From:</strong> {{booking.m.booking.time_from | dateFormat}} - <strong>To: </strong> {{booking.m.booking.time_to | dateFormat}}</span>
+            <Br />
+            <span><button
+                    class="btn btn-danger"
+                    @click="deleteEntry(booking.m.booking.id)"
+            >Delete</button></span>
         </span>
     </div>
 </template>
 
 <script>
     import moment from 'moment'
+    import axios from 'axios';
+    import { mapMutations } from 'vuex';
+    import { store } from './store';
 
     export default {
         props: {
@@ -20,6 +28,15 @@
         mounted(){
 
         },
+        methods: {
+            ...mapMutations([
+                'deleteEntry'
+            ]),
+        deleteEntry: function(id) {
+            alert(id);
+            store.commit('deleteEntry', id);
+        }
+         },
         filters: {
             dateFormat: function (value) {
                 if (value) {
