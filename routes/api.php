@@ -19,4 +19,6 @@ Route::group(['middleware' => ['cas.user']], function () {
     Route::get('/location/regions', 'Admin\RegionController@getAllRegions');
 
     Route::get('/categories', 'Admin\CategoryController@getAllCategories');
+
+    Route::post('/cart/entry/delete', 'CartController@destroy');
 });

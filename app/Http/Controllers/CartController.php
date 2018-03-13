@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\CartEntry;
+use Validator;
+use App\Booking;
+
+
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -27,6 +31,43 @@ class CartController extends Controller
             $cartItems = CartEntry::where('cart_id', $cart->id)->count();
             return $cartItems;
         }
+
+    }
+
+    public function destroy(Request $request)
+    {
+
+        $returnData = array();
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:bookings',
+        ]);
+
+        $book_id = request('id');
+
+        if ($validator->fails()) {
+            $returnData['status'] = 'Error';
+            $returnData['message'] = 'Invalid Booking';
+            return json_encode($returnData);
+        }
+
+        try {
+            $booking = Booking::find($book_id);
+            $cartEntry = CartEntry::where('booking_id', $book_id)->first();
+
+            $booking->delete();
+            $cartEntry->delete();
+
+            $returnData['status'] = 'Success';
+            $returnData['message'] = 'Booking has been deleted';
+            return json_encode($returnData);
+
+        } catch(Exception $e) {
+            $returnData['status'] = 'Error';
+            $returnData['message'] = 'Invalid Booking';
+            return json_encode($returnData);
+        }
+
+
 
     }
 }
