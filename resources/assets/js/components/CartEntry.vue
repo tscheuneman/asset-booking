@@ -30,11 +30,26 @@
         },
         methods: {
             ...mapMutations([
-                'deleteEntry'
+                'deleteEntry',
+                'lowerEntry'
             ]),
         deleteEntry: function(id) {
             alert(id);
-            store.commit('deleteEntry', id);
+            axios.post('/api/cart/entry/delete', {
+                id: id
+            })
+                .then(function (response) {
+                    let res = response.data;
+                    if(res.status === "Success") {
+                        store.commit('deleteEntry', id);
+                        store.commit('lowerEntry', id);
+                    }
+                    console.log(res);
+                })
+                .catch(function (error) {
+                    alert(res.message);
+                });
+
         }
          },
         filters: {
