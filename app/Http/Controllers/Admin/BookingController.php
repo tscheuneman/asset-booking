@@ -114,10 +114,10 @@ class BookingController extends Controller
                         $returnData['message'] = 'Failed to add to cart2';
                         return json_encode($returnData);
                     }
+                    $entry = CartEntry::with('booking.asset.location.building', 'booking.asset.location.region')->where('id', $cartEntry->id)->first();
 
-                    $returnData['status'] = 'Success';
-                    $returnData['message'] = 'Entry Created';
-                    return $cartEntry;
+
+                    return $entry;
 
                 } catch(QueryException $e) {
                     $returnData['status'] = 'Error';
