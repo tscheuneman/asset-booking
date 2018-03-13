@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 
 use Cas;
 use App\User;
+use App\Cart;
+
 
 class RegisterController extends Controller
 {
@@ -94,6 +96,10 @@ class RegisterController extends Controller
             $user->password = Hash::make(str_random(8));
 
             $user->save();
+
+            $newCart = new Cart();
+            $newCart->cust_id = $user->id;
+            $newCart->save();
 
             return redirect('/');
 
