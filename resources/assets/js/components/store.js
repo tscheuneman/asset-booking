@@ -25,6 +25,16 @@ export const store = new Vuex.Store({
             // mutate state
             state.count = value;
         },
+        deleteEntry (state, value) {
+            // mutate state
+            var cnt = 0;
+            state.bookingEvents.forEach(function(entry) {
+                if(value === entry.booking.id) {
+                    state.bookingEvents.splice(cnt, 1);
+                }
+                cnt++;
+            });
+        },
         changeFirstName (state, value) {
             state.first_name = value;
         },
