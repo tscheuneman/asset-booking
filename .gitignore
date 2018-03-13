@@ -13,4 +13,4 @@ yarn-error.log
 /public/storage
 /app/Http/Controllers/Admin/ImportController.php*
 /public/css
-/public/js
+/public/js/app.js
