@@ -30,6 +30,7 @@ class BookingController extends Controller
 
     public function store(Request $request, $id)
     {
+        $asset_id = $id;
         $returnData = array();
         $validator = Validator::make($request->all(), [
             'start_date' => 'required|date',
@@ -56,13 +57,27 @@ class BookingController extends Controller
             return json_encode($returnData);
         }
 
-        $val = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->where('active', '=', true)->first();
+        $val = Booking::where([
+            ['asset_id', '=', $asset_id],
+            ['active', '=', true]
+        ])->where(function($q) use ($startDate, $endDate) {
+            $q->whereBetween('time_from', [$startDate, $endDate])
+                ->orWhereBetween('time_to', [$startDate, $endDate]);
+        })->first();
 
         if (Auth::check()) {
                 $user = Auth::id();
-                $userCart = Booking::whereBetween('time_from', [$startDate, $endDate])->orWhereBetween('time_to', [$startDate, $endDate])->where('asset_id', '=', $id)->where('cust_id', '=', $user)->first();
 
-                if($val != null) {
+                $userCart = Booking::where([
+                    ['asset_id', '=', $asset_id],
+                    ['cust_id', '=', $user],
+                    ['active', '=', true]
+                ])->where(function($q) use ($startDate, $endDate) {
+                    $q->whereBetween('time_from', [$startDate, $endDate])
+                        ->orWhereBetween('time_to', [$startDate, $endDate]);
+                })->first();
+
+                if($userCart != null) {
                     $returnData['status'] = 'Error';
                     $returnData['message'] = 'This is already in your cart';
                     return json_encode($returnData);
