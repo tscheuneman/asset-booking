@@ -54,6 +54,10 @@ export const store = new Vuex.Store({
             // mutate state
             state.count++;
         },
+        lowerEntry (state) {
+            // mutate state
+            state.count--;
+        },
         addToCart (state, value) {
             state.bookingEvents.push(value);
         }
