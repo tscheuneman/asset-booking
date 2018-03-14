@@ -33,6 +33,8 @@ Route::group(['middleware' => ['cas.user']], function ()
 
     Route::get('/cart', 'CartController@index');
     Route::get('/cart/count', 'CartController@count');
+
+
 });
 
 

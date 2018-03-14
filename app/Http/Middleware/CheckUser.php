@@ -19,7 +19,8 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        if(Cas::authenticate()) {
+        if(!Auth::check()) {
+            Cas::authenticate();
             $user = User::where('username', Cas::user())->first();
             if($user === null){
                 return redirect('/register');
