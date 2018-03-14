@@ -19,8 +19,7 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        cas()->authenticate();
-        if(cas()->isAuthenticated()) {
+        if(cas()->checkAuthentication()) {
             $user = User::where('username', cas()->user())->first();
             if($user === null){
                 return redirect('/register');
@@ -31,7 +30,7 @@ class CheckUser
             }
         }
         else {
-            return 'test';
+            cas()->authenticate();
         }
     }
 }
