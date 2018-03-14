@@ -47,9 +47,9 @@ class ProcessImage implements ShouldQueue
     {
         try {
             $manager = new ImageManager();
-            $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->orientate()->resize($this->width, null, function ($constraint) {
+            $img = $manager->make(public_path() . '/storage/' . $this->fileLoc)->resize($this->width, null, function ($constraint) {
                 $constraint->aspectRatio(public_path() . '/storage/' . $this->fileLoc);
-            })->stream();
+            })->orientate()->stream();
 
             File::delete(public_path(). '/storage/' . $this->fileLoc);
             Storage::disk('public')->put($this->fileLoc, $img);
