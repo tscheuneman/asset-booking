@@ -13,7 +13,16 @@ class Building extends Model
 
     public static function getByDistance($lat, $lng, $distance)
     {
-        $query = 'SELECT id, ( 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('. $lng .') ) + sin( radians('.$lat.') ) * sin( radians(latitude) ) ) ) AS distance FROM buildings HAVING distance < ' .$distance. ' ORDER BY distance LIMIT 18';
+        $query = 'SELECT id, longitude, latitude,
+            (3959 * acos(cos(radians('.$lat.')) 
+            * cos(radians(building.latitude))
+            * cos(radians(building.longitude) - radians('. $lng .') ) + sin(radians('.$lat.')) 
+            * sin(radians(building.latitude)))) 
+            AS distance
+            FROM buildings as building
+            HAVING distance < ' .$distance. ' 
+            ORDER BY distance 
+            LIMIT 18';
         $results = DB::select(DB::raw($query));
         return (array)$results;
     }

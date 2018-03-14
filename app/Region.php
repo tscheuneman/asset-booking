@@ -13,7 +13,18 @@ class Region extends Model
 
     public static function getByDistance($lat, $lng, $distance)
     {
-        $results = DB::select(DB::raw('SELECT id, ( 3959 * acos( cos( radians(' . $lat . ') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(' . $lng . ') ) + sin( radians(' . $lat .') ) * sin( radians(latitude) ) ) ) AS distance FROM regions HAVING distance < ' . $distance . ' ORDER BY distance LIMIT 1'));
+        $query = 'SELECT id, longitude, latitude,
+            (3959 * acos(cos(radians('.$lat.')) 
+            * cos(radians(region.latitude))
+            * cos(radians(region.longitude) - radians('. $lng .') ) + sin(radians('.$lat.')) 
+            * sin(radians(region.latitude)))) 
+            AS distance
+            FROM regions as region
+            HAVING distance < ' .$distance. ' 
+            ORDER BY distance 
+            LIMIT 1';
+
+        $results = DB::select(DB::raw($query));
         return (array)$results[0];
     }
 
