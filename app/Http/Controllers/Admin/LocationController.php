@@ -28,8 +28,6 @@ class LocationController extends Controller
         $lat = $request->get('lat');
         $lng = $request->get('lng');
 
-        return $request;
-
         $getBuilding = Building::getByDistance($lat, $lng, env('BUILDING_DISTANCE_RADIUS', 1.2));
         $getRegion = Region::getByDistance($lat, $lng, env('REGION_DISTANCE_RADIUS', 15));
 
