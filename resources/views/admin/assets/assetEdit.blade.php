@@ -250,7 +250,7 @@
             let map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 18,
                 center: new google.maps.LatLng(lat, lng),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: 'satellite'
             });
 
             $('<div/>').addClass('centerMarker').appendTo(map.getDiv());
