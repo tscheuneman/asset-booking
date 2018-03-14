@@ -41,7 +41,7 @@ class LocationController extends Controller
             if(!in_array(trim(strtoupper($val['name'])), $prevBuildings)) {
                 $arrayVal[$counter] = array(
                     "id" => $val["id"],
-                    "name" => utf8_decode(ucwords(strtolower($val["name"]))),
+                    "name" => utf8_encode(ucwords(strtolower($val["name"]))),
                     "lat" => $val["latutide"],
                     "lng" => $val["longitude"],
                 );
