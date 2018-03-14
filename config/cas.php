@@ -1,128 +1,170 @@
 <?php
-
 return [
-        /*
-        |--------------------------------------------------------------------------
-        | PHPCas Debug
-        |--------------------------------------------------------------------------
-        |
-        | Example : '/var/log/phpCas.log'
-        | or true for default location (/tmp/phpCAS.log)
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Hostname
+    |--------------------------------------------------------------------------
+    | Example: 'cas.myuniv.edu'.
+    */
+    'cas_hostname'        => env('CAS_HOSTNAME', 'cas.myuniv.edu'),
 
-        'cas_debug' => env('CAS_DEBUG', false),
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | PHPCas Hostname
-        |--------------------------------------------------------------------------
-        |
-        | Example: 'cas.myuniv.edu'.
-        |
-        */
-
-        'cas_hostname' => env('CAS_HOSTNAME'),
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Authorized Hosts
+    |--------------------------------------------------------------------------
+    | Example: 'cas.myuniv.edu'.  This is used when SAML is active and is
+    | recommended for protecting against DOS attacks.  If using load
+    | balanced hosts, then separate each with a comma.
+    */
+    'cas_real_hosts'      => env('CAS_REAL_HOSTS', 'cas.myuniv.edu'),
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Cas Port
-        |--------------------------------------------------------------------------
-        |
-        | Usually 443 is default
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | Customize CAS Session Cookie Name
+    |--------------------------------------------------------------------------
+    */
+    'cas_session_name'    => env('CAS_SESSION_NAME', 'CASAuth'),
 
-        'cas_port' => env('CAS_PORT', 443),
+    /*
+    |--------------------------------------------------------------------------
+    | Laravel has it's own authentication sessions. Unless you want phpCAS
+    | to manage the session, leave this set to false.  Note that the
+    | middleware and redirect classes will be handling removal
+    | of the Laravel sessions when this is set to false.
+    |--------------------------------------------------------------------------
+    */
+    'cas_control_session' => env('CAS_CONTROL_SESSIONS', false),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Enable using this as a cas proxy
+    |--------------------------------------------------------------------------
+    */
+    'cas_proxy'           => env('CAS_PROXY', false),
 
-        /*
-        |--------------------------------------------------------------------------
-        | CAS URI
-        |--------------------------------------------------------------------------
-        |
-        | Sometimes is /cas
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | Cas Port
+    |--------------------------------------------------------------------------
+    | Usually 443
+    */
+    'cas_port'            => env('CAS_PORT', 443),
 
-        'cas_uri' => env('CAS_URI', ''),
+    /*
+    |--------------------------------------------------------------------------
+    | CAS URI
+    |--------------------------------------------------------------------------
+    | Sometimes is /cas
+    */
+    'cas_uri'             => env('CAS_URI', '/cas'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Validation
+    |--------------------------------------------------------------------------
+    | CAS server SSL validation: 'self' for self-signed certificate, 'ca' for
+    | certificate from a CA, empty for no SSL validation.
+    |
+    | VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL
+    */
+    'cas_validation'          => env('CAS_VALIDATION', ''),
 
-        /*
-        |--------------------------------------------------------------------------
-        | CAS Validation
-        |--------------------------------------------------------------------------
-        |
-        | CAS server SSL validation: 'ca' for certificate from a CA or self-signed
-        | certificate, empty for no SSL validation.
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | CA Certificate
+    |--------------------------------------------------------------------------
+    | Path to the CA certificate file.  For production use set
+    | the CA certificate that is the issuer of the cert
+    */
+    'cas_cert'                => env('CAS_CERT', ''),
 
-        'cas_validation' => env('CAS_VALIDATION', ''),
+    /*
+    |--------------------------------------------------------------------------
+    | CN Validation (if you are using CA certs)
+    |--------------------------------------------------------------------------
+    | If for some reason you want to disable validating the certificate
+    | intermediaries, here is where you can.  Recommended to leave
+    | this set with default (true).
+    */
+    'cas_validate_cn'     => env('CAS_VALIDATE_CN', true),
 
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Login URI
+    |--------------------------------------------------------------------------
+    | Empty is fine
+    */
+    'cas_login_url'       => env('CAS_LOGIN_URL', ''),
 
-        /*
-        |--------------------------------------------------------------------------
-        | CAS Certificate
-        |--------------------------------------------------------------------------
-        |
-        | Path to the CAS certificate file
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Logout URI
+    |--------------------------------------------------------------------------
+    */
+    'cas_logout_url'      => env('CAS_LOGOUT_URL', 'https://cas.myuniv.edu/cas/logout'),
 
-        'cas_cert' => env('CAS_CERT', ''),
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Logout Redirect Services
+    |--------------------------------------------------------------------------
+    | If your server supports redirection services, enter the redirect url
+    | in this section.  If left blank, it will default to disabled.
+    */
+    'cas_logout_redirect' => env('CAS_LOGOUT_REDIRECT', ''),
 
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Successful Logon Redirection Url
+    |--------------------------------------------------------------------------
+    | By default, CAS will assume that the user should be redirected to the
+    | page in which the call was initiated.  You can override this method
+    | and force the user to be redirected to a specific URL here.
+    */
+    'cas_redirect_path'   => env('CAS_REDIRECT_PATH', ''),
 
-        /*
-        |--------------------------------------------------------------------------
-        | Pretend to be a CAS user
-        |--------------------------------------------------------------------------
-        |
-        | This is useful in development mode. CAS is not called at all, only user
-        | is set.
-        |
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | CAS Supports SAML 1.1, allowing you to retrieve more than just the
+    | user identifier.  If your CAS authentication service supports
+    | this feature, you may be able to retrieve user meta data.
+    |--------------------------------------------------------------------------
+    */
+    'cas_enable_saml'     => env('CAS_ENABLE_SAML', true),
 
-        'cas_pretend_user' => env('CAS_PRETEND_USER', ''),
+    /*
+    |--------------------------------------------------------------------------
+    | CAS will support version 1.0, 2.0, 3.0 of the protocol.  It is recommended
+    | to use version 2.0, 3.0, or SAML 1.1.  If you enable SAML, then that
+    | will override this configuration.
+    |--------------------------------------------------------------------------
+    */
+    'cas_version'         => env('CAS_VERSION', "2.0"),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Enable PHPCas Debug Mode
+    | Options are:
+    | 1) true (defaults logfile creation to /tmp/phpCAS.log)
+    | 2) 'path/to/logfile'
+    | 3) false
+    |--------------------------------------------------------------------------
+    */
+    'cas_debug'           => env('CAS_DEBUG', false),
 
-        /*
-        |--------------------------------------------------------------------------
-        | Use as Cas proxy ?
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | Enable Verbose error messages. Not recommended for production.
+    | true | false
+    |--------------------------------------------------------------------------
+    */
+    'cas_verbose_errors'  => env('CAS_VERBOSE_ERRORS', false),
 
-         'cas_proxy' => env('CAS_PROXY', false),
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | Enable service to be proxied
-        |--------------------------------------------------------------------------
-        |
-        | Example:
-        | phpCAS::allowProxyChain(new CAS_ProxyChain(array(
-        |                                 '/^https:\/\/app[0-9]\.example\.com\/rest\//',
-        |                                 'http://client.example.com/'
-        |                         )));
-        | For the exemple above:
-        |   'cas_proxied_services' => array('/^https:\/\/app[0-9]\.example\.com\/rest\//','http://client.example.com/'),
-        */
-
-         'cas_proxied_services' => array(),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Use SAML to retrieve user attributes
-        |--------------------------------------------------------------------------
-        |
-        | Cas can be configured to return more than just the username to a given
-        | service. It could for example use an LDAP backend to return the first name,
-        | last name, and email of the user. This can be activated on the client side
-        | by setting 'cas_saml' to true.
-        |
-        */
-
-        'cas_saml' => env('CAS_SAML', false)
+    /*
+    |--------------------------------------------------------------------------
+    | This will cause CAS to skip authentication and assume this user id.
+    | This should only be used for developmental purposes.  getAttributes()
+    | will return null in this condition.
+     */
+    'cas_masquerade'      => env('CAS_MASQUERADE', '')
 ];

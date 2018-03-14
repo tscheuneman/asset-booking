@@ -17,8 +17,9 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Cas::authenticate()) {
-            $user = Admin::where('username', Cas::user())->first();
+        cas()->authenticate();
+        if(cas()->isAuthenticated()) {
+            $user = Admin::where('username', cas()->user())->first();
             if($user != null){
               return $next($request);
             }

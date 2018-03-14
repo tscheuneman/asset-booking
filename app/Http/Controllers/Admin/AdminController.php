@@ -22,7 +22,7 @@ class AdminController extends Controller
     }
 
     public function index() {
-        $user = Admin::getName(Cas::user());
+        $user = Admin::getName(cas()->user());
         $assetCount = Asset::count();
         $categoryCount = Category::count();
         $buildingCount = Building::count();

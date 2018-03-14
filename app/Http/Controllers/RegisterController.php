@@ -19,8 +19,9 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        if(Cas::authenticate()) {
-            $username = Cas::user();
+        cas()->authenticate();
+        if(cas()->isAuthenticated()) {
+            $username = cas()->user();
             $user = User::where('username', $username)->first();
             if($user === null){
                 $json = json_decode(file_get_contents(env('LDAP_API', 'https://google.com') . '?username=' . $username), true);

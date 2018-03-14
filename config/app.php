@@ -177,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Xavrsl\Cas\CasServiceProvider::class,
+        Subfission\Cas\CasServiceProvider::class,
         Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
 
     ],
@@ -229,7 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Cas' => Xavrsl\Cas\Facades\Cas::class,
+        'Cas' => Subfission\Cas\Facades\Cas::class,
 
     ],
 

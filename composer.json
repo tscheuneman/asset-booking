@@ -13,7 +13,7 @@
         "justinrainbow/json-schema": "^5.2",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "xavrsl/cas": "1.2.*"
+        "subfission/cas": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

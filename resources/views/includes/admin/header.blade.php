@@ -8,5 +8,4 @@
              {{env('APP_NAME', 'Asset Booking App')}}
          </span><span class="headerTitDesc"> Admin <span class="normalText"> @yield('title')</span> </span>
      </div>
-     <!--<a href="/admin/settings"><span class="rightHeader"> <span class="glyphicon glyphicon-cog"></span> {{Cas::user()}}</span></a>-->
  </div>
