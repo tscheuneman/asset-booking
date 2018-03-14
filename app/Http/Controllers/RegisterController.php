@@ -19,8 +19,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        cas()->authenticate();
-        if(cas()->isAuthenticated()) {
+        if(cas()->checkAuthentication()) {
             $username = cas()->user();
             $user = User::where('username', $username)->first();
             if($user === null){
@@ -56,6 +55,9 @@ class RegisterController extends Controller
                 return redirect('/');
             }
 
+        }
+        else {
+            cas()->authenticate();
         }
     }
 

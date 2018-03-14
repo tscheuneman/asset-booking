@@ -18,15 +18,8 @@ class CheckInstaller
      */
     public function handle($request, Closure $next)
     {
-        cas()->authenticate();
-        if(cas()->isAuthenticated()) {
-            //$isAdmin = Admin::where('username', Cas::user())->first();
+        if(cas()->checkAuthentication()) {
             $isInstaller = Installer::where('username', cas()->user())->first();
-            /*
-            if($isAdmin !== null){
-                return $next($request);
-            }
-            */
             if ($isInstaller !== null) {
                 return $next($request);
             }
@@ -35,7 +28,7 @@ class CheckInstaller
             }
         }
         else {
-            return redirect('/cas/error');
+            cas()->authenticate();
         }
 
     }
