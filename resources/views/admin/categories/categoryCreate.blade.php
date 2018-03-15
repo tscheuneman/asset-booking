@@ -8,10 +8,19 @@
     <form method="POST" action="{{ url('/admin/category') }}" id="submit" enctype="multipart/form-data" id="submit">
         {{csrf_field()}}
 
-
         <div class="form-group">
             <label for="name">Category Name</label>
             <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Parent</label>
+            <select class="form-control" name="parent" id="parent">
+                <option value="" selected>Top Level Category</option>
+                @foreach($cat as $theCat)
+                    <option value="{{$theCat->id}}">{{$theCat->name}}</option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group">
