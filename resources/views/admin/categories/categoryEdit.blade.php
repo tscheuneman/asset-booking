@@ -14,6 +14,30 @@
         </div>
 
         <div class="form-group">
+            <label for="description">Parent</label>
+            <select class="form-control" name="parent" id="parent">
+                <option value="" selected>Top Level Category</option>
+                @foreach($cat as $theCat)
+                    @if($theCat->id == $category->parent_cat)
+                        <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
+                    @else
+                        <option value="{{$theCat->id}}">{{$theCat->name}}</option>
+                    @endif
+                    @foreach($theCat->subcats as $subCat)
+                            @if ($category->id != $subCat->id)
+                                @include('layouts.categories.categoryLooperEdit', array(
+                                    'subCat' => $subCat,
+                                    'offset' => '-',
+                                    'parent' => $category->parent_cat,
+                                    'currentID' => $category->id,
+                                    ))
+                            @endif
+                     @endforeach
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" id="description" name="description" rows="6">{{$category->description}}</textarea>
         </div>
