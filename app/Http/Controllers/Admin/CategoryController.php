@@ -46,11 +46,11 @@ class CategoryController extends Controller
 
 
         $this->validate(request(), [
-            'name' => 'required|unique:categories',
+            'name' => 'required',
             'specifications' => 'json',
             'marker' => 'required|image',
             'description' => 'required',
-            'parent' => 'required|nullable|exists:categories,id'
+            'parent' => 'nullable|exists:categories,id'
         ]);
 
 
@@ -136,7 +136,6 @@ class CategoryController extends Controller
                 'category' => $category,
                 'specs' => $specs,
                 'cat' => $cat,
-                'parent' => 'required|nullable|exists:categories,id'
             ]
         );
     }
@@ -148,6 +147,7 @@ class CategoryController extends Controller
             'specifications' => 'json',
             'marker' => 'image',
             'description' => 'required',
+            'parent' => 'nullable|exists:categories,id'
         ]);
 
         $validator = new JSONValidate;
