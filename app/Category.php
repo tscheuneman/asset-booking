@@ -17,4 +17,13 @@ class Category extends Model
     public function subcats() {
         return $this->hasMany('App\Category', 'parent_cat');
     }
+
+    public function parentcat() {
+        return $this->belongsTo('App\Category', 'parent_cat')->select('id', 'parent_cat', 'name');
+    }
+
+    public function parentcatrecursive()
+    {
+        return $this->parentcat()->with('parentcatrecursive');
+    }
 }
