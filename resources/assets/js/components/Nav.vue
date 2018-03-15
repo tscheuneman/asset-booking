@@ -56,14 +56,16 @@
         mounted() {
             let self = this;
             let data = JSON.parse(this.user);
-            fetch('/cart')
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(jsonVal) {
-                    let count = jsonVal.length;
+
+            axios.get('/cart')
+                .then(function (response) {
+                    let returnData = response.data;
+                    let count = returnData.length;
                     store.commit('change', count);
-                    store.commit('addBookingEvent', jsonVal);
+                    store.commit('addBookingEvent', returnData);
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
 
             axios.get('/api/location/regions')
