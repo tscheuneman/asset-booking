@@ -43,14 +43,16 @@ class CategoryController extends Controller
 
 
     public function store(Request $request) {
-        $cat = new Category();
+
 
         $this->validate(request(), [
             'name' => 'required|unique:categories',
             'specifications' => 'json',
             'marker' => 'required|image',
             'description' => 'required',
+            'parent' => 'required|nullable|exists:categories,id'
         ]);
+
 
         try {
             $path = $request->file('marker')->store(
@@ -90,10 +92,28 @@ class CategoryController extends Controller
         }
 
         if ($validator->isValid()) {
+            $theID = request('parent');
+            $cat = new Category();
+
             $cat->name = request('name');
-            $cat->slug = $this->createSlug(request('name'));
+            if(request('parent') === null) {
+                $cat->slug = $this->createSlug(request('name'));
+            }
+            else {
+                $theCat = Category::find($theID);
+                $cat->slug = $theCat->slug . '-' . $this->createSlug(request('name'));
+            }
             $cat->marker_img = $path;
             $cat->description = request('description');
+            if(request('parent') === null) {
+                $cat->toplevel = true;
+            }
+            else {
+                $cat->toplevel = false;
+
+                $theCat = Category::find($theID);
+                $cat->parent_cat = $theCat->id;
+            }
             $cat->specifications = request('specifications');
 
             ProcessImage::dispatch($path, 14, 60);
