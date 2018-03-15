@@ -38,10 +38,10 @@ class AssetController extends Controller
      */
     public function create()
     {
-        $cat = Category::get();
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
         return view('admin.assets.assetCreate',
             [
-                'categories' => $cat
+                'cat' => $cat
             ]
         );
     }
@@ -134,10 +134,10 @@ class AssetController extends Controller
     public function edit($id)
     {
         $asset = Asset::with('location.building', 'category', 'location.region')->where('id', '=', $id)->first();
-        $cat = Category::get();
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
         return view('admin.assets.assetEdit',
             [
-                'categories' => $cat,
+                'cat' => $cat,
                 'asset' => $asset
             ]
         );
