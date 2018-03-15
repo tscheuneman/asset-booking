@@ -32,9 +32,11 @@ class CategoryController extends Controller
 
     public function create() {
         $specs = Specification::get();
+        $cat = Category::get(['id', 'name']);
         return view('admin.categories.categoryCreate',
             [
-                'specs' => $specs
+                'specs' => $specs,
+                'cat' => $cat
             ]
         );
     }
