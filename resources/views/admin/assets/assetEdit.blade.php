@@ -47,11 +47,20 @@
         <div class="form-group">
             <label for="category">Category</label>
             <select class="form-control" id="category" name="category">
-                <option value="{{$asset->category->id}}" selected>{{$asset->category->name}}</option>
-                @foreach($categories as $cat)
-                    @if($asset->category->id != $cat->id)
-                     <option value="{{$cat->id}}">{{$cat->name}}</option>
+                @foreach($cat as $theCat)
+                    @if($theCat->id == $asset->category->id)
+                        <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
+                    @else
+                        <option value="{{$theCat->id}}">{{$theCat->name}}</option>
                     @endif
+                    @foreach($theCat->subcats as $subCat)
+                            @include('layouts.categories.categoryLooperEdit', array(
+                                'subCat' => $subCat,
+                                'offset' => '-',
+                                'parent' => $asset->category->id,
+                                'currentID' => null,
+                                ))
+                    @endforeach
                 @endforeach
             </select>
         </div>
