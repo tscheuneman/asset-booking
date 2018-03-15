@@ -204,6 +204,7 @@ class CategoryController extends Controller
                 $cat->description = request('description');
                 if(request('parent') === null) {
                     $cat->toplevel = true;
+                    $cat->parent_cat = null;
                 }
                 else {
                     $cat->toplevel = false;
