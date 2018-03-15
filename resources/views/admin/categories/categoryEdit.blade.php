@@ -18,10 +18,12 @@
             <select class="form-control" name="parent" id="parent">
                 <option value="" selected>Top Level Category</option>
                 @foreach($cat as $theCat)
-                    @if($theCat->id == $category->parent_cat)
-                        <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
-                    @else
-                        <option value="{{$theCat->id}}">{{$theCat->name}}</option>
+                    @if($theCat->id !== $category->id)
+                        @if($theCat->id == $category->parent_cat)
+                            <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
+                        @else
+                            <option value="{{$theCat->id}}">{{$theCat->name}}</option>
+                        @endif
                     @endif
                     @foreach($theCat->subcats as $subCat)
                             @if ($category->id != $subCat->id)
