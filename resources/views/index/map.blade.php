@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('title')
-    Test
+    Home
 @stop
 @section('content')
     <div id="app" style="height: 100%">
