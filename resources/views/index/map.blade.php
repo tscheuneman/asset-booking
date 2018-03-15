@@ -3,7 +3,7 @@
     Test
 @stop
 @section('content')
-    <div id="app">
+    <div id="app" style="height: 100%">
         <navigation :user="'{{$user}}'">
 
         </navigation>
