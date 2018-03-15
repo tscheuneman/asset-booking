@@ -29,7 +29,14 @@
                     {{$asset->name}}
                 </td>
                 <td>
-                    {{$asset->category->name}}
+                    <p class="left">
+                        <span class="specialRight"><strong>{{$asset->category->name}}</strong></span>
+                        @include('layouts.categories.listInArray', array(
+                          'subCat' => $asset->category->parentcatrecursive,
+                        ))
+                    </p>
+
+
                 </td>
                 <td>
                     {{$asset->location->region->name}}

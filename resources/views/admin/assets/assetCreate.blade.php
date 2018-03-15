@@ -46,8 +46,15 @@
         <div class="form-group">
             <label for="category">Category</label>
             <select class="form-control" id="category" name="category">
-                @foreach($categories as $cat)
-                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                @foreach($cat as $theCat)
+                    <option value="{{$theCat->id}}">{{$theCat->name}}</option>
+
+                    @foreach($theCat->subcats as $subCat)
+                        @include('layouts.categories.categoryLooperCreate', array(
+                        'subCat' => $subCat,
+                        'offset' => '-'
+                        ))
+                    @endforeach
                 @endforeach
             </select>
         </div>

@@ -22,7 +22,7 @@ class CategoryController extends Controller
     }
 
     public function index() {
-        $cat = Category::paginate(20);
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(20);
         return view('admin.categories.category',
             [
                 'categories' => $cat
@@ -32,23 +32,27 @@ class CategoryController extends Controller
 
     public function create() {
         $specs = Specification::get();
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
         return view('admin.categories.categoryCreate',
             [
-                'specs' => $specs
+                'specs' => $specs,
+                'cat' => $cat
             ]
         );
     }
 
 
     public function store(Request $request) {
-        $cat = new Category();
+
 
         $this->validate(request(), [
             'name' => 'required|unique:categories',
             'specifications' => 'json',
             'marker' => 'required|image',
             'description' => 'required',
+            'parent' => 'required|nullable|exists:categories,id'
         ]);
+
 
         try {
             $path = $request->file('marker')->store(
@@ -88,10 +92,28 @@ class CategoryController extends Controller
         }
 
         if ($validator->isValid()) {
+            $theID = request('parent');
+            $cat = new Category();
+
             $cat->name = request('name');
-            $cat->slug = $this->createSlug(request('name'));
+            if(request('parent') === null) {
+                $cat->slug = $this->createSlug(request('name'));
+            }
+            else {
+                $theCat = Category::find($theID);
+                $cat->slug = $theCat->slug . '-' . $this->createSlug(request('name'));
+            }
             $cat->marker_img = $path;
             $cat->description = request('description');
+            if(request('parent') === null) {
+                $cat->toplevel = true;
+            }
+            else {
+                $cat->toplevel = false;
+
+                $theCat = Category::find($theID);
+                $cat->parent_cat = $theCat->id;
+            }
             $cat->specifications = request('specifications');
 
             ProcessImage::dispatch($path, 14, 60);
@@ -108,10 +130,13 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $specs = Specification::get();
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
         return view('admin.categories.categoryEdit',
             [
                 'category' => $category,
-                'specs' => $specs
+                'specs' => $specs,
+                'cat' => $cat,
+                'parent' => 'required|nullable|exists:categories,id'
             ]
         );
     }
@@ -166,10 +191,28 @@ class CategoryController extends Controller
 
         if ($validator->isValid()) {
             try{
+                $theID = request('parent');
                 $cat = Category::find($id);
                 $cat->name = request('name');
-                $cat->slug = $this->createSlug(request('name'));
+                if(request('parent') === null) {
+                    $cat->slug = $this->createSlug(request('name'));
+                }
+                else {
+                    $theCat = Category::find($theID);
+                    $cat->slug = $theCat->slug . '-' . $this->createSlug(request('name'));
+                }
                 $cat->description = request('description');
+                if(request('parent') === null) {
+                    $cat->toplevel = true;
+                    $cat->parent_cat = null;
+                }
+                else {
+                    $cat->toplevel = false;
+
+                    $theCat = Category::find($theID);
+                    $cat->parent_cat = $theCat->id;
+                }
+
                 $cat->specifications = request('specifications');
                 if(request('marker') != null) {
                     File::delete(public_path(). '/storage/' . $cat->marker_img);
