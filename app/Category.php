@@ -13,4 +13,8 @@ class Category extends Model
     public function getAssets() {
         return $this->hasMany('Asset', 'cat_id');
     }
+
+    public function subcats() {
+        return $this->hasMany('App\Category', 'parent_cat');
+    }
 }
