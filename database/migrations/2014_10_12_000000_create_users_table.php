@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('department');
             $table->string('agency_org');
+            $table->string('active')->default(false);
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
