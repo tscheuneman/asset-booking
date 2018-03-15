@@ -13,11 +13,16 @@
             <input type="text" id="book" class="form-control book" readonly />
             <a href="#" class="bookLink">Add to Cart</a>
         </sidebar>
+
+        <div id="map">
+
+        </div>
         <gmap-map
                 :center="center"
                 :zoom="15"
                 style="width: 100%; height: 100%; position:absolute;"
                 :options="options"
+                ref="map"
         >
             <gmap-cluster :maxZoom="17">
                 <gmap-marker
@@ -30,15 +35,19 @@
             </gmap-cluster>
 
         </gmap-map>
+
     </div>
 </template>
 
 <script>
+
     import * as moment from 'moment';
     import * as VueGoogleMaps from 'vue2-google-maps';
     import axios from 'axios';
     import { mapMutations } from 'vuex';
     import { store } from './store';
+
+
 
 
     let bookingData = [];
@@ -148,6 +157,7 @@
             }
         },
         mounted(){
+            this.generateTiles();
             let self = this;
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -226,6 +236,32 @@
                     arrayVal.push(item);
                 }
                 this.markers = arrayVal;
+            },
+            generateTiles: function() {
+                this.$refs.map.$mapCreated.then(() => {
+                    // wait until the map is mounted
+
+                let asuCampusMappings = new google.maps.ImageMapType({
+                    getTileUrl: function(coord, zoom) {
+                        var normalizedCoord = getNormalizedCoord(coord, zoom);
+                        if (!normalizedCoord) {
+                            return null;
+                        }
+                        var bound = Math.pow(2, zoom);
+                        var url = 'https://d1gntqhqj0rbcs.cloudfront.net/assets/120/mrg_labels227/' +
+                            '/' + zoom + '/' + normalizedCoord.x + '/' +
+                            (bound - normalizedCoord.y - 1) + '.png';
+                        return url;
+                    },
+                    tileSize: new google.maps.Size(256, 256),
+                    maxZoom: 25,
+                    minZoom: 14,
+                    radius: 1738000,
+                    name: 'ASUCampus'
+                });
+
+                this.$refs.map.$mapObject.overlayMapTypes.insertAt(0, asuCampusMappings);
+                })
             }
         }
     }
@@ -266,6 +302,28 @@
 
         }
     }
+
+    function getNormalizedCoord(coord, zoom) {
+        var y = coord.y;
+        var x = coord.x;
+
+        // tile range in one direction range is dependent on zoom level
+        // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc
+        var tileRange = 1 << zoom;
+
+        // don't repeat across y-axis (vertically)
+        if (y < 0 || y >= tileRange) {
+            return null;
+        }
+
+        // repeat across x-axis
+        if (x < 0 || x >= tileRange) {
+            x = (x % tileRange + tileRange) % tileRange;
+        }
+
+        return {x: x, y: y};
+    }
+
     function fillData(msg) {
             let returnVal = '<div class="overlayInfo">' +
                 '<div class="overlayImage" style="background: url(/storage/'+msg.latest_image+') center center no-repeat;"> </div>' +
