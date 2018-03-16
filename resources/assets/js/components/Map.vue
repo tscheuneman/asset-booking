@@ -58,38 +58,42 @@
             let startDate = drp.startDate.format("YYYY-MM-DD");
             let endDate = drp.endDate.format("YYYY-MM-DD");
 
-            $.ajax({
-                method: "POST",
-                url: "/booking/" + selectedElement,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    'start_date': startDate,
-                    'end_date': endDate
-                }
-            }).done(function( msg ) {
-                try {
-                    let returnData = JSON.parse(msg);
-                    if(returnData.status === "Error") {
-                        alert(returnData.message);
+                axios({
+                    method: 'POST',
+                    url: 'api//booking/' + selectedElement,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        'start_date': startDate,
+                        'end_date': endDate
                     }
-                    else {
+                })
+                .then(function(response) {
+                    let msg = response.data;
+                    try {
+                        let returnData = JSON.parse(msg);
+                        if(returnData.status === "Error") {
+                            alert(returnData.message);
+                        }
+                        else {
+                            store.commit('increment');
+                            store.commit('addToCart',msg);
+                            alert("Added to Cart");
+                            toggleSidebar();
+                        }
+                    }
+                    catch(err) {
                         store.commit('increment');
                         store.commit('addToCart',msg);
                         alert("Added to Cart");
                         toggleSidebar();
                     }
-                }
-                catch(err) {
-                    store.commit('increment');
-                    store.commit('addToCart',msg);
-                    alert("Added to Cart");
-                    toggleSidebar();
-                }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
-
-            });
         });
         let d = new Date();
         let strDate = (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear();
