@@ -43,7 +43,11 @@
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
             @foreach($specs as $spec)
-                <div class="specification" data-id="{{$spec->id}}" data-name="{{$spec->name}}">
+                @if($spec->required == true)
+                    <div class="specification active" data-id="{{$spec->id}}" data-name="{{$spec->name}}">
+                @else
+                     <div class="specification" data-id="{{$spec->id}}" data-name="{{$spec->name}}">
+                @endif
                     <strong>Name: </strong> {{$spec->name}}
                     <br>
                     <strong>Type: </strong> {{$spec->type}}
@@ -55,7 +59,10 @@
                     <br><strong class="clearfix">Default: </strong><br>
                     <input type="text" class="form-control default" />
                     <br>
-                    <div class="btn btn-success addSpec">Select</div>
+                    @if($spec->required != true)
+                        <div class="btn btn-success addSpec">Select</div>
+                    @endif
+
                 </div>
             @endforeach
         </div>
@@ -81,7 +88,15 @@
 
             $('#submit').submit(function() {
                 try {
-                    $('#specifications').val(getSpecs());
+                    let val = getSpecs();
+                    if(val) {
+                        $('#specifications').val(getSpecs());
+                    }
+                    else {
+                        alert("Selected Specifications must have a value");
+                        return false;
+                    }
+
                 }
                 catch(err) {
                     return false;
@@ -92,6 +107,7 @@
 
         function getSpecs() {
             let obj = [];
+            let error = false;
             $('div.specification').each(function() {
                 if($(this).hasClass("active")) {
                     let name = $(this).data("name");
@@ -99,13 +115,18 @@
                     let thisElm = $(this);
                     let defaultVal = $('input.default', thisElm).val();
                     let item = {};
-
+                    if(defaultVal === "" || defaultVal === null) {
+                        error = true;
+                    }
                     item["id"] = id;
                     item["name"] = name;
                     item["defaultVal"] = defaultVal;
                     obj.push(item);
                 }
             });
+            if(error) {
+                return false;
+            }
             return JSON.stringify(obj);
         }
     </script>
