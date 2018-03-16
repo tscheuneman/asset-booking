@@ -58,6 +58,7 @@
             @foreach ( json_decode($spec->options) as $tag)
                 @if($tag->label !== '' && $tag->label  !== "")
                     <div class="returnEntry" data-label="{{$tag->label}}" data-value="{{$tag->value}}">
+                        <div class="deleteEntry" onClick="deleteEntry(this)">X</div>
                      <strong>Label: </strong> {{$tag->label}}
                         <br>
                          <strong>Value: </strong>{{$tag->value}}
@@ -76,7 +77,8 @@
     </form>
     <script>
         $(document).ready(function() {
-            var returnData = '<div class="showData" style="display:none">' +
+            let returnData = '<div class="showData" style="display:none">' +
+                '<div id="closeOverlay" onClick="removeEntry()">X</div>'+
                 '<label for="chooseLabel"> Label </label>'+
                 '<br>'+
                 '<input name="chooseLabel" id="chooseLabel" />' +
@@ -85,8 +87,8 @@
                 '<br>'+
                 '<input name="chooseValue" id="chooseValue" />' +
                 '<br><br>' +
-                '<button onClick="submitOption(this)">Submit</button>';
-            '</div>';
+                '<button onClick="submitOption(this)">Submit</button>' +
+                '</div>';
             $('#add').on('click', function() {
                 var position = $(this).position();
                 $('body').append(returnData);
@@ -104,12 +106,23 @@
             });
 
         });
-
+        function removeEntry() {
+            $('.showData').fadeOut(500, function() {
+                $(this).remove();
+            })
+        }
+        function deleteEntry(elm) {
+            let parent = $(elm).parent();
+            $(parent).fadeOut(500, function() {
+                $(this).remove();
+            });
+        }
         function submitOption(elm) {
             let label = $('input#chooseLabel').val();
             let value = $('input#chooseValue').val();
             if(label !== "" && value !== "") {
-                var returnEntry = '<div class="returnEntry" data-label="'+label+'" data-value="'+value+'">' +
+                let returnEntry = '<div class="returnEntry" data-label="'+label+'" data-value="'+value+'">' +
+                    '<div class="deleteEntry" onClick="deleteEntry(this)">X</div>'+
                     '<strong>Label: </strong>'+ label +
                     '<br>'+
                     '<strong>Value: </strong>'+ value +
@@ -120,6 +133,9 @@
                 $('#jsonOptions').val(data);
 
                 $(elm).parent().remove();
+            }
+            else {
+                alert("Ensure all fields are filled in");
             }
         }
 
