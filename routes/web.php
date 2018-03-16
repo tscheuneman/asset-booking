@@ -27,7 +27,6 @@ Route::group(['middleware' => ['cas.user']], function ()
 
     Route::post('/bookings', 'Admin\BookingController@bookings');
 
-    Route::post('/booking/{id}', 'Admin\BookingController@store');
 
     Route::get('/user/{username}', 'IndexController@userShow');
 

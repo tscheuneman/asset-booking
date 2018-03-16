@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => ['cas.user']], function () {
+    Route::post('/booking/{id}', 'Admin\BookingController@store');
+
     Route::get('/assets', 'Admin\AssetController@getAllAssets');
 
     Route::get('/location/regions', 'Admin\RegionController@getAllRegions');
