@@ -615,3 +615,12 @@ span.specialRight {
   float:right;
   margin-left:2px;
 }
+div#closeOverlay, div.deleteEntry {
+  float: right;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+}
+div.deleteEntry {
+  margin-left:22px;
+}
