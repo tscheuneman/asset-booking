@@ -15,4 +15,9 @@
              </span>
          </div>
      </div>
+     <div class="topNav">
+         <a class="menuItem {{ Request::is('admin/settings*') ? 'active' : '' }}" href="{{ url('/admin/settings') }}">
+             <span class="glyphicon glyphicon-cog"></span> Settings
+         </a>
+     </div>
  </div>
