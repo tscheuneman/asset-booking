@@ -8,6 +8,13 @@
             {{$subCat->slug}}
         </td>
         <td>
+            @if($subCat->orderable)
+                Yes
+            @else
+                No
+            @endif
+        </td>
+        <td>
             {{$subCat->updated_at->format('Y-m-d')}}
         </td>
         <td>
