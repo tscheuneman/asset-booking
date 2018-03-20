@@ -23,7 +23,7 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with('location.building', 'category.parentcatrecursive', 'location.region')->paginate(50);
+        $assets = Asset::with('location.building', 'category.parentcatrecursive', 'location.region')->where('deleted_at', '=', null)->paginate(50);
         return view('admin.assets.assets',
             [
                 'assets' => $assets
@@ -228,11 +228,15 @@ class AssetController extends Controller
         try {
             $asset = Asset::find($id);
             $asset_name = $asset->name;
-            $location = Location::find($asset->location_id);
 
-            File::delete(public_path(). '/storage/' .$asset->latest_image);
-            $asset->delete();
-            $location->delete();
+            $location = Location::where('asset_id', '=', $asset->id)->first();
+
+            $asset->deleted_at = date('Y-m-d H:i:s');
+            $asset->save();
+
+            $location->deleted_at = date('Y-m-d H:i:s');
+            $location->save();
+
 
             \Session::flash('flash_deleted',$asset_name . ' has been deleted');
             return redirect('/admin/assets');
