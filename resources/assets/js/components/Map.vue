@@ -60,7 +60,7 @@
 
                 axios({
                     method: 'POST',
-                    url: 'api//booking/' + selectedElement,
+                    url: 'api/booking/' + selectedElement,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
