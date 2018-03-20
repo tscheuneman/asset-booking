@@ -23,6 +23,7 @@ class CreateAssetCategoryTable extends Migration
             $table->uuid('parent_cat')->nullable(true);
             $table->text('description');
             $table->json('specifications');
+            $table->boolean('orderable')->nullable(false);
             $table->timestamps();
         });
     }
