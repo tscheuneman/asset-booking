@@ -116,6 +116,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::post('/admin/asset/specifications/{id}', 'Admin\SpecificationController@show');
     Route::get('/admin/location/verify', 'Admin\LocationController@verify');
 
+
+    Route::get('/admin/settings', 'Admin\SettingController@index');
 });
 
 
