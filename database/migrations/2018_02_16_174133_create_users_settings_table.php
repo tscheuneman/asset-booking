@@ -13,11 +13,11 @@ class CreateUsersSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_settings', function (Blueprint $table) {
+        Schema::create('user_settings', function (Blueprint $table) {
             $table->uuid('id')->unique();
             $table->primary('id');
             $table->uuid('setting_id')->nullable(false);
-            $table->uuid('admin_id')->nullable(false);
+            $table->uuid('user_id')->nullable(false);
             $table->text('value');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateUsersSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_settings');
+        Schema::dropIfExists('user_settings');
     }
 }
