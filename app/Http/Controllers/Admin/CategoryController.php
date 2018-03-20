@@ -50,7 +50,7 @@ class CategoryController extends Controller
             'specifications' => 'json',
             'marker' => 'required|image',
             'description' => 'required',
-            'parent' => 'nullable|exists:categories,id'
+            'parent' => 'nullable|exists:categories,id',
         ]);
 
 
@@ -92,6 +92,12 @@ class CategoryController extends Controller
         }
 
         if ($validator->isValid()) {
+            $orderable = false;
+            if(request('orderable')) {
+                $orderable = true;
+
+            }
+
             $theID = request('parent');
             $cat = new Category();
 
@@ -114,6 +120,7 @@ class CategoryController extends Controller
                 $theCat = Category::find($theID);
                 $cat->parent_cat = $theCat->id;
             }
+            $cat->orderable = $orderable;
             $cat->specifications = request('specifications');
 
             ProcessImage::dispatch($path, 14, 60);
@@ -191,6 +198,12 @@ class CategoryController extends Controller
 
         if ($validator->isValid()) {
             try{
+                $orderable = false;
+                if(request('orderable')) {
+                    $orderable = true;
+
+                }
+
                 $theID = request('parent');
                 $cat = Category::find($id);
                 $cat->name = request('name');
@@ -212,7 +225,7 @@ class CategoryController extends Controller
                     $theCat = Category::find($theID);
                     $cat->parent_cat = $theCat->id;
                 }
-
+                $cat->orderable = $orderable;
                 $cat->specifications = request('specifications');
                 if(request('marker') != null) {
                     File::delete(public_path(). '/storage/' . $cat->marker_img);
