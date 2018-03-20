@@ -22,7 +22,7 @@ class CreateAssetTable extends Migration
             $table->uuid('location_id')->nullable(false);
             $table->json('specifications');
             $table->boolean('is_available')->default(true);
-            $table->boolean('is_active')->default(true);
+            $table->dateTime('deleted_at')->default(null);
             $table->timestamps();
         });
     }
