@@ -11,8 +11,8 @@ class Setting extends Model
     public $incrementing = false;
 
 
-    public function setting()
+    public function adminSetting()
     {
-        return $this->hasOne('App\UserSetting', 'setting_id', 'id');
+        return $this->hasOne('App\AdminSetting', 'setting_id', 'id');
     }
 }
