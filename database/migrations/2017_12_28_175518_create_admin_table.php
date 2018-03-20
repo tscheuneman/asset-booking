@@ -21,6 +21,7 @@ class CreateAdminTable extends Migration
             $table->string('first_name')->nullable(false);
             $table->string('last_name')->nullable(false);
             $table->string('email')->nullable(false);
+            $table->dateTime('deleted_at')->nullable(true)->default(null);
             $table->timestamps();
         });
 

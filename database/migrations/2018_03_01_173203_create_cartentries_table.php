@@ -18,6 +18,7 @@ class CreateCartentriesTable extends Migration
             $table->primary('id');
             $table->uuid('booking_id')->nullable(false);
             $table->uuid('cart_id')->nullable(false);
+            $table->dateTime('deleted_at')->nullable(true)->default(null);
             $table->timestamps();
         });
     }

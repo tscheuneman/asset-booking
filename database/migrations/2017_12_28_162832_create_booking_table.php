@@ -22,6 +22,7 @@ class CreateBookingTable extends Migration
             $table->uuid('cust_id')->nullable(false);
             $table->boolean('active')->default(false);
             $table->boolean('completed')->default(false);
+            $table->dateTime('deleted_at')->nullable(true)->default(null);
             $table->timestamps();
         });
     }

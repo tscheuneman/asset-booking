@@ -21,7 +21,7 @@ class CreateLocationTable extends Migration
             $table->uuid('asset_id')->nullable(false)->unique();
             $table->uuid('building_id')->required();
             $table->uuid('region_id')->required();
-            $table->dateTime('deleted_at')->default(null);
+            $table->dateTime('deleted_at')->nullable(true)->default(null);
             $table->timestamps();
         });
     }
