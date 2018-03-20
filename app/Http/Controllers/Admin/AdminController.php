@@ -64,7 +64,7 @@ class AdminController extends Controller
     }
 
     public function show() {
-        $users = Admin::paginate(25);
+        $users = Admin::where('deleted_at', '=', null)->paginate(25);
         return view('admin.users.users',
             [
                 'users' => $users
@@ -119,7 +119,10 @@ class AdminController extends Controller
         try {
             $admin = Admin::find($id);
             $user = $admin->username;
-            $admin->delete();
+
+
+            $admin->deleted_at = date('Y-m-d H:i:s');
+            $admin->save();
 
             \Session::flash('flash_deleted', $user . ' has been deleted');
             return redirect('/admin/users');

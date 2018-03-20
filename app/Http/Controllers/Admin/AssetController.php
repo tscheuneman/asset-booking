@@ -249,6 +249,6 @@ class AssetController extends Controller
     }
 
     public function getAllAssets() {
-        return Asset::with('location.building', 'location.region', 'category')->get();
+        return Asset::with('location.building', 'location.region', 'category')->where('deleted_at', '=', null)->get();
     }
 }

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class RegionController extends Controller
 {
     public function index() {
-        $region = Region::paginate(25);
+        $region = Region::where('deleted_at', '=', null)->paginate(25);
         return view('admin.regions.regions',
             [
                 'regions' => $region
@@ -83,7 +83,9 @@ class RegionController extends Controller
         try {
             $region = Region::find($id);
             $region_name = $region->name;
-            $region->delete();
+
+            $region->deleted_at = date('Y-m-d H:i:s');
+            $region->save();
 
             \Session::flash('flash_deleted',$region_name . ' has been deleted');
             return redirect('/admin/locations/regions');
@@ -95,7 +97,7 @@ class RegionController extends Controller
     }
 
     public function getAllRegions() {
-        return Region::orderBy('name', 'ASC')->get(['id', 'latitude', 'longitude', 'name']);
+        return Region::orderBy('name', 'ASC')->where('deleted_at', '=', null)->get(['id', 'latitude', 'longitude', 'name']);
     }
 
 }

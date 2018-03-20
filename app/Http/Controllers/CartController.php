@@ -17,7 +17,7 @@ class CartController extends Controller
     public function index() {
         $user = Auth::id();
         $cart = Cart::where('cust_id', $user)->first();
-        $entries = CartEntry::with('booking.asset.location.building', 'booking.asset.location.region')->where('cart_id', $cart->id)->get();
+        $entries = CartEntry::with('booking.asset.location.building', 'booking.asset.location.region')->where('cart_id', $cart->id)->where('deleted_at', '=', null)->get();
         return $entries;
     }
 
@@ -54,8 +54,11 @@ class CartController extends Controller
             $booking = Booking::find($book_id);
             $cartEntry = CartEntry::where('booking_id', $book_id)->first();
 
-            $booking->delete();
-            $cartEntry->delete();
+            $booking->deleted_at = date('Y-m-d H:i:s');
+            $booking->save();
+
+            $cartEntry->deleted_at = date('Y-m-d H:i:s');
+            $cartEntry->save();
 
             $returnData['status'] = 'Success';
             $returnData['message'] = 'Booking has been deleted';

@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 class BuildingController extends Controller
 {
     public function index() {
-        $buildings = Building::paginate(50);
+        $buildings = Building::where('deleted_at', '=', null)->paginate(50);
 
         if($keyword = Input::get('keyword', '')) {
             $buildings = Building::SearchBuilding($keyword)->paginate(50);
@@ -91,7 +91,9 @@ class BuildingController extends Controller
         try {
             $build = Building::find($id);
             $build_name = $build->name;
-            $build->delete();
+
+            $build->deleted_at = date('Y-m-d H:i:s');
+            $build->save();
 
             \Session::flash('flash_deleted',$build_name . ' has been deleted');
             return redirect('/admin/locations/buildings');
