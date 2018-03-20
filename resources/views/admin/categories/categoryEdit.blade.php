@@ -49,6 +49,18 @@
             <input type="file" class="form-control-file" name="marker" id="marker">
         </div>
 
+        <div class="form-group">
+            <label for="orderable">Orderable?</label>
+            @if($category->orderable)
+                <input class="form-check-input" type="checkbox" name="orderable" checked="checked">
+            @else
+                <input class="form-check-input" type="checkbox" name="orderable">
+            @endif
+
+
+        </div>
+
+
         <hr>
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
@@ -77,7 +89,7 @@
         <br>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
-
+        <br> <br>
         @include('layouts.errors')
 
     </form>

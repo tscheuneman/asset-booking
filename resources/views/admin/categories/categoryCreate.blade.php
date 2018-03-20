@@ -39,6 +39,12 @@
             <input type="file" class="form-control-file" name="marker" id="marker" required>
         </div>
 
+        <div class="form-group">
+            <label for="orderable">Orderable?</label>
+            <input class="form-check-input" type="checkbox" name="orderable">
+
+        </div>
+
         <hr>
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
@@ -70,7 +76,7 @@
         <input type="hidden" name="specifications" id="specifications" value='[{"id":0,"name":"","defaultVal":""}]'>
 
         <br style="clear:both;" />
-
+        <br>
         <button type="submit" class="btn btn-primary">Submit</button>
         <br>
         <br>
