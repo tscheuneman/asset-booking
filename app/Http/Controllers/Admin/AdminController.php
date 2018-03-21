@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Cas;
 use App\Admin;
 use App\Asset;
 use App\Category;
@@ -12,6 +11,8 @@ use App\Region;
 use App\User;
 use Mockery\Exception;
 use App\Http\Controllers\Controller;
+use App\Jobs\ProcessImage;
+use File;
 
 
 class AdminController extends Controller
@@ -48,13 +49,34 @@ class AdminController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'username' => 'required|unique:admins'
+            'username' => 'required|unique:admins',
+            'image' => 'image'
         ]);
+
+        try {
+            $path = false;
+            if(request('image') != null) {
+                $path = $request->file('image')->store(
+                    'pictures/', 'public'
+                );
+            }
+
+        }
+        catch(Exception $e) {
+            \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+            return redirect('/admin/users');
+        }
+
 
             $admin->first_name = request('first_name');
             $admin->last_name = request('last_name');
             $admin->email = request('email');
             $admin->username = request('username');
+
+            if($path) {
+                $admin->picture = $path;
+                ProcessImage::dispatch($path, 500, 60);
+            }
 
             $admin->save();
 
@@ -88,20 +110,45 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $this->validate(request(), [
             'id' => 'exists:admins',
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'username' => 'required|exists:admins'
+            'username' => 'required|exists:admins',
+            'image' => 'image'
         ]);
+
+
+
+        try {
+            $path = false;
+            if(request('image') != null) {
+                $path = $request->file('image')->store(
+                    'pictures/', 'public'
+                );
+            }
+
+        }
+        catch(Exception $e) {
+            \Session::flash('flash_deleted',request('name') . ' Error uploading file');
+            return redirect('/admin/users');
+        }
 
         try {
             $admin = Admin::find($id);
             $admin->first_name = request('first_name');
             $admin->last_name = request('last_name');
             $admin->email = request('email');
-            $admin->updated_at = date('Y-m-d H:i:s');
+            if($path) {
+                if($admin->picture != null) {
+                    File::delete(public_path(). '/storage/' .$admin->picture);
+                }
+                $admin->picture = $path;
+                ProcessImage::dispatch($path, 500, 60);
+            }
+
 
             $admin->save();
 
