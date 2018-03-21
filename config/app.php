@@ -180,6 +180,9 @@ return [
         Subfission\Cas\CasServiceProvider::class,
         Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
 
+        App\Providers\AdminSettingsServiceProvider::class,
+
+
     ],
 
     /*
