@@ -640,3 +640,16 @@ div.topNav{
     color:$asu-gold;
   }
 }
+
+div.setting {
+  padding:15px;
+  float:left;
+  margin-bottom:25px;
+
+  span.desc {
+    display:block;
+  }
+  input {
+    display:block;
+  }
+}
