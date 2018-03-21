@@ -642,9 +642,12 @@ div.topNav{
 }
 
 div.setting {
-  padding:15px;
+  padding:20px;
   float:left;
   margin-bottom:25px;
+  background:rgba(0,0,0,.1);
+  border-radius:12px;
+  margin-right:25px;
 
   span.desc {
     display:block;
