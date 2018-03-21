@@ -17,10 +17,10 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $settings = Setting::get();
+        $globalSetting = Setting::with('adminSetting')->where('global', '=', true)->get();
         return view('admin.settings.settings',
             [
-                'settings' => $settings
+                'globalSetting' => $globalSetting
             ]
         );
     }

@@ -22,7 +22,7 @@ class CategoryController extends Controller
     }
 
     public function index() {
-        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(20);
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(config('adminSettings.entries-per-page'));
         return view('admin.categories.category',
             [
                 'categories' => $cat

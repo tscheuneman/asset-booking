@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class RegionController extends Controller
 {
     public function index() {
-        $region = Region::where('deleted_at', '=', null)->paginate(25);
+        $region = Region::where('deleted_at', '=', null)->paginate(config('adminSettings.entries-per-page'));
         return view('admin.regions.regions',
             [
                 'regions' => $region
