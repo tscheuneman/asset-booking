@@ -13,31 +13,33 @@
             <input type="text" class="form-control" id="name" name="name" required value="{{$category->name}}">
         </div>
 
-        <div class="form-group">
-            <label for="description">Parent</label>
-            <select class="form-control" name="parent" id="parent">
-                <option value="" selected>Top Level Category</option>
-                @foreach($cat as $theCat)
-                    @if($theCat->id !== $category->id)
-                        @if($theCat->id == $category->parent_cat)
-                            <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
-                        @else
-                            <option value="{{$theCat->id}}">{{$theCat->name}}</option>
-                        @endif
-                    @endif
-                    @foreach($theCat->subcats as $subCat)
-                            @if ($category->id != $subCat->id)
-                                @include('layouts.categories.categoryLooperEdit', array(
-                                    'subCat' => $subCat,
-                                    'offset' => '-',
-                                    'parent' => $category->parent_cat,
-                                    'currentID' => $category->id,
-                                    ))
+        @if(config('adminSettings.multi-level-cats'))
+            <div class="form-group">
+                <label for="description">Parent</label>
+                <select class="form-control" name="parent" id="parent">
+                    <option value="" selected>Top Level Category</option>
+                    @foreach($cat as $theCat)
+                        @if($theCat->id !== $category->id)
+                            @if($theCat->id == $category->parent_cat)
+                                <option value="{{$theCat->id}}" selected>{{$theCat->name}}</option>
+                            @else
+                                <option value="{{$theCat->id}}">{{$theCat->name}}</option>
                             @endif
-                     @endforeach
-                @endforeach
-            </select>
-        </div>
+                        @endif
+                        @foreach($theCat->subcats as $subCat)
+                                @if ($category->id != $subCat->id)
+                                    @include('layouts.categories.categoryLooperEdit', array(
+                                        'subCat' => $subCat,
+                                        'offset' => '-',
+                                        'parent' => $category->parent_cat,
+                                        'currentID' => $category->id,
+                                        ))
+                                @endif
+                         @endforeach
+                    @endforeach
+                </select>
+            </div>
+        @endif
 
         <div class="form-group">
             <label for="description">Description</label>
@@ -49,17 +51,16 @@
             <input type="file" class="form-control-file" name="marker" id="marker">
         </div>
 
-        <div class="form-group">
-            <label for="orderable">Orderable?</label>
-            @if($category->orderable)
-                <input class="form-check-input" type="checkbox" name="orderable" checked="checked">
-            @else
-                <input class="form-check-input" type="checkbox" name="orderable">
-            @endif
-
-
-        </div>
-
+        @if(config('adminSettings.orderable-categories'))
+            <div class="form-group">
+                <label for="orderable">Orderable?</label>
+                @if($category->orderable)
+                    <input class="form-check-input" type="checkbox" name="orderable" checked="checked">
+                @else
+                    <input class="form-check-input" type="checkbox" name="orderable">
+                @endif
+            </div>
+        @endif
 
         <hr>
         <h4>Specifications (Click to Select)</h4>

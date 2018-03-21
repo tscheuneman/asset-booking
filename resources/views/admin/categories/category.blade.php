@@ -17,7 +17,9 @@
         <tr>
             <th scope="col" colspan="2">Name</th>
             <th scope="col">Slug</th>
-            <th scope="col">Orderable</th>
+            @if(config('adminSettings.orderable-categories'))
+                <th scope="col">Orderable</th>
+            @endif
             <th scope="col">Updated</th>
             <th scope="col">Actions</th>
         </tr>
@@ -31,13 +33,15 @@
                 <td>
                  {{$category->slug}}
                 </td>
-                <td>
-                    @if($category->orderable)
-                        Yes
-                    @else
-                        No
+                    @if(config('adminSettings.orderable-categories'))
+                        <td>
+                            @if($category->orderable)
+                                Yes
+                            @else
+                                No
+                            @endif
+                        </td>
                     @endif
-                </td>
                 <td>
                     {{$category->updated_at->format('Y-m-d')}}
                 </td>

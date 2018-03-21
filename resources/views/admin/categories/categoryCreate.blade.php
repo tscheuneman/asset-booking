@@ -12,6 +12,7 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
+        @if(config('adminSettings.multi-level-cats'))
         <div class="form-group">
             <label for="description">Parent</label>
             <select class="form-control" name="parent" id="parent">
@@ -28,6 +29,7 @@
                 @endforeach
             </select>
         </div>
+        @endif
 
         <div class="form-group">
             <label for="description">Description</label>
@@ -39,12 +41,13 @@
             <input type="file" class="form-control-file" name="marker" id="marker" required>
         </div>
 
-        <div class="form-group">
-            <label for="orderable">Orderable?</label>
-            <input class="form-check-input" type="checkbox" name="orderable">
+        @if(config('adminSettings.orderable-categories'))
+            <div class="form-group">
+                <label for="orderable">Orderable?</label>
+                <input class="form-check-input" type="checkbox" name="orderable">
 
-        </div>
-
+            </div>
+        @endif
         <hr>
         <h4>Specifications (Click to Select)</h4>
         <div class="specs">
