@@ -66,7 +66,8 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Image</label>
+            <img class="previewThumb" src="{{url('storage/' . $user->picture)}}" alt="">
+            <label for="image">Image</label>
             <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera">
         </div>
 
