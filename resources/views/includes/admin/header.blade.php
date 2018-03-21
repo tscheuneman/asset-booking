@@ -5,7 +5,7 @@
          </div>
          <div class="logo">
              <span class="topHeader">
-                 {{env('APP_NAME', 'Asset Booking App')}}
+                 {{config('adminSettings.site-name')}}
              </span>
              <span class="headerTitDesc">
                  Admin
