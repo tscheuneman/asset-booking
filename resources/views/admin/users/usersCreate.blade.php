@@ -5,7 +5,7 @@
 @section('content')
 <h2>Create User</h2>
 <hr>
-<form method="POST" action="{{ url('/admin/users') }}" id="submit">
+<form method="POST" action="{{ url('/admin/users') }}" id="submit" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="form-group">
         <label for="username">Username</label>
@@ -25,6 +25,11 @@
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <label for="image">Picture</label>
+        <input type="file" class="form-control-file" name="image" id="image" accept="image/*">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
