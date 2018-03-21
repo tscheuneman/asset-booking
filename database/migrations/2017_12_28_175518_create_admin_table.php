@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Admin;
 
+
 class CreateAdminTable extends Migration
 {
     /**
@@ -21,7 +22,7 @@ class CreateAdminTable extends Migration
             $table->string('first_name')->nullable(false);
             $table->string('last_name')->nullable(false);
             $table->string('email')->nullable(false);
-            $table->string('picture');
+            $table->string('picture')->nullable(true)->default(null);
             $table->dateTime('deleted_at')->nullable(true)->default(null);
             $table->timestamps();
         });
