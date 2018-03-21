@@ -20,7 +20,8 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-        if(config('adminSettings.use-cas')) {
+        $useCas = filter_var(config('adminSettings.enable-cas'), FILTER_VALIDATE_BOOLEAN);
+        if($useCas) {
             if(cas()->checkAuthentication()) {
                 $user = User::where('username', cas()->user())->first();
                 if($user === null){
