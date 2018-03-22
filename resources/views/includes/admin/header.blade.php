@@ -17,7 +17,9 @@
      </div>
      <div class="topNav">
          <a class="menuItem {{ Request::is('admin/settings*') ? 'active' : '' }}" href="{{ url('/admin/settings') }}">
-             <span class="glyphicon glyphicon-cog"></span> Settings
+             <span class="glyphicon glyphicon-cog"></span>
          </a>
+
+         <div class="profilePicture" style="background: url({{url('storage/' . $admin->picture)}}) center center no-repeat;"></div>
      </div>
  </div>
