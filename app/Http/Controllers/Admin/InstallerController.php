@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Cas;
 use App\Installer;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
-class InstallerController extends Controller
+class InstallerController extends AdminBaseController
 {
     public function index() {
         $installer = Installer::paginate(25);

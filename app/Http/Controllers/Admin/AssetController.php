@@ -10,11 +10,11 @@ use App\Building;
 use File;
 use App\Jobs\ProcessImage;
 use Mockery\Exception;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
 
 
-class AssetController extends Controller
+class AssetController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

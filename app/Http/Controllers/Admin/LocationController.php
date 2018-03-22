@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Building;
 use App\Region;
 use App\Asset;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
-class LocationController extends Controller
+class LocationController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

@@ -12,14 +12,10 @@ use File;
 
 use JsonSchema\Validator as JSONValidate;
 use JsonSchema\Constraints\Constraint as Constraint;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
-class CategoryController extends Controller
+class CategoryController extends AdminBaseController
 {
-    public function __construct()
-    {
-
-    }
 
     public function index() {
         $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(config('adminSettings.entries-per-page'));

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
 use App\Setting;
 
-class SettingController extends Controller
+class SettingController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

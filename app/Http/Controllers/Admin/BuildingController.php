@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 use App\Building;
 use Illuminate\Support\Facades\Input;
 use Mockery\Exception;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
 
-class BuildingController extends Controller
+class BuildingController extends AdminBaseController
 {
     public function index() {
         $buildings = Building::where('deleted_at', '=', null)->paginate(config('adminSettings.entries-per-page'));

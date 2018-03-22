@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Region;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
-class RegionController extends Controller
+class RegionController extends AdminBaseController
 {
     public function index() {
         $region = Region::where('deleted_at', '=', null)->paginate(config('adminSettings.entries-per-page'));

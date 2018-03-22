@@ -7,12 +7,12 @@ use App\Booking;
 use Validator;
 use Cas;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 use App\Cart;
 use App\CartEntry;
 use Illuminate\Database\QueryException;
 
-class BookingController extends Controller
+class BookingController extends AdminBaseController
 {
     public function bookings(Request $request)
     {

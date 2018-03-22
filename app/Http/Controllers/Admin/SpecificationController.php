@@ -9,11 +9,11 @@ use App\Category;
 
 use JsonSchema\Validator as JSONValidate;
 use JsonSchema\Constraints\Constraint as Constraint;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 
 Use File;
 
-class SpecificationController extends Controller
+class SpecificationController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.

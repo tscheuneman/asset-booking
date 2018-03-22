@@ -10,17 +10,13 @@ use App\Building;
 use App\Region;
 use App\User;
 use Mockery\Exception;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminBaseController;
 use App\Jobs\ProcessImage;
 use File;
 
 
-class AdminController extends Controller
+class AdminController extends AdminBaseController
 {
-    public function __construct()
-    {
-
-    }
 
     public function index() {
         $user = Admin::getName(cas()->user());
