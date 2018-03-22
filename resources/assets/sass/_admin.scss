@@ -626,24 +626,38 @@ div.deleteEntry {
 }
 
 div.topNav{
+  float:right;
+  margin-right:50px;
   margin-left:20px;
 
   a.menuItem {
     color:$white;
     line-height:75px;
-    font-size:16px;
+    font-size:22px;
     text-shadow:$normalTextShadow;
     text-decoration:none;
     transition:.5s all;
+    float:left;
+    margin-right:15px;
   }
   a.menuItem:hover, a.menuItem.active {
     color:$asu-gold;
+  }
+  div.profilePicture {
+    float:left;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    box-shadow:$normalBoxShadow;
+    background-size:cover !important;
+    margin-top:16px;
+    margin-right:15px;
   }
 }
 
 div.setting {
   padding:20px;
-  float:left;
+  float:right;
   margin-bottom:25px;
   background:rgba(0,0,0,.1);
   border-radius:12px;
