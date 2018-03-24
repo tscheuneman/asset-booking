@@ -14,10 +14,10 @@ use App\Http\Controllers\AdminBaseController;
 class BuildingController extends AdminBaseController
 {
     public function index() {
-        $buildings = Building::where('deleted_at', '=', null)->paginate(config('adminSettings.entries-per-page'));
+        $buildings = Building::where('deleted_at', '=', null)->paginate(config('globalSettings.entries-per-page'));
 
         if($keyword = Input::get('keyword', '')) {
-            $buildings = Building::SearchBuilding($keyword)->paginate(config('adminSettings.entries-per-page'));
+            $buildings = Building::SearchBuilding($keyword)->paginate(config('globalSettings.entries-per-page'));
 
         }
 

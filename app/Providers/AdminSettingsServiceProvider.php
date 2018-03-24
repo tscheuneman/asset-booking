@@ -16,15 +16,16 @@ class AdminSettingsServiceProvider extends ServiceProvider
 
     public function boot(Factory $cache)
     {
+
         $globalSettings = Setting::with('adminSetting')->where('global', '=', true)->get();
-        $globalSettings = $cache->remember('settings', 60, function() use ($globalSettings)
+        $globalSettings = $cache->remember('globalSettings', 60, function() use ($globalSettings)
         {
             // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
             return $globalSettings->pluck('adminSetting.value', 'slug')->all();
         });
 
         $adminSettings = Setting::with('adminSetting')->where('global', '=', false)->get();
-        $adminSettings = $cache->remember('settings', 60, function() use ($adminSettings)
+        $adminSettings = $cache->remember('adminSettings', 60, function() use ($adminSettings)
         {
             // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
             return $adminSettings->pluck('adminSetting.value', 'slug')->all();
@@ -32,6 +33,7 @@ class AdminSettingsServiceProvider extends ServiceProvider
 
         config()->set('globalSettings', $globalSettings);
         config()->set('adminSettings', $adminSettings);
+
     }
 
     /**

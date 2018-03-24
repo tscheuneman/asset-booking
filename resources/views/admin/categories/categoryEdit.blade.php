@@ -13,7 +13,7 @@
             <input type="text" class="form-control" id="name" name="name" required value="{{$category->name}}">
         </div>
 
-        @if(config('adminSettings.multi-level-cats'))
+        @if(config('globalSettings.multi-level-cats'))
             <div class="form-group">
                 <label for="description">Parent</label>
                 <select class="form-control" name="parent" id="parent">
@@ -51,7 +51,7 @@
             <input type="file" class="form-control-file" name="marker" id="marker">
         </div>
 
-        @if(config('adminSettings.orderable-categories'))
+        @if(config('globalSettings.orderable-categories'))
             <div class="form-group">
                 <label for="orderable">Orderable?</label>
                 @if($category->orderable)

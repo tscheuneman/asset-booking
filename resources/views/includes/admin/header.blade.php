@@ -5,7 +5,7 @@
          </div>
          <div class="logo">
              <span class="topHeader">
-                 {{config('adminSettings.site-name')}}
+                 {{config('globalSettings.site-name')}}
              </span>
              <span class="headerTitDesc">
                  Admin

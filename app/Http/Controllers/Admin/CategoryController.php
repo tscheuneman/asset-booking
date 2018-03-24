@@ -18,7 +18,7 @@ class CategoryController extends AdminBaseController
 {
 
     public function index() {
-        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(config('adminSettings.entries-per-page'));
+        $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->paginate(config('globalSettings.entries-per-page'));
         return view('admin.categories.category',
             [
                 'categories' => $cat

@@ -23,7 +23,7 @@ class AssetController extends AdminBaseController
      */
     public function index()
     {
-        $assets = Asset::with('location.building', 'category.parentcatrecursive', 'location.region')->where('deleted_at', '=', null)->paginate(config('adminSettings.entries-per-page'));
+        $assets = Asset::with('location.building', 'category.parentcatrecursive', 'location.region')->where('deleted_at', '=', null)->paginate(config('globalSettings.entries-per-page'));
         return view('admin.assets.assets',
             [
                 'assets' => $assets

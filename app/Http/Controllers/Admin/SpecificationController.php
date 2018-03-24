@@ -21,7 +21,7 @@ class SpecificationController extends AdminBaseController
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $specs = Specification::paginate(config('adminSettings.entries-per-page'));
+        $specs = Specification::paginate(config('globalSettings.entries-per-page'));
         return view('admin.specs.specs',
             [
                 'specs' => $specs

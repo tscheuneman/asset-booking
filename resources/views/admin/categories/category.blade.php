@@ -17,7 +17,7 @@
         <tr>
             <th scope="col" colspan="2">Name</th>
             <th scope="col">Slug</th>
-            @if(config('adminSettings.orderable-categories'))
+            @if(config('globalSettings.orderable-categories'))
                 <th scope="col">Orderable</th>
             @endif
             <th scope="col">Updated</th>
@@ -33,7 +33,7 @@
                 <td>
                  {{$category->slug}}
                 </td>
-                    @if(config('adminSettings.orderable-categories'))
+                    @if(config('globalSettings.orderable-categories'))
                         <td>
                             @if($category->orderable)
                                 Yes

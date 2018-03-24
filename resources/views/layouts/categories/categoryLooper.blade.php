@@ -7,7 +7,7 @@
         <td>
             {{$subCat->slug}}
         </td>
-        @if(config('adminSettings.orderable-categories'))
+        @if(config('globalSettings.orderable-categories'))
             <td>
                 @if($subCat->orderable)
                     Yes
