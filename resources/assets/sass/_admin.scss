@@ -670,6 +670,23 @@ div.setting {
     display:block;
   }
 }
+div#globalResponse{
+  margin-top:15px;
+  transition:.5s all;
+  float: left;
+  padding: 15px;
+  border-radius: 8px;
+
+  &.good {
+    background:$due_today;
+  }
+  &.bad {
+  backgreound:$past-due;
+  }
+
+}
+
+
 img.previewThumb {
   float:left;
   width:80px;
