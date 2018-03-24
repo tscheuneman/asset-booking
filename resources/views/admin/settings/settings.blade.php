@@ -27,9 +27,11 @@
     </div>
     <br class="clear">
     <button id="submitGlobal" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</button>
-    <div class="globalResponse">
+    <br class="clear" />
+    <div id="globalResponse">
 
     </div>
+    <br class="clear" />
     <br>
     <h1>Your Settings</h1>
     <hr>
@@ -63,7 +65,27 @@
             returnArray.push(item);
         });
         if(returnArray.length > 0) {
-            console.log(returnArray);
+            let dataVal = JSON.stringify(returnArray);
+
+            $.ajax({
+                method: "POST",
+                url: "{{ url('/admin/settings/global') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'data': dataVal,
+                }
+            }).done(function( msg ) {
+                let res = JSON.parse(msg);
+                if(res.status === "Sucesss") {
+                 $('#globalResponse').removeClass().addClass('good').html(res.message);
+                }
+                else {
+                 $('#globalResponse').removeClass().addClass('bad').html(res.message);
+                }
+            });
+
         }
 
     }
