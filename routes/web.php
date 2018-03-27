@@ -119,6 +119,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/settings', 'Admin\SettingController@index');
 
     Route::post('/admin/settings/global', 'Admin\SettingController@globalUpdate');
+
+
 });
 
 

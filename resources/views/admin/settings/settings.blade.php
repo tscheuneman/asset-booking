@@ -3,7 +3,7 @@
     Settings
 @stop
 @section('content')
-    <h1>Global Site Settings</h1>
+    <h1>Site Settings</h1>
     <hr>
     <div class="globalSettings">
         @foreach($globalSetting as $setting)
@@ -33,8 +33,6 @@
     </div>
     <br class="clear" />
     <br>
-    <h1>Your Settings</h1>
-    <hr>
 @stop
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
