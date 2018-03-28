@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Setting;
 use Illuminate\Contracts\Cache\Factory;
+use Illuminate\Support\Facades\Schema;
 
 class AdminSettingsServiceProvider extends ServiceProvider
 {
@@ -17,22 +18,22 @@ class AdminSettingsServiceProvider extends ServiceProvider
     public function boot(Factory $cache)
     {
 
-        $globalSettings = Setting::with('adminSetting')->where('global', '=', true)->get();
-        $globalSettings = $cache->remember('globalSettings', 60, function() use ($globalSettings)
-        {
-            // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
-            return $globalSettings->pluck('adminSetting.value', 'slug')->all();
-        });
+        if(Schema::hasTable('settings')) {
+            $globalSettings = Setting::with('adminSetting')->where('global', '=', true)->get();
+            $globalSettings = $cache->remember('globalSettings', 60, function () use ($globalSettings) {
+                // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
+                return $globalSettings->pluck('adminSetting.value', 'slug')->all();
+            });
 
-        $adminSettings = Setting::with('adminSetting')->where('global', '=', false)->get();
-        $adminSettings = $cache->remember('adminSettings', 60, function() use ($adminSettings)
-        {
-            // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
-            return $adminSettings->pluck('adminSetting.value', 'slug')->all();
-        });
+            $adminSettings = Setting::with('adminSetting')->where('global', '=', false)->get();
+            $adminSettings = $cache->remember('adminSettings', 60, function () use ($adminSettings) {
+                // Laravel >= 5.2, use 'lists' instead of 'pluck' for Laravel <= 5.1
+                return $adminSettings->pluck('adminSetting.value', 'slug')->all();
+            });
 
-        config()->set('globalSettings', $globalSettings);
-        config()->set('adminSettings', $adminSettings);
+            config()->set('globalSettings', $globalSettings);
+            config()->set('adminSettings', $adminSettings);
+        }
 
     }
 
