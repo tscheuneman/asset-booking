@@ -21,6 +21,7 @@ class CheckUser
     public function handle($request, Closure $next)
     {
         $useCas = filter_var(config('globalSettings.enable-cas'), FILTER_VALIDATE_BOOLEAN);
+        $approveAcc = filter_var(config('globalSettings.user-approval', true), FILTER_VALIDATE_BOOLEAN);
         if($useCas) {
             if(cas()->checkAuthentication()) {
                 $user = User::where('username', cas()->user())->first();
@@ -28,6 +29,11 @@ class CheckUser
                     return redirect('/register');
                 }
                 else {
+                    if($approveAcc) {
+                        if(!$user->active) {
+                            return redirect('/approval');
+                        }
+                    }
                     Auth::login($user);
                     return $next($request);
                 }
