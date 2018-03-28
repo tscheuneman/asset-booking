@@ -22,5 +22,8 @@
                         <li class="special"><a href="{{ url('/installers') }}">Installation Center </a></li>
                     </ul>
                 </li>
+                @if(config('globalSettings.user-approval'))
+                    <li class="approval {{ Request::is('admin/user/approval*') ? 'active' : '' }}"><a href="{{ url('/admin/user/approval') }}">User Approval</a></li>
+                @endif
             </ul>
 </sidebar>
