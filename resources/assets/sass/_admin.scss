@@ -118,13 +118,14 @@ a.actionLink {
 
 }
 
-a.editAction {
+a.editAction, button.editAction {
   padding:8px;
   border-radius:3px;
   background:$brand-success;
   color:$dark-butt-color;
   float:left;
   margin-right:10px;
+  border:none;
 }
 .deleteAction {
   padding:8px;
@@ -405,6 +406,15 @@ sidebar.navbar {
       background:$navbar-hover;
       color:$asu-gold;
     }
+    &.approval a {
+      background:$asu-maroon;
+      color:$white;
+
+      &:hover, &.active {
+        background:$asu-maroon-hover;
+      }
+    }
+
     .dropdown-menu {
       position: relative;
       width: 100%;
@@ -639,9 +649,14 @@ div.topNav{
     transition:.5s all;
     float:left;
     margin-right:15px;
-  }
-  a.menuItem:hover, a.menuItem.active {
-    color:$asu-gold;
+
+    &:hover, &.active {
+      color:$asu-gold;
+      line-height: 75px !important;
+    }
+    span {
+      line-height: 75px !important;
+    }
   }
   div.profilePicture {
     float:left;
