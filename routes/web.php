@@ -121,6 +121,10 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::post('/admin/settings/global', 'Admin\SettingController@globalUpdate');
 
 
+    //Admin User Approval
+    Route::get('/admin/user/approval', 'Admin\UserApprovalController@index');
+
+    Route::post('/admin/user/approve/{id}', 'Admin\UserApprovalController@update');
 });
 
 
