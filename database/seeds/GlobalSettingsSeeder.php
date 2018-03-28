@@ -13,9 +13,6 @@ class GlobalSettingsSeeder extends Seeder
      */
     public function run()
     {
-        Setting::truncate();
-        AdminSetting::truncate();
-
         $this->createSetting('Site Name', 'site-name', 'textbox', 'Name of site', true, "Asset Booking");
         $this->createSetting('Entries per Page', 'entries-per-page', 'number', 'Number of entries per page', true, 10);
 
