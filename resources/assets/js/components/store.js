@@ -8,14 +8,11 @@ export const store = new Vuex.Store({
         assets: [],
         regions: [],
         categories: [],
+        user: [],
         count: 0,
-        username: '',
-        first_name: '',
-        last_name: '',
     },
     getters: {
         countGet: state => state.count,
-        getFirstName: state => state.first_name,
         getCartItems: state => {
             return state.bookingEvents;
         }
@@ -27,7 +24,7 @@ export const store = new Vuex.Store({
         },
         deleteEntry (state, value) {
             // mutate state
-            var cnt = 0;
+            let cnt = 0;
             state.bookingEvents.forEach(function(entry) {
                 if(value === entry.booking.id) {
                     state.bookingEvents.splice(cnt, 1);
@@ -35,8 +32,8 @@ export const store = new Vuex.Store({
                 cnt++;
             });
         },
-        changeFirstName (state, value) {
-            state.first_name = value;
+        changeUser (state, value) {
+            state.user = value;
         },
         addBookingEvent (state, value) {
             state.bookingEvents = value;
