@@ -11,7 +11,7 @@
                 <i class="glyphicon glyphicon-remove"></i>
             </div>
 
-            <h1>Hi {{ $store.state.first_name }}, you have {{$store.state.count}} items in your cart</h1>
+            <h1>Hi {{ $store.state.user.first_name }}, you have {{$store.state.count}} items in your cart</h1>
             <entry
                     :key="i"
                     v-for="(m,i) in $store.state.bookingEvents"
