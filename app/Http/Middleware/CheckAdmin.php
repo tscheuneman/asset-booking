@@ -18,6 +18,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
+            cas()->authenticate();
             if(cas()->checkAuthentication()) {
                 $user = Admin::where('username', cas()->user())->where('deleted_at', '=', null)->first();
                 if($user != null){
