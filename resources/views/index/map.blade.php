@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <div id="app" style="height: 100%">
-        <navigation :user="'{{$user}}'">
+        <navigation :user="'{{$user->id}}'">
 
         </navigation>
 
