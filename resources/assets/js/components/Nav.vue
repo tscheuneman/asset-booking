@@ -55,7 +55,7 @@
         },
         mounted() {
             let self = this;
-            let data = JSON.parse(this.user);
+            let data = this.user;
 
             axios.get('/cart')
                 .then(function (response) {
@@ -65,7 +65,8 @@
                     store.commit('addBookingEvent', returnData);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    alert("Failed to initialize cart");
+                    location.reload();
                 });
 
             axios.get('/api/location/regions')
@@ -74,10 +75,19 @@
                     store.commit('addRegions', returnData);
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    alert("Failed to initialize navigation");
+                    location.reload();
                 });
 
-            store.commit('changeFirstName', data.first_name);
+            axios.get('/api/user/'+data)
+                .then(function (response) {
+                    let returnData = response.data;
+                    store.commit('changeUser', returnData);
+                })
+                .catch(function (error) {
+                    alert("Failed to initialize user info");
+                    location.reload();
+                });
         },
         methods: {
             ...mapMutations([
