@@ -130,7 +130,7 @@ return [
     | this feature, you may be able to retrieve user meta data.
     |--------------------------------------------------------------------------
     */
-    'cas_enable_saml'     => env('CAS_ENABLE_SAML', true),
+    'cas_enable_saml'     => env('CAS_ENABLE_SAML', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ return [
     | 3) false
     |--------------------------------------------------------------------------
     */
-    'cas_debug'           => env('CAS_DEBUG', false),
+    'cas_debug'           => env('CAS_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -158,7 +158,7 @@ return [
     | true | false
     |--------------------------------------------------------------------------
     */
-    'cas_verbose_errors'  => env('CAS_VERBOSE_ERRORS', false),
+    'cas_verbose_errors'  => env('CAS_VERBOSE_ERRORS', true),
 
     /*
     |--------------------------------------------------------------------------
