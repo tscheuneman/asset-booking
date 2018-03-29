@@ -10,7 +10,12 @@ class AdminBaseController extends Controller
 {
     public function __construct()
     {
-        $admin = Admin::where('username', '=', cas()->user())->first();
-        View::share('admin', $admin);
+        if(cas()->checkAuthentication()) {
+            $admin = Admin::where('username', '=', cas()->user())->first();
+            View::share('admin', $admin);
+        }
+        else {
+            cas()->authenticate();
+        }
     }
 }

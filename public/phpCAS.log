@@ -1,0 +1,462 @@
+B2AA .START (2018-03-29 16:55:35) phpCAS-1.3.5 ****************** [CAS.php:468]
+B2AA .Loaded configuration:
+B2AA .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:8:"tjscheun";}
+B2AA .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+B2AA .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+B2AA .|    |    Starting a new session 9lf83nsn8uusgt6h7grsps0jjc [Client.php:932]
+B2AA .|    |    Session is not authenticated [Client.php:938]
+B2AA .|    <= ''
+B2AA .<= ''
+B2AA .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+B2AA .|    Not a logout request [Client.php:1739]
+B2AA .<= ''
+B2AA .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+B2AA .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+B2AA .<= ''
+B2AA .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+B2AA .<= ''
+B2AA .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+B2AA .<= ''
+B2AA .Masquerading as user: tjscheun
+6882 .START (2018-03-29 16:55:35) phpCAS-1.3.5 ****************** [CAS.php:468]
+6882 .Loaded configuration:
+6882 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:8:"tjscheun";}
+6882 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+6882 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+6882 .|    |    Starting a new session 98bmiprb3iurter3ffahc2uu8i [Client.php:932]
+6882 .|    |    Session is not authenticated [Client.php:938]
+6882 .|    <= ''
+6882 .<= ''
+6882 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+6882 .|    Not a logout request [Client.php:1739]
+6882 .<= ''
+6882 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+6882 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+6882 .<= ''
+6882 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+6882 .<= ''
+6882 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+6882 .<= ''
+6882 .Masquerading as user: tjscheun
+ADEB .START (2018-03-29 16:55:41) phpCAS-1.3.5 ****************** [CAS.php:468]
+ADEB .Loaded configuration:
+ADEB .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:8:"tjscheun";}
+ADEB .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+ADEB .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+ADEB .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+ADEB .|    |    Session is not authenticated [Client.php:938]
+ADEB .|    <= ''
+ADEB .<= ''
+ADEB .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+ADEB .|    Not a logout request [Client.php:1739]
+ADEB .<= ''
+ADEB .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+ADEB .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+ADEB .<= ''
+ADEB .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+ADEB .<= ''
+ADEB .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+ADEB .<= ''
+ADEB .Masquerading as user: tjscheun
+FEBA .START (2018-03-29 16:55:46) phpCAS-1.3.5 ****************** [CAS.php:468]
+FEBA .Loaded configuration:
+FEBA .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:8:"tjscheun";}
+FEBA .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+FEBA .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+FEBA .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+FEBA .|    |    Session is not authenticated [Client.php:938]
+FEBA .|    <= ''
+FEBA .<= ''
+FEBA .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+FEBA .|    Not a logout request [Client.php:1739]
+FEBA .<= ''
+FEBA .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+FEBA .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+FEBA .<= ''
+FEBA .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+FEBA .<= ''
+FEBA .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+FEBA .<= ''
+FEBA .Masquerading as user: tjscheun
+5F7A .START (2018-03-29 16:55:58) phpCAS-1.3.5 ****************** [CAS.php:468]
+5F7A .Loaded configuration:
+5F7A .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+5F7A .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+5F7A .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+5F7A .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+5F7A .|    |    Session is not authenticated [Client.php:938]
+5F7A .|    <= ''
+5F7A .<= ''
+5F7A .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+5F7A .|    Not a logout request [Client.php:1739]
+5F7A .<= ''
+5F7A .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+5F7A .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+5F7A .<= ''
+5F7A .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+5F7A .<= ''
+5F7A .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+5F7A .<= ''
+5F7A .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+5F7A .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+5F7A .<= ''
+75F7 .START (2018-03-29 16:56:16) phpCAS-1.3.5 ****************** [CAS.php:468]
+75F7 .Loaded configuration:
+75F7 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"1.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+75F7 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+75F7 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+75F7 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+75F7 .|    |    Session is not authenticated [Client.php:938]
+75F7 .|    <= ''
+75F7 .<= ''
+75F7 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+75F7 .|    Not a logout request [Client.php:1739]
+75F7 .<= ''
+75F7 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+75F7 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+75F7 .<= ''
+75F7 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+75F7 .<= ''
+75F7 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+75F7 .<= ''
+75F7 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+75F7 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+75F7 .<= ''
+FA24 .START (2018-03-29 16:56:17) phpCAS-1.3.5 ****************** [CAS.php:468]
+FA24 .Loaded configuration:
+FA24 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"1.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+FA24 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+FA24 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+FA24 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+FA24 .|    |    Session is not authenticated [Client.php:938]
+FA24 .|    <= ''
+FA24 .<= ''
+FA24 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+FA24 .|    Not a logout request [Client.php:1739]
+FA24 .<= ''
+FA24 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+FA24 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+FA24 .<= ''
+FA24 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+FA24 .<= ''
+FA24 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+FA24 .<= ''
+FA24 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+FA24 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+FA24 .<= ''
+99DA .START (2018-03-29 16:56:18) phpCAS-1.3.5 ****************** [CAS.php:468]
+99DA .Loaded configuration:
+99DA .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"1.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+99DA .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+99DA .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+99DA .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+99DA .|    |    Session is not authenticated [Client.php:938]
+99DA .|    <= ''
+99DA .<= ''
+99DA .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+99DA .|    Not a logout request [Client.php:1739]
+99DA .<= ''
+99DA .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+99DA .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+99DA .<= ''
+99DA .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+99DA .<= ''
+99DA .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+99DA .<= ''
+99DA .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+99DA .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+99DA .<= ''
+0D26 .START (2018-03-29 16:56:28) phpCAS-1.3.5 ****************** [CAS.php:468]
+0D26 .Loaded configuration:
+0D26 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+0D26 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+0D26 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+0D26 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+0D26 .|    |    Session is not authenticated [Client.php:938]
+0D26 .|    <= ''
+0D26 .<= ''
+0D26 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+0D26 .|    Not a logout request [Client.php:1739]
+0D26 .<= ''
+0D26 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+0D26 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+0D26 .<= ''
+0D26 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+0D26 .<= ''
+0D26 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+0D26 .<= ''
+0D26 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+0D26 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+0D26 .<= ''
+AAD8 .START (2018-03-29 16:56:34) phpCAS-1.3.5 ****************** [CAS.php:468]
+AAD8 .Loaded configuration:
+AAD8 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:0;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+AAD8 .=> phpCAS::client('2.0', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+AAD8 .|    => CAS_Client::__construct('2.0', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+AAD8 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+AAD8 .|    |    Session is not authenticated [Client.php:938]
+AAD8 .|    <= ''
+AAD8 .<= ''
+AAD8 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+AAD8 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+AAD8 .<= ''
+AAD8 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+AAD8 .<= ''
+AAD8 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+AAD8 .<= ''
+AAD8 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+AAD8 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+AAD8 .<= ''
+9148 .START (2018-03-29 16:56:35) phpCAS-1.3.5 ****************** [CAS.php:468]
+9148 .Loaded configuration:
+9148 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:0;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+9148 .=> phpCAS::client('2.0', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+9148 .|    => CAS_Client::__construct('2.0', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+9148 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+9148 .|    |    Session is not authenticated [Client.php:938]
+9148 .|    <= ''
+9148 .<= ''
+9148 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+9148 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+9148 .<= ''
+9148 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+9148 .<= ''
+9148 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+9148 .<= ''
+9148 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+9148 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+9148 .<= ''
+6783 .START (2018-03-29 16:56:35) phpCAS-1.3.5 ****************** [CAS.php:468]
+6783 .Loaded configuration:
+6783 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:0;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+6783 .=> phpCAS::client('2.0', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+6783 .|    => CAS_Client::__construct('2.0', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+6783 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+6783 .|    |    Session is not authenticated [Client.php:938]
+6783 .|    <= ''
+6783 .<= ''
+6783 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+6783 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+6783 .<= ''
+6783 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+6783 .<= ''
+6783 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+6783 .<= ''
+6783 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+6783 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+6783 .<= ''
+DA22 .START (2018-03-29 16:56:45) phpCAS-1.3.5 ****************** [CAS.php:468]
+DA22 .Loaded configuration:
+DA22 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+DA22 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+DA22 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+DA22 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+DA22 .|    |    Session is not authenticated [Client.php:938]
+DA22 .|    <= ''
+DA22 .<= ''
+DA22 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+DA22 .|    Not a logout request [Client.php:1739]
+DA22 .<= ''
+DA22 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+DA22 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+DA22 .<= ''
+DA22 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+DA22 .<= ''
+DA22 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+DA22 .<= ''
+DA22 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+DA22 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+DA22 .<= ''
+8565 .START (2018-03-29 16:56:55) phpCAS-1.3.5 ****************** [CAS.php:468]
+8565 .Loaded configuration:
+8565 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+8565 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+8565 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+8565 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+8565 .|    |    Session is not authenticated [Client.php:938]
+8565 .|    <= ''
+8565 .<= ''
+8565 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+8565 .|    Not a logout request [Client.php:1739]
+8565 .<= ''
+8565 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+8565 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+8565 .<= ''
+8565 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+8565 .<= ''
+8565 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+8565 .<= ''
+8565 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+8565 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+8565 .<= ''
+072F .START (2018-03-29 16:57:34) phpCAS-1.3.5 ****************** [CAS.php:468]
+072F .Loaded configuration:
+072F .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+072F .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+072F .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+072F .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+072F .|    |    Session is not authenticated [Client.php:938]
+072F .|    <= ''
+072F .<= ''
+072F .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+072F .|    Not a logout request [Client.php:1739]
+072F .<= ''
+072F .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+072F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+072F .<= ''
+072F .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+072F .<= ''
+072F .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+072F .<= ''
+072F .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+072F .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+072F .<= ''
+927D .START (2018-03-29 16:57:48) phpCAS-1.3.5 ****************** [CAS.php:468]
+927D .Loaded configuration:
+927D .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+927D .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+927D .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+927D .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+927D .|    |    Session is not authenticated [Client.php:938]
+927D .|    <= ''
+927D .<= ''
+927D .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+927D .|    Not a logout request [Client.php:1739]
+927D .<= ''
+927D .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+927D .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+927D .<= ''
+927D .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+927D .<= ''
+927D .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+927D .<= ''
+927D .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+927D .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+927D .<= ''
+5B5F .START (2018-03-29 16:58:18) phpCAS-1.3.5 ****************** [CAS.php:468]
+5B5F .Loaded configuration:
+5B5F .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+5B5F .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+5B5F .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+5B5F .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+5B5F .|    |    Session is not authenticated [Client.php:938]
+5B5F .|    <= ''
+5B5F .<= ''
+5B5F .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+5B5F .|    Not a logout request [Client.php:1739]
+5B5F .<= ''
+5B5F .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+5B5F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+5B5F .<= ''
+5B5F .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+5B5F .<= ''
+5B5F .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+5B5F .<= ''
+5B5F .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+5B5F .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+5B5F .<= ''
+B091 .START (2018-03-29 16:58:57) phpCAS-1.3.5 ****************** [CAS.php:468]
+B091 .Loaded configuration:
+B091 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+B091 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+B091 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+B091 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+B091 .|    |    Session is not authenticated [Client.php:938]
+B091 .|    <= ''
+B091 .<= ''
+B091 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+B091 .|    Not a logout request [Client.php:1739]
+B091 .<= ''
+B091 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+B091 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+B091 .<= ''
+B091 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+B091 .<= ''
+B091 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+B091 .<= ''
+B091 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+B091 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+B091 .<= ''
+B8F5 .START (2018-03-29 16:59:01) phpCAS-1.3.5 ****************** [CAS.php:468]
+B8F5 .Loaded configuration:
+B8F5 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+B8F5 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+B8F5 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+B8F5 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+B8F5 .|    |    Session is not authenticated [Client.php:938]
+B8F5 .|    <= ''
+B8F5 .<= ''
+B8F5 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+B8F5 .|    Not a logout request [Client.php:1739]
+B8F5 .<= ''
+B8F5 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+B8F5 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+B8F5 .<= ''
+B8F5 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+B8F5 .<= ''
+B8F5 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+B8F5 .<= ''
+B8F5 .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+B8F5 .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+B8F5 .<= ''
+B2EF .START (2018-03-29 16:59:09) phpCAS-1.3.5 ****************** [CAS.php:468]
+B2EF .Loaded configuration:
+B2EF .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+B2EF .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+B2EF .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+B2EF .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+B2EF .|    |    Session is not authenticated [Client.php:938]
+B2EF .|    <= ''
+B2EF .<= ''
+B2EF .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+B2EF .|    Not a logout request [Client.php:1739]
+B2EF .<= ''
+B2EF .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+B2EF .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+B2EF .<= ''
+B2EF .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+B2EF .<= ''
+B2EF .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+B2EF .<= ''
+B2EF .=> phpCAS::error('CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn\'t happened yet.') [CAS.php:1182]
+B2EF .|    CAS_OutOfSequenceBeforeAuthenticationCallException: An authentication call hasn't happened yet. in C:\Users\tjscheun\Desktop\asset-booking\vendor\subfission\cas\src\Subfission\Cas\CasManager.phpon line 188 [CAS.php:566]
+B2EF .<= ''
+4CC4 .START (2018-03-29 16:59:43) phpCAS-1.3.5 ****************** [CAS.php:468]
+4CC4 .Loaded configuration:
+4CC4 .a:19:{s:12:"cas_hostname";s:16:"weblogin.asu.edu";s:14:"cas_real_hosts";s:14:"cas.myuniv.edu";s:16:"cas_session_name";s:7:"CASAuth";s:19:"cas_control_session";b:0;s:9:"cas_proxy";b:0;s:8:"cas_port";s:3:"443";s:7:"cas_uri";s:4:"/cas";s:14:"cas_validation";s:0:"";s:8:"cas_cert";s:0:"";s:15:"cas_validate_cn";b:1;s:13:"cas_login_url";s:0:"";s:14:"cas_logout_url";s:33:"https://cas.myuniv.edu/cas/logout";s:19:"cas_logout_redirect";s:0:"";s:17:"cas_redirect_path";s:0:"";s:15:"cas_enable_saml";b:1;s:11:"cas_version";s:3:"2.0";s:9:"cas_debug";b:1;s:18:"cas_verbose_errors";b:1;s:14:"cas_masquerade";s:0:"";}
+4CC4 .=> phpCAS::client('S1', 'weblogin.asu.edu', 443, '/cas', false) [CasManager.php:93]
+4CC4 .|    => CAS_Client::__construct('S1', false, 'weblogin.asu.edu', 443, '/cas', false) [CAS.php:359]
+4CC4 .|    |    Starting a new session 00adcbhjtuq52tm7ov190okvnk [Client.php:932]
+4CC4 .|    |    Session is not authenticated [Client.php:938]
+4CC4 .|    <= ''
+4CC4 .<= ''
+4CC4 .=> CAS_Client::handleLogoutRequests(true, array (  0 => 'cas.myuniv.edu',)) [CAS.php:1276]
+4CC4 .|    Not a logout request [Client.php:1739]
+4CC4 .<= ''
+4CC4 .=> phpCAS::setNoCasServerValidation() [CasManager.php:151]
+4CC4 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1644]
+4CC4 .<= ''
+4CC4 .=> phpCAS::setServerLoginURL('') [CasManager.php:52]
+4CC4 .<= ''
+4CC4 .=> phpCAS::setServerLogoutURL('https://cas.myuniv.edu/cas/logout') [CasManager.php:59]
+4CC4 .<= ''
+4CC4 .=> phpCAS::checkAuthentication() [CasManager.php:293]
+4CC4 .|    => CAS_Client::checkAuthentication() [CAS.php:1078]
+4CC4 .|    |    => CAS_Client::isAuthenticated() [Client.php:1331]
+4CC4 .|    |    |    => CAS_Client::_wasPreviouslyAuthenticated() [Client.php:1393]
+4CC4 .|    |    |    |    no user found [Client.php:1635]
+4CC4 .|    |    |    <= false
+4CC4 .|    |    |    no ticket found [Client.php:1494]
+4CC4 .|    |    <= false
+4CC4 .|    |    user is not authenticated (cache reset) [Client.php:1369]
+4CC4 .|    |    => CAS_Client::redirectToCas(true) [Client.php:1370]
+4CC4 .|    |    |    => CAS_Client::getServerLoginURL(true, false) [Client.php:1656]
+4CC4 .|    |    |    |    => CAS_Client::getURL() [Client.php:342]
+4CC4 .|    |    |    |    |    Final URI: http://127.0.0.1:8000/admin [Client.php:3548]
+4CC4 .|    |    |    |    <= 'http://127.0.0.1:8000/admin'
+4CC4 .|    |    |    <= 'https://weblogin.asu.edu/cas/login?service=http%3A%2F%2F127.0.0.1%3A8000%2Fadmin&gateway=true'
+4CC4 .|    |    |    Redirect to : https://weblogin.asu.edu/cas/login?service=http%3A%2F%2F127.0.0.1%3A8000%2Fadmin&gateway=true [Client.php:1663]
+4CC4 .|    |    |    exit()
+4CC4 .|    |    |    -
+4CC4 .|    |    -
+4CC4 .|    -
