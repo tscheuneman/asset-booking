@@ -69,8 +69,28 @@ class CartController extends Controller
             $returnData['message'] = 'Invalid Booking';
             return json_encode($returnData);
         }
+    }
 
+    public function checkout(Request $request) {
+        $data = json_decode(request('data'));
 
-
+        $badReturn = false;
+        $today = date('Y-m-d', strtotime('+3 weekdays'));
+        $badBookings = array();
+        $invalidCnt = 0;
+        foreach($data as $entry) {
+            if(date('Y-m-d', strtotime($entry->booking->time_from)) <= $today) {
+                $badReturn = true;
+                $badBookings[] = $entry->booking->id;
+                $invalidCnt++;
+            }
+        }
+        if($badReturn) {
+            $returnData['status'] = 'Invalid';
+            $returnData['message'] = 'You have ' . $invalidCnt . ' invalid entries.  These entries have been removed from your card.  Please try again';
+            $returnData['data'] = $badBookings;
+            return json_encode($returnData);
+        }
+        return $badBookings;
     }
 }
