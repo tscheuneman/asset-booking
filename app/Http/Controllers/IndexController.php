@@ -21,6 +21,12 @@ class IndexController extends Controller
             ]
         );
     }
+
+    public function approval() {
+        return view('index.approval');
+    }
+
+
     public function show() {
         $assets = Asset::with('location.building', 'category')->get();
         return $assets;

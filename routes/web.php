@@ -17,6 +17,8 @@ Route::get('/installer/error', 'Installers\IndexController@error');
 Route::get('/register', 'RegisterController@index');
 Route::post('/register', 'RegisterController@store');
 
+Route::get('/approval', 'IndexController@approval');
+
 Route::group(['middleware' => ['cas.user']], function ()
 {
     Route::get('/', 'IndexController@index');
