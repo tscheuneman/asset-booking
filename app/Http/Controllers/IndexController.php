@@ -14,7 +14,7 @@ use App\Booking;
 class IndexController extends Controller
 {
     public function index() {
-        $user = User::where('username', cas()->user())->first(['first_name', 'last_name', 'username']);
+        $user = User::where('username', cas()->user())->first(['id']);
         return view('index.map',
             [
                 'user' => $user,
@@ -24,6 +24,11 @@ class IndexController extends Controller
 
     public function approval() {
         return view('index.approval');
+    }
+
+    public function getUser($id) {
+        $user = User::find($id)->first(['id', 'first_name', 'last_name', 'department', 'agency_org', 'email']);
+        return $user;
     }
 
 
