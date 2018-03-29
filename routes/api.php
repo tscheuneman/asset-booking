@@ -25,4 +25,6 @@ Route::group(['middleware' => ['cas.user']], function () {
     Route::post('/cart/entry/delete', 'CartController@destroy');
 
     Route::post('/cart/checkout', 'CartController@checkout');
+
+    Route::get('/user/{id}', 'IndexController@getUser');
 });
