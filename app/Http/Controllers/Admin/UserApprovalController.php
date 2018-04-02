@@ -76,12 +76,12 @@ class UserApprovalController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id)->first();
+        $user = User::where('id', '=', $id)->first();
 
         if($user != null) {
             $user->active = true;
             $user->save();
-            \Session::flash('flash_created',$user->first_name . ' account has been approved');
+            \Session::flash('flash_created',$user->first_name . '’s account has been approved');
             return redirect('/admin/user/approval');
         }
         else {
