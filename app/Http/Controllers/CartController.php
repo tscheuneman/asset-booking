@@ -91,6 +91,6 @@ class CartController extends Controller
             $returnData['data'] = $badBookings;
             return json_encode($returnData);
         }
-        return $badBookings;
+        return 'test';
     }
 }

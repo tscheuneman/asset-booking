@@ -14,12 +14,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li v-for="element in $store.state.regions"
+                    <li 
+                    :key="i"
+                    v-for="(z,i) in $store.state.regions"
                     :clickable="true"
-                    @click="centerMap(element) + setActiveItemId(element.id)"
-                    :class="{'active': activeItemId === element.id}"
+                    @click="centerMap(z) + setActiveItemId(z.id)"
+                    :class="{'active': activeItemId === z.id}"
                      >
-                    {{ element.name }} </li>
+                    {{ z.name }} </li>
                 </ul>
 
                 <div class="rightSide">

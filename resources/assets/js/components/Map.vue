@@ -329,7 +329,9 @@
                 '<div class="overlayImage" style="background: url(/storage/'+msg.latest_image+') center center no-repeat;"> </div>' +
                 '<h4>'+msg.name+'</h4>' +
                 '<div class="sideInfo"><strong><i class="fa fa-building-o" aria-hidden="true"></i> Building: </strong>'+ msg.location.building.name + '</div>' +
-                '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>' +
+                '<div class="sideInfo"><strong><i class="fa fa-hospital-o" aria-hidden="true"></i> Region: </strong>'+ msg.location.region.name + '</div>';
+
+            returnVal += '' +
                 '<div class="sideInfo"><strong><i class="fa fa-folder-o" aria-hidden="true"></i> Category: </strong>'+ msg.category.name + '</div>' +
                 '<div class="sideInfo"><strong><i class="fa fa-tags" aria-hidden="true"></i> Description </strong><br>'+ msg.category.description + '<span class="clearfix"></span></div>' +
                 '<br class="clear">' +
