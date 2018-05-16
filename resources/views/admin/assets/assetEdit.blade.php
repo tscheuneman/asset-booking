@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-group">
-            <img class="previewThumb" src="{{url('storage/' . $user->picture)}}" alt="">
+            <img class="previewThumb" src="{{url('storage/' . $asset->latest_image)}}" alt="">
             <label for="image">Image</label>
             <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera">
         </div>
