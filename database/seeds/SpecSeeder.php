@@ -27,5 +27,5 @@ class SpecSeeder extends Seeder
             $spec->save();
         }
 
-    }``
+    }
 }
