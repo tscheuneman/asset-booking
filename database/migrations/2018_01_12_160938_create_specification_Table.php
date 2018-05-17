@@ -26,13 +26,7 @@ class CreateSpecificationTable extends Migration
         });
 
 
-        $spec = new Specification();
-            $spec->name = 'Price';
-            $spec->slug = "price";
-            $spec->type = "number";
-            $spec->required = true;
-            $spec->options = '[{"label": "", "value": ""}]';
-            $spec->save();
+
 
     }
 
