@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Asset;
 use Validator;
 use Cas;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,9 @@ class BookingController extends AdminBaseController
         $asset_id = request('asset_id');
         $date = date("Y-m-d H:i:s", strtotime('+3 months'));
 
-        return Booking::where('asset_id', '=', $asset_id)->where('time_to', '<=', $date)->where('active', '=', true)->get();
+        $returnData['bookings'] = Booking::where('asset_id', '=', $asset_id)->where('time_to', '<=', $date)->where('active', '=', true)->get();
+        $returnData['asset'] = Asset::with('location.building', 'location.region', 'category')->where('deleted_at', '=', null)->where('id', $asset_id)->first();
+        return json_encode($returnData);
 
     }
 

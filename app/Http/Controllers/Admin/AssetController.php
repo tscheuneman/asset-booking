@@ -249,6 +249,6 @@ class AssetController extends AdminBaseController
     }
 
     public function getAllAssets() {
-        return Asset::with('location.building', 'location.region', 'category')->where('deleted_at', '=', null)->get();
+        return Asset::with('loclonglat', 'catmarker')->where('deleted_at', '=', null)->select('id', 'cat_id', 'location_id')->get();
     }
 }

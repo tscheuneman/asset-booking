@@ -13,10 +13,18 @@ class Asset extends Model
     public function category() {
         return $this->belongsTo('App\Category', 'cat_id', 'id');
     }
+    public function catmarker() {
+        return $this->belongsTo('App\Category', 'cat_id', 'id')->select('id', 'marker_img');
+    }
 
     public function location()
     {
         return $this->hasOne('App\Location', 'id', 'location_id');
+    }
+
+    public function loclonglat() {
+        return $this->hasOne('App\Location', 'id', 'location_id')->select('id', 'latitude', 'longitude');
+
     }
 
     public function building() {

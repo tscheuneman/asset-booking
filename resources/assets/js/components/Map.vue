@@ -201,10 +201,10 @@
                                 let item = {
                                     id: theData[i].id,
                                     position: {
-                                        lat: theData[i].location.latitude,
-                                        lng: theData[i].location.longitude
+                                        lat: theData[i].loclonglat.latitude,
+                                        lng: theData[i].loclonglat.longitude
                                     },
-                                    icon: '/storage/' + theData[i].category.marker_img
+                                    icon: '/storage/' + theData[i].catmarker.marker_img
                                 };
                                 arrayVal.push(item);
                             }
@@ -219,8 +219,7 @@
                 'addAssets',
             ]),
             toggleInfoWindow: function(marker, idx) {
-                let returnData = theData.find(x => x.id === marker.id);
-                toggleSidebar(returnData);
+                toggleSidebar(marker.id);
             },
             closeSidebar: function() {
                 toggleSidebar();
@@ -232,10 +231,10 @@
                     let item = {
                         id: theData[i].id,
                         position: {
-                            lat: theData[i].location.latitude,
-                            lng: theData[i].location.longitude,
+                            lat: theData[i].loclonglat.latitude,
+                            lng: theData[i].loclonglat.longitude,
                         },
-                        icon: '/storage/' + theData[i].category.marker_img
+                        icon: '/storage/' + theData[i].catmarker.marker_img
                     };
                     arrayVal.push(item);
                 }
@@ -293,12 +292,14 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    'asset_id': returnData.id,
+                    'asset_id': returnData,
                 }
-            }).done(function( msg ) {
-                bookingData = msg;
-                selectedElement = returnData.id;
-                fillData(returnData);
+            }).done(function( data ) {
+                let returnData = JSON.parse(data);
+                console.log(returnData);
+                bookingData = returnData.bookings;
+                selectedElement = returnData.asset.id;
+                fillData(returnData.asset);
                 $('sidebar').addClass('clicked').css({width: widthPerc + '%', right: '-' + widthPerc + '%'}).animate({
                     right: '0'
                 }, 300);
