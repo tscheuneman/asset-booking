@@ -80,11 +80,16 @@ class CartController extends Controller
         $today = date('Y-m-d', strtotime('+3 weekdays'));
         $badBookings = array();
         $invalidCnt = 0;
+        $entries = [];
         foreach($data as $entry) {
             if(date('Y-m-d', strtotime($entry->booking->time_from)) <= $today) {
                 $badReturn = true;
                 $badBookings[] = $entry->booking->id;
                 $invalidCnt++;
+            }
+            $entry = Booking::find($entry->booking->id);
+            if($entry != null) {
+                $entries[] = $entry;
             }
         }
         if($badReturn) {
@@ -93,6 +98,15 @@ class CartController extends Controller
             $returnData['data'] = $badBookings;
             return json_encode($returnData);
         }
-        return 'test';
+
+        foreach($entries as $ent) {
+            $ent->active = true;
+            $ent->save();
+        }
+
+        $returnData['status'] = 'Success';
+        $returnData['message'] = 'Entries have been booked';
+        $returnData['data'] = $entries;
+        return json_encode($returnData);
     }
 }

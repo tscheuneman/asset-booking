@@ -52,6 +52,16 @@
                             deleteFromCart(elm);
                         });
                     }
+                    else {
+                        $('.statusBar').addClass("good").html(response.data.message).fadeIn(500).delay(5000).fadeOut(1500, function() {
+                            $(this).removeClass('good');
+                        });
+
+                        let looper = response.data.data;
+                        looper.forEach(function(elm) {
+                            deleteFromCart(elm.id);
+                        });
+                    }
                  })
                  .catch(function (error) {
                      alert(error);
@@ -99,6 +109,9 @@
         display:none;
         line-height:50px;
         text-align:center;
+    }
+    div.statusBar.good {
+        background:#78BE20;
     }
     div.close {
         float:right;
