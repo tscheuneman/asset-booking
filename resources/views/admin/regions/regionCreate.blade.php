@@ -24,7 +24,7 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
-        <hr>
+        <hr />
 
         <button type="submit" class="btn btn-primary">Submit</button>
 
@@ -34,22 +34,22 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-        var options = {
+        let options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
         function success(pos) {
-            var crd = pos.coords;
+            let crd = pos.coords;
             $('#latitude').val(crd.latitude);
             $('#longitude').val(crd.longitude);
 
-        };
+        }
 
         function error(err) {
             console.warn(`ERROR(${err.code}): ${err.message}`);
-        };
+        }
 
         navigator.geolocation.getCurrentPosition(success, error, options);
 

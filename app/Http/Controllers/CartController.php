@@ -8,6 +8,8 @@ use App\CartEntry;
 use Validator;
 use App\Booking;
 
+use Mockery\Exception;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +33,7 @@ class CartController extends Controller
             $cartItems = CartEntry::where('cart_id', $cart->id)->count();
             return $cartItems;
         }
-
+        return false;
     }
 
     public function destroy(Request $request)
@@ -87,7 +89,7 @@ class CartController extends Controller
         }
         if($badReturn) {
             $returnData['status'] = 'Invalid';
-            $returnData['message'] = 'You have ' . $invalidCnt . ' invalid entries.  These entries have been removed from your card.  Please try again';
+            $returnData['message'] = 'You have ' . $invalidCnt . ' invalid entries.  These entries have been removed from your cart.  Please try again';
             $returnData['data'] = $badBookings;
             return json_encode($returnData);
         }
