@@ -296,7 +296,6 @@
                 }
             }).done(function( data ) {
                 let returnData = JSON.parse(data);
-                console.log(returnData);
                 bookingData = returnData.bookings;
                 selectedElement = returnData.asset.id;
                 fillData(returnData.asset);
