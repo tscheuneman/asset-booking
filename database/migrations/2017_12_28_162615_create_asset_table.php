@@ -20,6 +20,10 @@ class CreateAssetTable extends Migration
             $table->uuid('cat_id')->nullable(false);
             $table->string('latest_image');
             $table->uuid('location_id')->nullable(false);
+
+            $table->uuid('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+
             $table->json('specifications');
             $table->boolean('is_available')->default(true);
             $table->dateTime('deleted_at')->nullable(true)->default(null);
