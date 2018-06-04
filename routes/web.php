@@ -29,7 +29,6 @@ Route::group(['middleware' => ['cas.user']], function ()
 
     Route::post('/bookings', 'Admin\BookingController@bookings');
 
-
     Route::get('/user/{username}', 'IndexController@userShow');
 
     Route::get('/cart', 'CartController@index');
@@ -125,8 +124,17 @@ Route::group(['middleware' => ['cas.admin']], function ()
 
     //Admin User Approval
     Route::get('/admin/user/approval', 'Admin\UserApprovalController@index');
+    Route::get('/admin/user/users', 'Admin\UserApprovalController@users');
+
+    Route::get('/admin/user/users/edit/{id}', 'Admin\UserApprovalController@edit');
 
     Route::post('/admin/user/approve/{id}', 'Admin\UserApprovalController@update');
+
+
+    //Admin Departments Actions
+    Route::get('/admin/departments', 'Admin\DepartmentController@index');
+    Route::get('/admin/department/create', 'Admin\DepartmentController@create');
+    Route::post('/admin/department', 'Admin\DepartmentController@store');
 });
 
 
