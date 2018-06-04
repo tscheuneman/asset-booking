@@ -24,7 +24,6 @@ class RegisterController extends Controller
             $user = User::where('username', $username)->first();
             if($user === null){
                 $json = json_decode(file_get_contents(env('LDAP_API', 'https://google.com') . '?username=' . $username), true);
-
                 $department = '';
                 $first_name = '';
                 $last_name = '';
