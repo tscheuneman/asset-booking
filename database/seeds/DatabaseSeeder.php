@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(GlobalSettingsSeeder::class);
         $this->call(SpecSeeder::class);
+        $this->call(UserSeed::class);
     }
 }

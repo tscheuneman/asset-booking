@@ -13,6 +13,9 @@ class SpecSeeder extends Seeder
     public function run()
     {
         $this->createSpec('Price', 'price', 'number', '[{"label": "", "value": ""}]');
+        $this->createSpec('Installation Cost', 'install-cost', 'number', '[{"label": "", "value": ""}]');
+        $this->createSpec('Height', 'height', 'number', '[{"label": "", "value": ""}]');
+        $this->createSpec('Width', 'width', 'number', '[{"label": "", "value": ""}]');
     }
 
     public static function createSpec($name, $slug, $type, $options) {
@@ -26,6 +29,5 @@ class SpecSeeder extends Seeder
             $spec->options = $options;
             $spec->save();
         }
-
     }
 }
