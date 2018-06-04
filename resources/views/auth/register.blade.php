@@ -40,11 +40,11 @@
 
                     <div class="form-group">
                         <label for="department">Department</label>
-                        <input type="text" class="form-control" id="department" name="department" value="{{$department}}" required>
+                        <input type="text" class="form-control" id="department" name="department" value="{{$department}}" required readonly>
                     </div>
 
                     <div class="form-group">
-                        <label for="agency_org">Agency Org #</label>
+                        <label for="agency_org">Cost Center</label>
                         <input type="text" class="form-control" id="agency_org" name="agency_org" required>
                     </div>
 
