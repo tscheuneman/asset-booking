@@ -220,7 +220,7 @@ span.optionData {
   }
 }
 
-div.specification {
+div.specification, div.deptHolder {
   padding:15px;
   box-shadow:$normalBoxShadow;
   float:left;
@@ -380,12 +380,21 @@ sidebar.navbar {
     box-shadow:$normalBoxShadow;
   }
 
+  li.approval a {
+    background:$asu-maroon;
+    color:$white;
+
+    &:hover, &.active {
+      background:$asu-maroon-hover;
+    }
+  }
   ul {
     margin-top:90px;
     @media screen and (max-width: $mobileBreak) {
       margin-top:85px;
     }
   }
+
   .navbar-nav > li {
     float:none;
     display:block;
@@ -405,14 +414,6 @@ sidebar.navbar {
     &.active a {
       background:$navbar-hover;
       color:$asu-gold;
-    }
-    &.approval a {
-      background:$asu-maroon;
-      color:$white;
-
-      &:hover, &.active {
-        background:$asu-maroon-hover;
-      }
     }
 
     .dropdown-menu {
