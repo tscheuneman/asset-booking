@@ -60,6 +60,16 @@
         </div>
 
         <div class="form-group">
+            <label for="category">Department</label>
+            <select class="form-control" id="department" name="department">
+                <option value="">All</option>
+                @foreach($dept as $theDept)
+                    <option value="{{$theDept->id}}">{{$theDept->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="image">Image</label>
             <input type="file" class="form-control-file" name="image" id="image" accept="image/*;capture=camera" required>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Department;
 use Illuminate\Http\Request;
 use App\Asset;
 use App\Category;
@@ -39,9 +40,11 @@ class AssetController extends AdminBaseController
     public function create()
     {
         $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
+        $dept = Department::get(['id', 'name']);
         return view('admin.assets.assetCreate',
             [
-                'cat' => $cat
+                'cat' => $cat,
+                'dept' => $dept
             ]
         );
     }
@@ -54,8 +57,6 @@ class AssetController extends AdminBaseController
      */
     public function store(Request $request)
     {
-
-
         $this->validate(request(), [
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
@@ -63,6 +64,7 @@ class AssetController extends AdminBaseController
             'regionID' => 'string|required|exists:regions,id',
             'name' => 'required',
             'category' => 'required|string|exists:categories,id',
+            'department' => 'sometimes|exists:departments,id',
             'width' => 'nullable|numeric',
             'height' => 'nullable|numeric',
             'color' => 'nullable',
@@ -99,6 +101,7 @@ class AssetController extends AdminBaseController
         $asset->cat_id = request('category');
         $asset->name = request('name');
         $asset->location_id = $locationID;
+        $asset->department_id = $request->department;
         $asset->specifications = $specification;
         $asset->latest_image = $path;
         $asset->save();
@@ -135,10 +138,12 @@ class AssetController extends AdminBaseController
     {
         $asset = Asset::with('location.building', 'category', 'location.region')->where('id', '=', $id)->first();
         $cat = Category::with('subcats.subcats')->where('toplevel', '=', true)->get(['id', 'name']);
+        $dept = Department::get(['id', 'name']);
         return view('admin.assets.assetEdit',
             [
                 'cat' => $cat,
-                'asset' => $asset
+                'asset' => $asset,
+                'dept' => $dept
             ]
         );
     }
