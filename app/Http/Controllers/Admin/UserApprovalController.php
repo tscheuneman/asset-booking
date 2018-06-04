@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminBaseController;
 use App\User;
-
+use App\Department;
 
 class UserApprovalController extends AdminBaseController
 {
@@ -64,7 +64,14 @@ class UserApprovalController extends AdminBaseController
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $dept = Department::get(['id', 'name']);
+        return view('admin.user_approval.userEdit',
+            [
+                'user' => $user,
+                'dept' => $dept
+            ]
+        );
     }
 
     /**
@@ -100,4 +107,14 @@ class UserApprovalController extends AdminBaseController
     {
         //
     }
+
+    public function users() {
+        $users = User::where('active', '=', true)->paginate(config('globalSettings.entries-per-page'));
+        return view('admin.user_approval.allusers',
+            [
+                'users' => $users
+            ]
+        );
+    }
+
 }
