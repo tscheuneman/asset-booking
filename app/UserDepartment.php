@@ -10,4 +10,8 @@ class UserDepartment extends Model
     use Uuids;
     public $incrementing = false;
 
+    public function department()
+    {
+        return $this->belongsTo('App\Department', 'department_id');
+    }
 }
