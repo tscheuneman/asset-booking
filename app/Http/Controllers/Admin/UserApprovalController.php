@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\UserDepartment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminBaseController;
 use App\User;
 use App\Department;
+use Mockery\Exception;
 
 class UserApprovalController extends AdminBaseController
 {
@@ -64,7 +66,7 @@ class UserApprovalController extends AdminBaseController
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('departments.department')->where('id', $id)->first();
         $dept = Department::get(['id', 'name']);
         return view('admin.user_approval.userEdit',
             [
@@ -118,7 +120,67 @@ class UserApprovalController extends AdminBaseController
     }
 
     public function saveUser(Request $request) {
-        return $request;
+        $user = User::where('username', $request->username)->first();
+
+        if($user !== null) {
+            try {
+                $collectDept = $request->theDepartments;
+                    $collectDeptArray = json_decode($collectDept);
+
+                    $valid = true;
+                foreach($collectDeptArray as $dept) {
+                    if(!$this->checkDepartment($dept->id)) {
+                        $valid = false;
+                        break;
+                    }
+                }
+
+                if($valid) {
+                    $user->first_name = $request->first_name;
+                    $user->last_name = $request->last_name;
+                    $user->agency_org = $request->agency_org;
+                    $user->email = $request->email;
+                    $user->save();
+
+                    foreach($collectDeptArray as $dept) {
+                        if($this->checkIfUserDeptExists($user->id, $dept->id)) {
+                            $department = new UserDepartment();
+                            $department->user_id = $user->id;
+                            $department->department_id = $dept->id;
+                            $department->save();
+                        }
+                    }
+
+                    \Session::flash('flash_created',$user->first_name . '’s account has been updated');
+                    return redirect('/admin/user/users');
+                }
+
+                \Session::flash('flash_deleted','Failed to edit user');
+                return redirect('/admin/user/users');
+            } catch(Exception $e) {
+                \Session::flash('flash_deleted','Failed to edit user');
+                return redirect('/admin/user/users');
+            }
+        }
+        \Session::flash('flash_deleted','Failed to edit user');
+        return redirect('/admin/user/users');
+    }
+
+    private function checkDepartment($id) {
+        $dept = Department::find($id);
+        if($dept !== null) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private function checkIfUserDeptExists($user, $dept) {
+        $dept = UserDepartment::where('user_id', $user)->where('department_id', $dept)->get();
+        if(count($dept) < 1) {
+            return true;
+        }
+        return false;
     }
 
 }
