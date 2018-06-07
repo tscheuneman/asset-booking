@@ -117,4 +117,8 @@ class UserApprovalController extends AdminBaseController
         );
     }
 
+    public function saveUser(Request $request) {
+        return $request;
+    }
+
 }

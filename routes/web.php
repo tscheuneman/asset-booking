@@ -130,6 +130,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
 
     Route::post('/admin/user/approve/{id}', 'Admin\UserApprovalController@update');
 
+    Route::post('/admin/user/users', 'Admin\UserApprovalController@saveUser');
+
 
     //Admin Departments Actions
     Route::get('/admin/departments', 'Admin\DepartmentController@index');

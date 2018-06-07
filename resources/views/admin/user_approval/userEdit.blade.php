@@ -91,7 +91,6 @@
                     return false;
                 }
             });
-
             if(cont) {
                 let returnVal = '<div data-id="'+val+'" class="deptHolder">' +
                     '<strong>' + text + '</strong>' +
@@ -99,7 +98,30 @@
 
                 $('#deptHolder').append(returnVal);
             }
-
         }
+
+        $('#submit').submit(function() {
+            let obj = [];
+            try {
+                $('#deptHolder .deptHolder').each(function() {
+                    let elm = $(this);
+                    let item = {};
+                    item['id'] = $(this).data('id');
+                    obj.push(item);
+                });
+
+                if(obj.length < 1) {
+                    alert("You must assign a department to this user");
+                    return false;
+                }
+
+                let returnObj = JSON.stringify(obj);
+                $('#theDepartments').val(returnObj);
+            }
+            catch(err) {
+                return false;
+            }
+
+        });
     </script>
 @stop
