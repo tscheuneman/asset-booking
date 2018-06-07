@@ -8,11 +8,12 @@ use App\Asset;
 use App\Category;
 use App\Location;
 use App\Building;
+use App\User;
 use File;
 use App\Jobs\ProcessImage;
 use Mockery\Exception;
 use App\Http\Controllers\AdminBaseController;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class AssetController extends AdminBaseController
@@ -64,7 +65,7 @@ class AssetController extends AdminBaseController
             'regionID' => 'string|required|exists:regions,id',
             'name' => 'required',
             'category' => 'required|string|exists:categories,id',
-            'department' => 'sometimes|exists:departments,id',
+            'department' => 'nullable|exists:departments,id',
             'width' => 'nullable|numeric',
             'height' => 'nullable|numeric',
             'color' => 'nullable',
@@ -101,7 +102,13 @@ class AssetController extends AdminBaseController
         $asset->cat_id = request('category');
         $asset->name = request('name');
         $asset->location_id = $locationID;
-        $asset->department_id = $request->department;
+        if($request->department == null) {
+            $asset->department_id = null;
+        }
+        else {
+            $asset->department_id = $request->department;
+        }
+
         $asset->specifications = $specification;
         $asset->latest_image = $path;
         $asset->save();
@@ -157,6 +164,9 @@ class AssetController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
+
+
+
         $this->validate(request(), [
             'id' => 'required|exists:assets',
             'loc_id' => 'required|exists:locations,id',
@@ -166,6 +176,7 @@ class AssetController extends AdminBaseController
             'regionID' => 'string|required|exists:regions,id',
             'name' => 'required',
             'category' => 'required|string',
+            'department' => 'nullable|exists:departments,id',
             'image' => 'image',
             'specs' => 'json'
         ]);
@@ -203,6 +214,13 @@ class AssetController extends AdminBaseController
             $asset->name = request('name');
             $asset->location_id = $locationID;
             $asset->specifications = $specification;
+            if($request->department == null) {
+                $asset->department_id = null;
+            }
+            else {
+                $asset->department_id = $request->department;
+            }
+
             if(request('image') != null) {
                 File::delete(public_path(). '/storage/' .$asset->latest_image);
                 $asset->latest_image = $path;
@@ -254,6 +272,12 @@ class AssetController extends AdminBaseController
     }
 
     public function getAllAssets() {
-        return Asset::with('loclonglat', 'catmarker')->where('deleted_at', '=', null)->select('id', 'cat_id', 'location_id')->get();
+        $depts=array();
+        $user = User::with('departments')->where('id', Auth::id())->first();
+        foreach($user->departments as $dept) {
+            $depts[] = $dept->department_id;
+
+        }
+        return Asset::with('loclonglat', 'catmarker')->where('deleted_at', '=', null)->whereIn('department_id', $depts)->orWhere('department_id', null)->select('id', 'cat_id', 'location_id')->get();
     }
 }
