@@ -31,4 +31,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function departments() {
+        return $this->hasMany('App\UserDepartment', 'user_id');
+    }
+
+
 }
