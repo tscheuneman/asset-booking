@@ -56,7 +56,11 @@
         </div>
 
         <div id="deptHolder">
-
+            @foreach($user->departments as $dept)
+                <div data-id="{{$dept->department_id}}" class="deptHolder">
+                    <strong>{{$dept->department->name}}</strong>
+                </div>'
+            @endforeach
         </div>
 
         <br class="clear" />
