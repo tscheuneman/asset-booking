@@ -45,5 +45,10 @@ class ImportController extends Controller
         echo 'done';
 
     }
+
+    public function importData() {
+        $this->buildings();
+        $this->regions();
+    }
 }
 ?>
