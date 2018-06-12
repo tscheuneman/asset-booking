@@ -32,7 +32,7 @@
                 <td>{{$user->department}}</td>
                 <td>{{$user->agency_org}}</td>
             <td>
-                <a class="editAction" href="/admin/users/edit/{{$user->id}}"><span class="glyphicon glyphicon-ok"> </span> Approve</a>
+                <a class="editAction" href="/admin/user/users/edit/{{$user->id}}"><span class="glyphicon glyphicon-ok"> </span> Approve</a>
             </td>
             <tr>
         @endforeach
