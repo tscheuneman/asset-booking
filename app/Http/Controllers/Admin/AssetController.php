@@ -271,6 +271,12 @@ class AssetController extends AdminBaseController
 
     }
 
+    /**
+     * Get all assets belonging to user deptartment.
+     *
+     *
+     * @return \App\Asset[]
+     */
     public function getAllAssets() {
         $depts=array();
         $user = User::with('departments')->where('id', Auth::id())->first();
