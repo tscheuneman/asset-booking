@@ -209,4 +209,23 @@ class UserApprovalController extends AdminBaseController
         return false;
     }
 
+    public function deleteDept(Request $request) {
+        $this->validate(request(), [
+            'id' => 'required|string|exists:user_departments,id',
+        ]);
+
+        $dept = UserDepartment::find($request->id);
+
+        if($dept != null) {
+            $dept->delete();
+            $returnData['status'] = true;
+            $returnData['message'] = 'User department has been deleted';
+            return json_encode($returnData);
+        }
+
+        $returnData['status'] = false;
+        $returnData['message'] = 'Error deleting user department';
+        return json_encode($returnData);
+    }
+
 }

@@ -133,6 +133,8 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::post('/admin/user/users', 'Admin\UserApprovalController@saveUser');
 
 
+    Route::post('/admin/users/departments/delete', 'Admin\UserApprovalController@deleteDept');
+
     //Admin Departments Actions
     Route::get('/admin/departments', 'Admin\DepartmentController@index');
     Route::get('/admin/department/create', 'Admin\DepartmentController@create');

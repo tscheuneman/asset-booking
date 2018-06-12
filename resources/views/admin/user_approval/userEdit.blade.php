@@ -58,8 +58,15 @@
         <div id="deptHolder">
             @foreach($user->departments as $dept)
                 <div data-id="{{$dept->department_id}}" class="deptHolder">
-                    <strong>{{$dept->department->name}}</strong>
-                </div>'
+                    <strong style="font-size:1.3em;">{{$dept->department->name}}</strong>
+                    <br class="clear" />
+                    <br />
+                    <a data-id="{{$dept->id}}" class="deleteUserDept deleteAction" href="#">
+                        <span class="glyphicon glyphicon-trash"> </span> Delete
+                    </a>
+
+
+                </div>
             @endforeach
         </div>
 
@@ -75,6 +82,11 @@
         $(document).ready(function() {
             $('select#department').on('change', function() {
                 addDept();
+            });
+
+            $('a.deleteUserDept').on('click', function() {
+                let id = $(this).data('id');
+                deleteUserDept(id, $(this).parent());
             });
         });
 
@@ -127,5 +139,27 @@
             }
 
         });
+
+        function deleteUserDept(id, elm) {
+            $.ajax({
+                method: "POST",
+                url: "/admin/users/departments/delete",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    'id': id,
+                }
+            }).done(function( msg ) {
+                let jsonData = JSON.parse(msg);
+                console.log(jsonData);
+                if(jsonData.status === true) {
+                    elm.remove();
+                }
+                else {
+                    alert(jsonData.message)
+                }
+            });
+        }
     </script>
 @stop
