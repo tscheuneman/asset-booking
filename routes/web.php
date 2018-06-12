@@ -137,6 +137,7 @@ Route::group(['middleware' => ['cas.admin']], function ()
     Route::get('/admin/departments', 'Admin\DepartmentController@index');
     Route::get('/admin/department/create', 'Admin\DepartmentController@create');
     Route::post('/admin/department', 'Admin\DepartmentController@store');
+
 });
 
 
