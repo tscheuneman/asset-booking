@@ -41,6 +41,7 @@
 
 <script>
 
+    //Import packages
     import * as moment from 'moment';
     import * as VueGoogleMaps from 'vue2-google-maps';
     import axios from 'axios';
@@ -48,16 +49,14 @@
     import { store } from './store';
 
 
-
-
     let bookingData = [];
     let selectedElement = null;
     $(document).ready(function() {
         $('sidebar').on('click', 'a.bookLink', function() {
+            //Declare date info
             let drp = $('#book').data('daterangepicker');
             let startDate = drp.startDate.format("YYYY-MM-DD");
             let endDate = drp.endDate.format("YYYY-MM-DD");
-
                 axios({
                     method: 'POST',
                     url: 'api/booking/' + selectedElement,

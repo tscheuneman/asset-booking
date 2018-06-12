@@ -110,6 +110,13 @@ class UserApprovalController extends AdminBaseController
         //
     }
 
+    /**
+     * Get all users
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function users() {
         $users = User::where('active', '=', true)->paginate(config('globalSettings.entries-per-page'));
         return view('admin.user_approval.allusers',
@@ -119,6 +126,12 @@ class UserApprovalController extends AdminBaseController
         );
     }
 
+    /**
+     * Edit user
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function saveUser(Request $request) {
         $user = User::where('username', $request->username)->first();
 
@@ -166,6 +179,12 @@ class UserApprovalController extends AdminBaseController
         return redirect('/admin/user/users');
     }
 
+    /**
+     * See if department exists
+     *
+     * @param String
+     * @return boolean
+     */
     private function checkDepartment($id) {
         $dept = Department::find($id);
         if($dept !== null) {
@@ -174,7 +193,13 @@ class UserApprovalController extends AdminBaseController
         return false;
     }
 
-
+    /**
+     * Check if user belongs to department
+     *
+     * @param String
+     * @param String
+     * @return boolean
+     */
     private function checkIfUserDeptExists($user, $dept) {
         $dept = UserDepartment::where('user_id', $user)->where('department_id', $dept)->get();
         if(count($dept) < 1) {
