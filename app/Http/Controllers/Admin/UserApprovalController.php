@@ -153,6 +153,7 @@ class UserApprovalController extends AdminBaseController
                     $user->last_name = $request->last_name;
                     $user->agency_org = $request->agency_org;
                     $user->email = $request->email;
+                    $user->active = true;
                     $user->save();
 
                     foreach($collectDeptArray as $dept) {

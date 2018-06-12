@@ -32,10 +32,7 @@
                 <td>{{$user->department}}</td>
                 <td>{{$user->agency_org}}</td>
             <td>
-                <form action="/admin/user/approve/{{$user->id}}" method="POST">
-                    {{csrf_field()}}
-                    <button class="editAction" onclick="return confirm('Approve Account')"><span class="glyphicon glyphicon-ok"> </span> Approve</button>
-                </form>
+                <a class="editAction" href="/admin/users/edit/{{$user->id}}"><span class="glyphicon glyphicon-ok"> </span> Approve</a>
             </td>
             <tr>
         @endforeach
