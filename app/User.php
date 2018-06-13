@@ -35,5 +35,13 @@ class User extends Authenticatable
         return $this->hasMany('App\UserDepartment', 'user_id');
     }
 
+    public function scopeSearchUser($query, $key) {
+        if ($key!='') {
+            $query->where(function ($query) use ($key) {
+                $query->where("first_name", "LIKE","%$key%")->orWhere("last_name", "LIKE", "%$key%")->orWhere("username", "LIKE", "%$key%");
+            });
+        }
+        return $query;
+    }
 
 }

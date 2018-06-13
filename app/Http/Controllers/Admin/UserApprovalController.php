@@ -6,6 +6,9 @@ use App\UserDepartment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminBaseController;
 use App\User;
+
+use Illuminate\Support\Facades\Input;
+
 use App\Department;
 use Mockery\Exception;
 
@@ -119,6 +122,11 @@ class UserApprovalController extends AdminBaseController
 
     public function users() {
         $users = User::where('active', '=', true)->paginate(config('globalSettings.entries-per-page'));
+
+        if($keyword = Input::get('keyword', '')) {
+            $users = User::SearchUser($keyword)->paginate(config('globalSettings.entries-per-page'));
+
+        }
         return view('admin.user_approval.allusers',
             [
                 'users' => $users

@@ -11,6 +11,12 @@
     @if(Session::has('flash_created'))
         <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_created') !!}</em></div>
     @endif
+    <div class="sort">
+        <form action="" method="GET">
+            <input type="text" name="keyword" class="form-control" placeholder="Search..." />
+        </form>
+    </div>
+    <br>
     <table class="table">
         <thead>
         <tr>
@@ -35,6 +41,5 @@
             @endforeach
         </tbody>
     </table>
-
-    {{$users}}
+    {{ $users->appends(Request::except('page'))->links() }}
 @stop

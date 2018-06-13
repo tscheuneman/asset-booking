@@ -14,7 +14,7 @@
     @endif
     <div class="sort">
         <form action="" method="GET">
-            <input type="text" name="keyword" class="form-control"/>
+            <input type="text" name="keyword" class="form-control" placeholder="Search..." />
         </form>
     </div>
     <br>
